@@ -31,9 +31,12 @@
 * 成績確認機能
 　　過去の自分の各クイズの成績を確認できる。
 
-
 ### その後の機能
 * 免疫アバター育成機能
 　　登録販売者資格を目指したい人向けの機能。
 　　クイズをクリアしていくとアバターが成長する。
 　　勉強は毎日コツコツ続けて覚えることが大切なので通知機能で勉強を促す。
+
+
+## 画面遷移図
+https://www.figma.com/file/T0MUmrxdxTFSt8GbwjJeKh/Untitled?type=design&node-id=0%3A1&mode=design&t=7bH71musp3m38wE6-1
