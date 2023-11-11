@@ -42,4 +42,4 @@
 https://www.figma.com/file/T0MUmrxdxTFSt8GbwjJeKh/Untitled?type=design&node-id=0%3A1&mode=design&t=7bH71musp3m38wE6-1
 
 ## ER図
-https://gyazo.com/4c0d2afd89999848260961f91f12da81
+https://gyazo.com/7a323f54f9471591839066c5f7c05ce6
