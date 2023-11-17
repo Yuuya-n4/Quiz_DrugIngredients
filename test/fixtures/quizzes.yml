@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quiz_set: one
+  question: MyText
+  drug_type: 1
+
+two:
+  quiz_set: two
+  question: MyText
+  drug_type: 1
