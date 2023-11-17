@@ -1,0 +1,12 @@
+<h1>クイズセット一覧</h1>
+
+<div>
+  <p>ここにサービスの説明文を追加。</p>
+</div>
+
+<% @quiz_sets.each do |quiz_set| %>
+  <div>
+    <h2><%= link_to quiz_set.title, quiz_set %></h2>
+    <p><%= quiz_set.description %></p>
+  </div>
+<% end %>
