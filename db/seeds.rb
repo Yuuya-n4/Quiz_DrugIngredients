@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+QuizSet.create(title: 'サンプルクイズセット1', description: '説明文1')
+QuizSet.create(title: 'サンプルクイズセット2', description: '説明文2')
