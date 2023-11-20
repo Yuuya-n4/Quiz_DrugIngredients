@@ -1,5 +1,11 @@
 <h1>クイズセット一覧</h1>
 
+<%= link_to '会員登録', new_user_registration_path %>
+<%= link_to 'ログイン', new_user_session_path %>
+<% if user_signed_in? %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :get %>
+<% end %>
+
 <div>
   <p>ここにサービスの説明文を追加。</p>
 </div>
