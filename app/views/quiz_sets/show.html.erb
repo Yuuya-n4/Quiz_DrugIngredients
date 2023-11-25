@@ -1,0 +1,7 @@
+<h1>クイズ開始ページ</h1>
+
+<p>タイトル: <%= @quiz_set.title %></p>
+<p>説明: <%= @quiz_set.description %></p>
+<p>問題数: <%= @quiz_set.quizzes.count %></p>
+
+<%= link_to 'クイズを始める', quiz_set_quiz_path(@quiz_set, @first_quiz) %>

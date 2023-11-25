@@ -1,0 +1,9 @@
+<h1>クイズページ</h1>
+
+<p>問題: <%= @quiz.question %></p>
+
+<%= form_with url: answer_quiz_set_quiz_path(@quiz_set, @quiz), local: true do |form| %>
+  <% @choices.each do |choice| %>
+    <%= button_tag choice.text, type: 'submit', name: 'choice_id', value: choice.id %>
+  <% end %>
+<% end %>
