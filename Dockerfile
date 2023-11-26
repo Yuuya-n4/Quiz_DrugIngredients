@@ -1,5 +1,6 @@
 FROM ruby:3.1
 RUN apt-get update -qq && apt-get install -y nodejs yarn
+RUN apt-get update -qq && apt-get install -y chromium
 WORKDIR /quiz_drug_ingredients
 COPY Gemfile /quiz_drug_ingredients/Gemfile
 COPY Gemfile.lock /quiz_drug_ingredients/Gemfile.lock
