@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  get 'quizzes/show'
   devise_for :users, skip: [:confirmations, :unlocks, :omniauth_callbacks]
   root 'quiz_sets#index'
-  resources :quiz_sets, only: [:index, :show]
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
+  resources :quiz_sets, only: [:index, :show] do
+    resources :quizzes, only: [:show] do
+      member do
+        post 'answer'
+        get 'explanation'
+      end
+    end
+    get 'score', on: :member
+  end
 end

@@ -1,0 +1,9 @@
+<h1>クイズ解説ページ</h1>
+
+<p><%= @quiz.correct_choice.text %> が正解です。</p>
+<p><%= @quiz.explanation %></p>
+<% if @next_quiz %>
+  <%= link_to '次へ', quiz_set_quiz_path(@quiz_set, @next_quiz) %>
+<% else %>
+  <%= link_to 'スコアを見る', score_quiz_set_path(@quiz_set) %>
+<% end %>
