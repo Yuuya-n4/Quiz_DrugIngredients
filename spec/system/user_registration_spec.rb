@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'User registration', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
 
   it 'ユーザー登録が成功し、自動ログインされ、トップページにリダイレクトされる' do
     visit new_user_registration_path

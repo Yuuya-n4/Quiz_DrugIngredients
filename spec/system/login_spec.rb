@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe 'User login', type: :system do
   let!(:user) { FactoryBot.create(:user) }
 
-  before do
-    driven_by(:rack_test)
-  end
-
   it '正しい情報でログインできる' do
     visit new_user_session_path
 
