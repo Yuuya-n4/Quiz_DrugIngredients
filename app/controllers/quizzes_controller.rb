@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_quiz_set
+  before_action :set_quiz_set, only: [:show, :answer, :explanation]
   before_action :set_quiz, only: [:show, :answer, :explanation]
 
   def show
@@ -19,6 +19,10 @@ class QuizzesController < ApplicationController
 
   def explanation
     @next_quiz = @quiz_set.quizzes.where('id > ?', @quiz.id).first
+  end
+
+  def index
+    @quizzes = Quiz.includes(:choices, :quiz_set).all
   end
 
   private

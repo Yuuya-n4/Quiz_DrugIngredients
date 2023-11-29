@@ -1,0 +1,10 @@
+<h1>クイズ一覧</h1>
+
+<% @quizzes.each do |quiz| %>
+  <div>
+    <p><strong>質問：</strong><%= quiz.question %></p>
+    <p><strong>正解：</strong><%= quiz.choices.find(&:correct).text %></p>
+    <p><strong>解説：</strong><%= quiz.explanation %></p>
+    <p><strong>クイズセット：</strong><%= quiz.quiz_set.title %></p>
+  </div>
+<% end %>

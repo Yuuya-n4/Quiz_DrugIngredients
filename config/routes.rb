@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     end
     get 'score', on: :member
   end
+  
+  resources :quizzes, only: [:index]
 end
