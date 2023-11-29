@@ -1,5 +1,11 @@
 <h1>クイズ一覧</h1>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label :combined_search, "検索", for: "combined_search" %>
+  <%= f.search_field :combined_search, id: "combined_search" %>
+  <%= f.submit "検索" %>
+<% end %>
+
 <% @quizzes.each do |quiz| %>
   <div>
     <p><strong>質問：</strong><%= quiz.question %></p>

@@ -18,4 +18,28 @@ class Quiz < ApplicationRecord
   def correct_choice
     choices.find_by(correct: true)
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[question explanation]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[quiz_set choices]
+  end
+
+  def self.ransackable_scopes(auth_object = nil)
+    %i[combined_search]
+  end
+
+  def self.combined_search(query)
+    return all if query.blank?
+
+    joins(:quiz_set, :choices)
+      .where('quizzes.question LIKE ?
+              OR quizzes.explanation LIKE ?
+              OR quiz_sets.title LIKE ?
+              OR (choices.text LIKE ? AND choices.correct = ?)',
+             "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", true)
+      .distinct
+  end
 end

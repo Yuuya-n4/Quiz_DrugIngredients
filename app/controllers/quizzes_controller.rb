@@ -22,7 +22,8 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quizzes = Quiz.includes(:choices, :quiz_set).all
+    @q = Quiz.ransack(params[:q])
+    @quizzes = @q.result(distinct: true).order(:created_at)
   end
 
   private
