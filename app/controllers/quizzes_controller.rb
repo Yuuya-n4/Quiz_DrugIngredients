@@ -23,7 +23,7 @@ class QuizzesController < ApplicationController
 
   def index
     @q = Quiz.ransack(params[:q])
-    @quizzes = @q.result(distinct: true).order(:created_at)
+    @quizzes = @q.result(distinct: true).order(:created_at).page(params[:page]).per(5)
   end
 
   def autocomplete
