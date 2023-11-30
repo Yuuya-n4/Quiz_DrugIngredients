@@ -14,7 +14,7 @@ quiz_set1 = QuizSet.create!(title: '風邪薬', description: '解熱や鎮痛、
 quiz1 = Quiz.create!(quiz_set_id: quiz_set1.id, question: '風邪薬によく含まれる成分で、鎮痛・解熱作用があるものはどれ？', explanation: '解説1', drug_type: 1)
 Choice.create!([
   {quiz_id: quiz1.id, text: "カフェイン", correct: 0},
-  {quiz_id: quiz1.id, text: "ブプロフェン", correct: 1},
+  {quiz_id: quiz1.id, text: "イブプロフェン", correct: 1},
   {quiz_id: quiz1.id, text: "ビタミンC", correct: 0}
 ])
 quiz2 = Quiz.create!(quiz_set_id: quiz_set1.id, question: '風邪薬に含まれることが多い、咳を鎮める成分はどれ？', explanation: '解説2', drug_type: 1)

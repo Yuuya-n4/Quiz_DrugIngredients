@@ -26,6 +26,39 @@ class QuizzesController < ApplicationController
     @quizzes = @q.result(distinct: true).order(:created_at)
   end
 
+  def autocomplete
+    @quizzes = Quiz.ransack(question_cont: search_query).result.limit(10)
+    render json: @quizzes.map(&:question)
+  end
+
+
+  def search
+    query = params[:query]
+    
+    # eager_load は関連レコードを事前に取得しますが、必要なカラムのみを指定するために select を使用します。
+    quizzes_scope = Quiz.eager_load(:quiz_set, :choices)
+                        .where('quizzes.question LIKE :query OR choices.text LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query', query: "%#{query}%")
+                        .references(:quiz_set, :choices)
+  
+    # 必要なカラムを選択し、distinct を使って重複を避けます。
+    quizzes = quizzes_scope.select('quizzes.id, quizzes.question, quizzes.explanation, quiz_sets.title, quiz_sets.id AS quiz_set_id, choices.text, choices.correct').distinct
+  
+    # map メソッドを使用して、必要な情報を抽出します。
+    # correct_choice 変数を使用して、各クイズに対する正解の選択肢を見つけます。
+    results = quizzes.map do |quiz|
+      correct_choice = quiz.choices.detect(&:correct)
+      {
+        question: quiz.question,
+        correct_answer: correct_choice&.text,
+        explanation: quiz.explanation,
+        quiz_set_title: quiz.quiz_set&.title
+      }
+    end
+  
+    render json: results
+  end
+
+
   private
 
   def set_quiz_set
