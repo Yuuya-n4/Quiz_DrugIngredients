@@ -7,7 +7,9 @@ class Quiz < ApplicationRecord
   enum drug_type: {
     cold_medicine: 1,
     digestive_medicine: 2,
-    herbal_medicine: 3
+    skin_medicine: 3,
+    allergy_medicine: 4,
+    herbal_medicine: 5
   }
 
   def correct_choice?(choice)
