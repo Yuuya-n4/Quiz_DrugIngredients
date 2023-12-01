@@ -72,9 +72,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem 'faker'
 end
 
 gem "devise"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
+gem 'ransack'
+gem 'kaminari'

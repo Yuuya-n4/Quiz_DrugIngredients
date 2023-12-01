@@ -1,8 +1,12 @@
 FactoryBot.define do
   factory :quiz do
-    quiz_set
-    question { "この薬の作用は何ですか？" }
-    drug_type { 1 }
-    explanation { "正しい回答の説明" }
+    association :quiz_set
+    question { Faker::Lorem.question }
+    explanation { Faker::Lorem.sentence }
+
+    after(:create) do |quiz|
+      create(:choice, quiz: quiz, correct: true)
+      create_list(:choice, 2, quiz: quiz, correct: false)
+    end
   end
 end

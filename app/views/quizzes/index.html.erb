@@ -1,0 +1,21 @@
+<h1>クイズ一覧</h1>
+
+<div data-controller="autocomplete">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :combined_search, "検索", for: "combined_search" %>
+    <%= f.search_field :combined_search, id: "combined_search", data: { action: "input->autocomplete#performSearch", autocomplete_target: "input" } %>
+    <%= f.submit "検索" %>
+  <% end %>
+  <ul data-autocomplete-target="results" class="list-group"></ul>
+</div>
+
+<% @quizzes.each do |quiz| %>
+  <div>
+    <p><strong>質問：</strong><%= quiz.question %></p>
+    <p><strong>正解：</strong><%= quiz.choices.find(&:correct).text %></p>
+    <p><strong>解説：</strong><%= quiz.explanation %></p>
+    <p><strong>クイズセット：</strong><%= quiz.quiz_set.title %></p>
+  </div>
+<% end %>
+
+<%= paginate @quizzes %>
