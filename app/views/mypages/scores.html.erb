@@ -1,0 +1,22 @@
+<h1>スコア確認</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>クイズセット</th>
+      <th>正解数 / 問題数</th>
+      <th>挑戦した日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scores.each do |score| %>
+      <tr>
+        <td><%= score.quiz_set.title %></td>
+        <td><%= "#{score.correct_answer} / #{score.total_questions}" %></td>
+        <td><%= score.created_at.to_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'ユーザー情報編集', profile_mypages_path %>

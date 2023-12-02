@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'mypages/profile'
+  get 'mypages/scores'
   get 'quizzes/show'
   devise_for :users, skip: [:confirmations, :unlocks, :omniauth_callbacks]
   root 'quiz_sets#index'
@@ -15,5 +17,13 @@ Rails.application.routes.draw do
 
   resources :quizzes, only: [:index] do
     get 'search', on: :collection
+  end
+
+  resource :mypages, only: [] do
+    collection do
+      get 'profile'
+      get 'scores'
+      patch 'update_profile'
+    end
   end
 end

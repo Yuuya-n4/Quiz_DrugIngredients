@@ -1,6 +1,6 @@
 <h1>スコアページ</h1>
 
 <p>あなたのスコア: <%= @quiz_set.title %></p>
-<p>正解数: <%= @score.correct_answer %> / <%= @quiz_set.quizzes.count %> 問</p>
+<p>正解数: <%= @score.correct_answer %> / <%= @score.total_questions %> 問</p>
 
 <%= link_to 'トップページへ戻る', quiz_sets_path %>

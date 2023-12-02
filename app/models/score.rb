@@ -7,4 +7,8 @@ class Score < ApplicationRecord
   def increment_correct_answers!
     increment!(:correct_answer)
   end
+
+  def total_questions
+    quiz_set.quizzes.count
+  end
 end

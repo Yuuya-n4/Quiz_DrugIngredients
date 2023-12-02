@@ -16,25 +16,25 @@ RSpec.describe 'Quizzes Search', type: :system do
     visit quizzes_path
   end
 
-  it 'searches quizzes by a specific question' do
+  it '問題の内容でクイズを検索する' do
     fill_in 'combined_search', with: '特定の質問'
     click_on '検索'
     expect(page).to have_content '特定の質問'
   end
 
-  it 'searches quizzes by a specific correct answer' do
+  it '正解の選択肢でクイズを検索する' do
     fill_in 'combined_search', with: '特定の正解'
     click_on '検索'
     expect(page).to have_content '特定の正解'
   end
 
-  it 'searches quizzes by a specific explanation' do
+  it '問題の解説でクイズを検索する' do
     fill_in 'combined_search', with: '特定の解説'
     click_on '検索'
     expect(page).to have_content '特定の解説'
   end
 
-  it 'searches quizzes by a specific quiz set title' do
+  it 'クイズセットのタイトルでクイズを検索する' do
     fill_in 'combined_search', with: @specific_quiz.quiz_set.title
     click_on '検索'
     expect(page).to have_content @specific_quiz.quiz_set.title
