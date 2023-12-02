@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one :avatar, dependent: :destroy
 
   validates :name, presence: true
+  validates :email, presence: true
 
   def total_score_for_quiz_set(quiz_set)
     scores.where(quiz_set: quiz_set).sum(:correct_answer)
