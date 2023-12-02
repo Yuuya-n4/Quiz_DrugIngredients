@@ -3,13 +3,16 @@ Rails.application.routes.draw do
 
   root 'quiz_sets#index'
   resources :quiz_sets, only: [:index, :show] do
+    member do
+      post 'start_quiz'
+      get 'score'
+    end
     resources :quizzes, only: [:show] do
       member do
         post 'answer'
         get 'explanation'
       end
     end
-    get 'score', on: :member
   end
 
   resources :quizzes, only: [:index] do
