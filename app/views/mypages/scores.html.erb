@@ -5,7 +5,7 @@
     <tr>
       <th>クイズセット</th>
       <th>正解数 / 問題数</th>
-      <th>挑戦した日</th>
+      <th>挑戦した日時</th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +13,7 @@
       <tr>
         <td><%= score.quiz_set.title %></td>
         <td><%= "#{score.correct_answer} / #{score.total_questions}" %></td>
-        <td><%= score.created_at.to_date %></td>
+        <td><%= score.created_at.strftime("%-m月%-d日%H:%M") %></td>
       </tr>
     <% end %>
   </tbody>

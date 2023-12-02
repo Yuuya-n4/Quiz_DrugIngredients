@@ -2,7 +2,7 @@ class MypagesController < ApplicationController
   before_action :authenticate_user!
 
   def scores
-    @scores = current_user.scores.includes(:quiz_set)
+    @scores = current_user.scores.includes(:quiz_set).order(created_at: :desc)
   end
 
   def profile
@@ -12,7 +12,6 @@ class MypagesController < ApplicationController
   def update_profile
     @user = current_user
 
-    # パスワードの入力があればパスワードも更新する
     if user_params[:password].blank?
       successfully_updated = @user.update_without_password(user_params.except(:password, :password_confirmation, :current_password))
     else

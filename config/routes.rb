@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  get 'mypages/profile'
-  get 'mypages/scores'
-  get 'quizzes/show'
   devise_for :users, skip: [:confirmations, :unlocks, :omniauth_callbacks]
+
   root 'quiz_sets#index'
-  
   resources :quiz_sets, only: [:index, :show] do
     resources :quizzes, only: [:show] do
       member do
@@ -26,4 +23,7 @@ Rails.application.routes.draw do
       patch 'update_profile'
     end
   end
+
+  get 'terms', to: 'pages#terms'
+  get 'privacy', to: 'pages#privacy'
 end
