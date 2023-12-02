@@ -4,15 +4,11 @@ RSpec.describe 'Quizzes', type: :system do
   before do
     @user = create(:user)
     @quiz_set = create(:quiz_set)
-    3.times do |n|
-      quiz = create(:quiz, quiz_set: @quiz_set, question: "クイズの質問 #{n + 1}")
-      create(:correct_choice, quiz: quiz)
-      2.times { create(:incorrect_choice, quiz: quiz) }
-    end
+
     @first_quiz = @quiz_set.quizzes.first
   end
 
-  it 'ユーザーがクイズに３問正解し、３問正解のスコアが表示される' do
+  it 'ユーザーがクイズに10問正解し、10問正解のスコアが表示される' do
     login_as(@user, scope: :user)
 
     visit root_path
@@ -34,7 +30,11 @@ RSpec.describe 'Quizzes', type: :system do
 
     expect(page).to have_content('あなたのスコア:')
     expect(page).to have_content(@quiz_set.title)
-    expect(page).to have_content('正解数: 3 / 3 問')
+    expect(page).to have_content('正解数: 10 / 10 問')
+
+    visit scores_mypages_path
+    expect(page).to have_content(@quiz_set.title)
+    expect(page).to have_content('10 / 10')
   end
 
   it 'ユーザーがクイズに０問正解し、０問正解のスコアが表示される' do
@@ -47,8 +47,8 @@ RSpec.describe 'Quizzes', type: :system do
     click_link 'クイズを始める'
 
     @quiz_set.quizzes.each do |quiz|
-      incorrect_choices = all('button', text: '不正解の選択肢')
-      incorrect_choices[0].click
+      incorrect_choices = quiz.choices.where(correct: false)
+      find_button(incorrect_choices.first.text).click
 
       if quiz != @quiz_set.quizzes.last
         click_link '次へ'
@@ -59,6 +59,10 @@ RSpec.describe 'Quizzes', type: :system do
 
     expect(page).to have_content('あなたのスコア:')
     expect(page).to have_content(@quiz_set.title)
-    expect(page).to have_content('正解数: 0 / 3 問')
+    expect(page).to have_content('正解数: 0 / 10 問')
+
+    visit scores_mypages_path
+    expect(page).to have_content(@quiz_set.title)
+    expect(page).to have_content('0 / 10')
   end
 end

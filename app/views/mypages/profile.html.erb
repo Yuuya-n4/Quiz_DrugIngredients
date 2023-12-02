@@ -28,17 +28,17 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %> <i>(変更する場合のみ)</i><br>
+    <%= f.label :password %> <i>(変更する場合のみ入力)</i><br>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br>
+    <%= f.label :password_confirmation %> <i>(変更する場合のみ入力)</i><br>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(現在のパスワードを入力)</i><br>
+    <%= f.label :current_password %> <i>(パスワード変更の場合のみ必要)</i><br>
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
