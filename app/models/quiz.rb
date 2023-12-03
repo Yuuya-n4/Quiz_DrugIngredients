@@ -5,11 +5,9 @@ class Quiz < ApplicationRecord
   validates :drug_type, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   enum drug_type: {
-    cold_medicine: 1,
-    digestive_medicine: 2,
-    skin_medicine: 3,
-    allergy_medicine: 4,
-    herbal_medicine: 5
+    medicine: 1,
+    quasi_drug: 2,
+    cosmetics: 3
   }
 
   def correct_choice?(choice)

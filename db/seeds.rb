@@ -32,19 +32,19 @@ Choice.create!([
 
 quiz_set2 = QuizSet.create!(title: '胃腸薬', description: '胃の保護や下痢止めなどの薬')
 
-quiz4 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '胃酸の過剰分泌を抑える胃腸薬に含まれる成分はどれ？', explanation: '解説4', drug_type: 2)
+quiz4 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '胃酸の過剰分泌を抑える胃腸薬に含まれる成分はどれ？', explanation: '解説4', drug_type: 1)
 Choice.create!([
   {quiz_id: quiz4.id, text: "ランソプラゾール", correct: 1},
   {quiz_id: quiz4.id, text: "アスピリン", correct: 0},
   {quiz_id: quiz4.id, text: "メトクロプラミド", correct: 0}
 ])
-quiz5 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '胃腸薬の中で、胃の粘膜を保護する作用がある成分はどれ？', explanation: '解説5', drug_type: 2)
+quiz5 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '胃腸薬の中で、胃の粘膜を保護する作用がある成分はどれ？', explanation: '解説5', drug_type: 1)
 Choice.create!([
   {quiz_id: quiz5.id, text: "ファモチジン", correct: 1},
   {quiz_id: quiz5.id, text: "ラクツロース", correct: 0},
   {quiz_id: quiz5.id, text: "センナ", correct: 0}
 ])
-quiz6 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '下痢を止める効果がある胃腸薬の成分はどれ？', explanation: '解説6', drug_type: 2)
+quiz6 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '下痢を止める効果がある胃腸薬の成分はどれ？', explanation: '解説6', drug_type: 1)
 Choice.create!([
   {quiz_id: quiz6.id, text: "ビスマス", correct: 0},
   {quiz_id: quiz6.id, text: "ロペラミド", correct: 1},

@@ -5,7 +5,7 @@ RSpec.describe 'Quizzes Search', type: :system do
   before do
     quiz_sets = create_list(:quiz_set, 5)
 
-    @specific_quiz = create(:quiz, quiz_set: quiz_sets.last, question: '特定の質問', explanation: '特定の解説', drug_type: 5)
+    @specific_quiz = create(:quiz, quiz_set: quiz_sets.last, question: '特定の質問', explanation: '特定の解説', drug_type: 1)
     @specific_quiz.choices.destroy_all
     create(:choice, quiz: @specific_quiz, text: '特定の正解', correct: true)
     create_list(:choice, 2, quiz: @specific_quiz, text: '特定の不正解', correct: false)
