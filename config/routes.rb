@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, skip: [:confirmations, :unlocks, :omniauth_callbacks]
 
   root 'quiz_sets#index'
