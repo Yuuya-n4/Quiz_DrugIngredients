@@ -83,8 +83,5 @@ gem 'ransack'
 gem 'kaminari'
 gem 'rails_admin'
 gem "cssbundling-rails"
-gem "cssbundling-rails"
-gem "cssbundling-rails"
-gem "cssbundling-rails"
-gem "cssbundling-rails"
-gem "cssbundling-rails"
+gem 'enumerize'
+

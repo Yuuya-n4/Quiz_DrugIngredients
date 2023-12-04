@@ -40,6 +40,16 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model 'Quiz' do
+    edit do
+      field :question
+      field :explanation
+      field :drug_type
+      field :quiz_set
+      field :choices
+    end
+  end
+
   config.authenticate_with do
     warden.authenticate! scope: :admin_user
   end
