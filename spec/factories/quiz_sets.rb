@@ -4,7 +4,7 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
 
     after(:create) do |quiz_set|
-      create_list(:quiz, 10, quiz_set: quiz_set, drug_type: Faker::Number.between(from: 1, to: 5))
+      create_list(:quiz, 10, quiz_set: quiz_set, drug_type: 1)
     end
   end
 end

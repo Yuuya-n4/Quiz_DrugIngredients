@@ -81,3 +81,6 @@ gem 'devise-i18n-views'
 gem 'rails-i18n'
 gem 'ransack'
 gem 'kaminari'
+gem 'rails_admin'
+gem "cssbundling-rails"
+gem 'enumerize'

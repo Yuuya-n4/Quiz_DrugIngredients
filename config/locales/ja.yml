@@ -1,14 +1,65 @@
 ja:
   activerecord:
     models:
-      user: "ユーザ"
+      admin_user: 管理者
+      user: ユーザー
+      quiz_set: クイズセット
+      quiz: クイズ
+      choice: 選択肢
+      score: スコア
+      avatar: アバター
     attributes:
+      admin_users:
+        email: ID
+        password: パスワード
       user:
-        name: "名前"
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      quiz_set:
+        title: タイトル
+        description: 解説
       quiz:
-        drug_types:
-          cold_medicine: "風邪薬"
-          digestive_medicine: "消化薬"
-          skin_medicine: "皮膚薬"
-          allergy_medicine: "アレルギー薬"
-          herbal_medicine: "漢方薬"
+        question: 質問
+        explanation: 解説
+        drug_type: 薬の種類
+      choice:
+        text: 回答
+        correct: 正解
+      score:
+        correct_answer: 正解数
+      avatar:
+        avatar_name: アバター名
+        experience_point: 経験値
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
+    id: ID
+    email: メールアドレス
+    admin_user: 管理者
+    user: ユーザー
+    quiz_set: クイズセット
+    quizzes: クイズ
+    choices: 選択肢
+    scores: スコア
+    correct_answer: 正解数
+    avatar: アバター
+    avatar_image_url: アバターイメージURL
+  enumerize:
+    quiz:
+      drug_type:
+        medicine: 医薬品
+        quasi_drug: 医薬部外品
+        cosmetics: 化粧品
+  quiz_diagram:
+    title: "クイズセット"
+    description: "説明"
+    question: "質問"
+    explanation: "解説"
+    drug_type: "薬の種類"
+    correct: "正解"
+    incorrect: "不正解"
+  admin:
+    app_name: "クイズ！市販薬の成分"
+    app_subtitle: "管理画面"
+

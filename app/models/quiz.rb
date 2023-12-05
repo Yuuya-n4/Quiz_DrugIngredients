@@ -1,16 +1,13 @@
 class Quiz < ApplicationRecord
+  extend Enumerize
+
   belongs_to :quiz_set
   has_many :choices, dependent: :destroy
+  accepts_nested_attributes_for :choices, allow_destroy: true
 
   validates :drug_type, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  enum drug_type: {
-    cold_medicine: 1,
-    digestive_medicine: 2,
-    skin_medicine: 3,
-    allergy_medicine: 4,
-    herbal_medicine: 5
-  }
+  enumerize :drug_type, in: { medicine: 1, quasi_drug: 2, cosmetics: 3 }, scope: true
 
   def correct_choice?(choice)
     correct_choice = choices.find_by(correct: true)

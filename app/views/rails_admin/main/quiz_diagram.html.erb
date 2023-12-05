@@ -1,0 +1,127 @@
+<style>
+  .quiz-item {
+    border: 2px solid #ced4da;
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .quiz-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #007bff;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .quiz-explanation {
+    font-style: normal; 
+    color: #495057;
+  }
+  .quiz-type {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+  }
+
+  .quiz-sets-tabs {
+    margin-bottom: 20px;
+  }
+  .tablinks {
+    background-color: #f8f9fa;
+    color: black;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 4px;
+    cursor: pointer;
+  }
+  .tablinks.active, .tablinks:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  .tabcontent {
+    display: none;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+  }
+  .display-block {
+    display: block;
+  }
+  .quiz-section {
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: white;
+  }
+  .quiz-title, .quiz-explanation, .quiz-type {
+    border: 1px dashed #bbb;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+  }
+  .choice-list {
+    padding-left: 20px;
+    list-style-type: disc;
+  }
+  .choice-item {
+    background-color: #e2e6ea;
+  }
+</style>
+
+<h3>クイズセット</h3>
+<div class="quiz-sets-tabs">
+  <% @quiz_sets.each_with_index do |quiz_set, index| %>
+    <button class="tablinks<%= ' active' if index.zero? %>" onclick="openQuizSet(event, 'quiz-set-<%= index %>')"><%= quiz_set.title %></button>
+  <% end %>
+</div>
+
+<% @quiz_sets.each_with_index do |quiz_set, index| %>
+  <div id="quiz-set-<%= index %>" class="tabcontent<%= ' display-block' if index.zero? %>">
+    <div class="quiz-title"><strong><%= t('quiz_diagram.title') %>:</strong> <%= quiz_set.title %></div>
+    <div class="quiz-explanation"><strong><%= t('quiz_diagram.description') %>:</strong> <%= quiz_set.description %></div>
+    <div class="quiz-section">
+      <h5>クイズ</h5>
+      <% quiz_set.quizzes.each do |quiz| %>
+        <div class="quiz-item">
+          <div class="quiz-title"><strong><%= t('quiz_diagram.question') %>:</strong> <%= quiz.question %></div>
+          <div class="quiz-explanation"><strong><%= t('quiz_diagram.explanation') %>:</strong> <%= quiz.explanation %></div>
+          <div class="quiz-type"><strong><%= t('quiz_diagram.drug_type') %>:</strong> <%= quiz.drug_type.text %></div>
+          <ul class="choice-list">
+            <% quiz.choices.each do |choice| %>
+              <li class="choice-item"><%= choice.text %> (<%= choice.correct ? t('quiz_diagram.correct') : t('quiz_diagram.incorrect') %>)</li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script>
+  function openQuizSet(evt, quizSetName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(quizSetName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    openQuizSet(null, 'quiz-set-0');
+  });
+</script>
