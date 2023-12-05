@@ -43,6 +43,8 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.main_app_name = Proc.new { |controller| [I18n.t("admin.app_name"), I18n.t("admin.app_subtitle")] }
+
   config.model 'AdminUser' do
     weight 1
   end

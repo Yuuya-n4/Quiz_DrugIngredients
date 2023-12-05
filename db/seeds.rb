@@ -53,3 +53,24 @@ Choice.create!([
   {quiz_id: quiz6.id, text: "ロペラミド", correct: 1},
   {quiz_id: quiz6.id, text: "リボフラビン", correct: 0}
 ])
+
+quiz_set3 = QuizSet.create!(title: '皮膚薬', description: '皮膚の痒みや炎症を和らげる薬。')
+
+quiz7 = Quiz.create!(quiz_set_id: quiz_set3.id, question: '皮膚のかゆみや炎症を和らげるために使われる薬の主要な成分は何ですか？', explanation: 'コルチコステロイドは、炎症を抑え、かゆみや赤みを軽減するのに効果的な成分です。皮膚炎症や湿疹などの症状を緩和するために医師によって処方されることがあります。', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz7.id, text: "ビタミンC", correct: 0},
+  {quiz_id: quiz7.id, text: "ヒアルロン酸", correct: 0},
+  {quiz_id: quiz7.id, text: "コルチコステロイド", correct: 1}
+])
+quiz8 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '日焼け後に痛みと赤みを和らげるのに効果的な成分は何ですか？', explanation: 'アロエベラは日焼け後の肌の痛みや赤みを和らげるために使われる自然由来の成分です。その保湿効果と鎮静作用から、日焼け肌の処理に広く使用されています。', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz8.id, text: "アセトアミノフェン", correct: 0},
+  {quiz_id: quiz8.id, text: "アロエベラ", correct: 1},
+  {quiz_id: quiz8.id, text: "ヒアルロン酸", correct: 0}
+])
+quiz9 = Quiz.create!(quiz_set_id: quiz_set2.id, question: '寒冷蕁麻疹（冷たい物に触れると発生する蕁麻疹）を軽減するのに使われる成分は何ですか？', explanation: '寒冷蕁麻疹は冷たい環境にさらされることで発生する蕁麻疹の一種です。アンチヒスタミンは、このようなアレルギー反応を抑制するために使われます。アンチヒスタミンは、ヒスタミンという化学物質の作用をブロックし、かゆみや蕁麻疹の症状を軽減します。', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz9.id, text: "シアバター", correct: 0},
+  {quiz_id: quiz9.id, text: "エピネフリン", correct: 0},
+  {quiz_id: quiz9.id, text: "アンチヒスタミン", correct: 1}
+])

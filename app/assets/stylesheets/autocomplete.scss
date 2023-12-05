@@ -1,0 +1,13 @@
+.autocomplete-results-list {
+  max-height: 300px; // 最大の高さを設定
+  overflow-y: auto; // 縦方向のスクロールバーを有効化
+  list-style: none; // リストのスタイルをなしに設定
+  padding: 0; // パディングをリセット
+}
+  
+.autocomplete-result-item {
+  margin-bottom: 10px; // 各アイテムの間隔を設定
+  padding: 10px; // パディングを設定
+  border: 1px solid #ddd; // 境界線を設定
+  background-color: rgb(175, 237, 242);
+}

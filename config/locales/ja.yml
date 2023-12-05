@@ -27,10 +27,24 @@ ja:
         text: 回答
         correct: 正解
       score:
-        orrect_answer: 正解数
+        correct_answer: 正解数
       avatar:
         avatar_name: アバター名
         experience_point: 経験値
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
+    id: ID
+    email: メールアドレス
+    admin_user: 管理者
+    user: ユーザー
+    quiz_set: クイズセット
+    quizzes: クイズ
+    choices: 選択肢
+    scores: スコア
+    correct_answer: 正解数
+    avatar: アバター
+    avatar_image_url: アバターイメージURL
   enumerize:
     quiz:
       drug_type:
@@ -38,10 +52,14 @@ ja:
         quasi_drug: 医薬部外品
         cosmetics: 化粧品
   quiz_diagram:
-    title: "クイズセットの概要"
+    title: "クイズセット"
     description: "説明"
     question: "質問"
     explanation: "解説"
     drug_type: "薬の種類"
     correct: "正解"
     incorrect: "不正解"
+  admin:
+    app_name: "クイズ！市販薬の成分"
+    app_subtitle: "管理画面"
+
