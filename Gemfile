@@ -84,4 +84,3 @@ gem 'kaminari'
 gem 'rails_admin'
 gem "cssbundling-rails"
 gem 'enumerize'
-

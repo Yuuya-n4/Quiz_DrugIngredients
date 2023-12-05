@@ -120,6 +120,10 @@ ja:
         title: "%{model_label} '%{object_label}'の履歴"
         menu: "履歴"
         breadcrumb: "履歴"
+      quiz_diagram:
+        title: "クイズ表"
+        breadcrumb: "クイズ表"
+        menu: "クイズ表"
     form:
       cancel: "キャンセル"
       basic_info: "基本情報"

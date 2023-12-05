@@ -1,3 +1,4 @@
+require Rails.root.join('lib', 'quiz_diagram')
 RailsAdmin.config do |config|
   config.asset_source = :importmap
 
@@ -35,9 +36,33 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    quiz_diagram
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model 'AdminUser' do
+    weight 1
+  end
+  config.model 'User' do
+    weight 2
+  end
+  config.model 'QuizSet' do
+    weight 3
+  end
+  config.model 'Quiz' do
+    weight 4
+  end
+  config.model 'Choice' do
+    weight 5
+  end
+  config.model 'Score' do
+    weight 6
+  end
+  config.model 'Avatar' do
+    weight 7
   end
 
   config.model 'Quiz' do
