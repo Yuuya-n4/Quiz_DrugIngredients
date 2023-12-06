@@ -82,5 +82,11 @@ gem 'rails-i18n'
 gem 'ransack'
 gem 'kaminari'
 gem 'rails_admin'
-gem "cssbundling-rails"
+gem 'cssbundling-rails'
 gem 'enumerize'
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "sentry-ruby", "~> 5.15"
+
+gem "sentry-rails", "~> 5.15"

@@ -36,3 +36,10 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+.node-version
+.yarn/
+.yarnrc
+vendor/bundle/
+config/initializers/sentry.rb
+public/styles.css
