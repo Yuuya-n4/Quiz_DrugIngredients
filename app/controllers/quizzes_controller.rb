@@ -2,6 +2,7 @@ class QuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_quiz_set, only: [:show, :answer, :explanation]
   before_action :set_quiz, only: [:show, :answer, :explanation]
+  layout 'quiz', only: [:show, :explanation]
 
   def show
     @choices = @quiz.choices
