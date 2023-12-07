@@ -1,9 +1,9 @@
-<h1>クイズページ</h1>
+<!-- クイズページ -->
 
-<p>問題: <%= @quiz.question %></p>
+<p>問題 <%= @current_quiz_number %> / <%= @total_quizzes %>: <%= @quiz.question %></p>
 
-<%= form_with url: answer_quiz_set_quiz_path(@quiz_set, @quiz), local: true do |form| %>
-  <% @choices.each do |choice| %>
+<%= form_with url: answer_quiz_set_quiz_path(@quiz_set, @quiz), local: true, data: { turbo: false } do |form| %>
+  <% @choices.shuffle.each do |choice| %>
     <%= button_tag choice.text, type: 'submit', name: 'choice_id', value: choice.id %>
   <% end %>
 <% end %>
