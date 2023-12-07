@@ -1,5 +1,6 @@
 <h2>クイズ解説</h2>
 
+<p>問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
 <p><%= @quiz.correct_choice.text %> が正解です。</p>
 <p><%= @quiz.explanation %></p>
 <% if @next_quiz %>

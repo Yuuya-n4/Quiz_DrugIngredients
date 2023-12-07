@@ -39,6 +39,8 @@ class QuizzesController < ApplicationController
 
     @next_quiz_id = session[:quiz_ids].first
     @next_quiz = Quiz.find_by(id: @next_quiz_id)
+    @current_quiz_number = session[:original_quiz_ids].index(current_quiz_id) + 1
+    @total_quizzes = session[:original_quiz_ids].length
 
     if @next_quiz.nil?
       session.delete(:quiz_ids)

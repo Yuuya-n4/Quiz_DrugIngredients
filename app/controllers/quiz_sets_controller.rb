@@ -7,11 +7,14 @@ class QuizSetsController < ApplicationController
   end
 
   def show
+    @total_questions = [@quiz_set.quizzes.count, 10].min
   end
 
   def start_quiz
     @quiz_set = QuizSet.find(params[:id])
     quiz_ids = @quiz_set.quizzes.pluck(:id).shuffle
+    quiz_ids = quiz_ids.take(10) if quiz_ids.size > 10
+
     session[:quiz_ids] = quiz_ids
     session[:original_quiz_ids] = quiz_ids.dup
     session[:answered_quiz_ids] = []
@@ -29,6 +32,7 @@ class QuizSetsController < ApplicationController
 
   def score
     @score = current_user.scores.find_by(id: session[:score_id])
+    @total_quizzes = session[:original_quiz_ids].length
   end
 
   private
