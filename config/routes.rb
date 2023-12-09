@@ -20,6 +20,20 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :weak_quizzes, only: [:show] do
+    collection do
+      get 'start'         # 苦手クイズの開始ページ
+      post 'start_quiz'   # クイズセッションの開始
+      get 'score'         # スコア表示ページ
+    end
+    member do
+      post 'answer'       # クイズの回答処理
+      get 'explanation'   # クイズの解説ページ
+    end
+  end
+  
+
   resources :quizzes, only: [:index] do
     get 'search', on: :collection
   end

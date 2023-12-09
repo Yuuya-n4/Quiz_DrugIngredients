@@ -1,0 +1,8 @@
+<h2>スコア</h2>
+
+<% flash.each do |type, message| %>
+  <div class="flash <%= type %>"><%= message %></div>
+<% end %>
+
+<p>あなたの正解数: <%= @score %> / <%= @total_quizzes %></p>
+<%= link_to '苦手克服トップに戻る', start_weak_quizzes_path %>
