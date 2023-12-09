@@ -4,8 +4,6 @@ RSpec.describe 'Quizzes', type: :system do
   before do
     @user = create(:user)
     @quiz_set = create(:quiz_set)
-
-    @first_quiz = @quiz_set.quizzes.first
   end
 
   it 'ユーザーがクイズに10問正解し、10問正解のスコアが表示される' do
@@ -15,9 +13,10 @@ RSpec.describe 'Quizzes', type: :system do
 
     click_link @quiz_set.title
 
-    click_link 'クイズを始める'
+    find_button('クイズを始める').click
 
     @quiz_set.quizzes.each do |quiz|
+      visit quiz_set_quiz_path(@quiz_set, quiz)
       correct_choice = quiz.choices.find_by(correct: true)
       find_button(correct_choice.text).click
 
@@ -44,9 +43,10 @@ RSpec.describe 'Quizzes', type: :system do
 
     click_link @quiz_set.title
 
-    click_link 'クイズを始める'
+    find_button('クイズを始める').click
 
     @quiz_set.quizzes.each do |quiz|
+      visit quiz_set_quiz_path(@quiz_set, quiz)
       incorrect_choices = quiz.choices.where(correct: false)
       find_button(incorrect_choices.first.text).click
 

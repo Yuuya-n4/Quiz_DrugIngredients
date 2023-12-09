@@ -22,7 +22,7 @@ class QuizSetsController < ApplicationController
     @score = current_user.scores.create(quiz_set: @quiz_set, correct_answer: 0)
     session[:score_id] = @score.id
 
-    next_quiz_id = session[:quiz_ids].shift
+    next_quiz_id = session[:quiz_ids].first
     redirect_to quiz_set_quiz_path(@quiz_set, next_quiz_id)
   end
 
