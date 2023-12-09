@@ -1,8 +1,8 @@
-<h1>クイズ開始ページ</h1>
+<h2>クイズを始めよう</h2>
 
 <p>タイトル: <%= @quiz_set.title %></p>
 <p>説明: <%= @quiz_set.description %></p>
-<p>問題数: <%= @quiz_set.quizzes.count %></p>
+<p>問題数: <%= @total_questions %></p>
 
 <%= button_to 'クイズを始める', start_quiz_quiz_set_path(@quiz_set), method: :post %>
 

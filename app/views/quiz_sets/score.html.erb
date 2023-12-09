@@ -1,6 +1,10 @@
-<h1>スコアページ</h1>
+<h2>スコア</h2>
+
+<% flash.each do |type, message| %>
+  <div class="flash <%= type %>"><%= message %></div>
+<% end %>
 
 <p>あなたのスコア: <%= @quiz_set.title %></p>
-<p>正解数: <%= @score.correct_answer %> / <%= @score.total_questions %> 問</p>
+<p>正解数: <%= @score.correct_answer %> / <%= @total_quizzes %> 問</p>
 
 <%= link_to 'トップページへ戻る', quiz_sets_path %>

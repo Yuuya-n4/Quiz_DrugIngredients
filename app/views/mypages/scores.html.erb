@@ -12,7 +12,7 @@
     <% @scores.each do |score| %>
       <tr>
         <td><%= score.quiz_set.title %></td>
-        <td><%= "#{score.correct_answer} / #{score.total_questions}" %></td>
+        <td><%= "#{score.correct_answer} / #{[score.quiz_set.quizzes.count, 10].min}" %></td>
         <td><%= score.created_at.strftime("%-m月%-d日%H:%M") %></td>
       </tr>
     <% end %>

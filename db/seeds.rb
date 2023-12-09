@@ -74,3 +74,85 @@ Choice.create!([
   {quiz_id: quiz9.id, text: "エピネフリン", correct: 0},
   {quiz_id: quiz9.id, text: "アンチヒスタミン", correct: 1}
 ])
+
+
+quiz_set4 = QuizSet.create!(title: '検証用', description: '検証クイズセット')
+
+quiz10 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証1', explanation: '検証解説1', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz10.id, text: "回答１", correct: 1},
+  {quiz_id: quiz10.id, text: "回答２", correct: 0},
+  {quiz_id: quiz10.id, text: "回答３", correct: 0}
+])
+quiz11 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証2', explanation: '検証解説3', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz11.id, text: "回答１", correct: 1},
+  {quiz_id: quiz11.id, text: "回答２", correct: 0},
+  {quiz_id: quiz11.id, text: "回答３", correct: 0}
+])
+quiz12 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証3', explanation: '検証解説3', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz12.id, text: "回答１", correct: 1},
+  {quiz_id: quiz12.id, text: "回答２", correct: 0},
+  {quiz_id: quiz12.id, text: "回答３", correct: 0}
+])
+quiz13 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証4', explanation: '検証解説4', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz13.id, text: "回答１", correct: 1},
+  {quiz_id: quiz13.id, text: "回答２", correct: 0},
+  {quiz_id: quiz13.id, text: "回答３", correct: 0}
+])
+quiz14 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証5', explanation: '検証解説5', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz14.id, text: "回答１", correct: 1},
+  {quiz_id: quiz14.id, text: "回答２", correct: 0},
+  {quiz_id: quiz14.id, text: "回答３", correct: 0}
+])
+quiz15 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証6', explanation: '検証解説6', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz15.id, text: "回答１", correct: 1},
+  {quiz_id: quiz15.id, text: "回答２", correct: 0},
+  {quiz_id: quiz15.id, text: "回答３", correct: 0}
+])
+quiz16 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証7', explanation: '検証解説7', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz16.id, text: "回答１", correct: 1},
+  {quiz_id: quiz16.id, text: "回答２", correct: 0},
+  {quiz_id: quiz16.id, text: "回答３", correct: 0}
+])
+quiz17 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証8', explanation: '検証解説8', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz17.id, text: "回答１", correct: 1},
+  {quiz_id: quiz17.id, text: "回答２", correct: 0},
+  {quiz_id: quiz17.id, text: "回答３", correct: 0}
+])
+quiz18 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証9', explanation: '検証解説9', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz18.id, text: "回答１", correct: 1},
+  {quiz_id: quiz18.id, text: "回答２", correct: 0},
+  {quiz_id: quiz18.id, text: "回答３", correct: 0}
+])
+quiz19 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証10', explanation: '検証解説10', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz19.id, text: "回答１", correct: 1},
+  {quiz_id: quiz19.id, text: "回答２", correct: 0},
+  {quiz_id: quiz19.id, text: "回答３", correct: 0}
+])
+quiz20 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証11', explanation: '検証解説11', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz20.id, text: "回答１", correct: 1},
+  {quiz_id: quiz20.id, text: "回答２", correct: 0},
+  {quiz_id: quiz20.id, text: "回答３", correct: 0}
+])
+quiz21 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証12', explanation: '検証解説12', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz21.id, text: "回答１", correct: 1},
+  {quiz_id: quiz21.id, text: "回答２", correct: 0},
+  {quiz_id: quiz21.id, text: "回答３", correct: 0}
+])
+quiz22 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '検証13', explanation: '検証解説13', drug_type: 1)
+Choice.create!([
+  {quiz_id: quiz22.id, text: "回答１", correct: 1},
+  {quiz_id: quiz22.id, text: "回答２", correct: 0},
+  {quiz_id: quiz22.id, text: "回答３", correct: 0}
+])

@@ -6,20 +6,45 @@ class QuizzesController < ApplicationController
 
   def show
     @choices = @quiz.choices
+
+    if session[:original_quiz_ids].present?
+      @total_quizzes = session[:original_quiz_ids].length
+      current_quiz_index = session[:original_quiz_ids].index(@quiz.id)
+      @current_quiz_number = current_quiz_index + 1 if current_quiz_index
+    end
   end
 
   def answer
     choice = Choice.find(params[:choice_id])
     correct = @quiz.correct_choice?(choice)
+
+    if session[:answered_quiz_ids]&.include?(@quiz.id)
+      flash[:alert] = 'クイズにはそれぞれ1回のみ回答してください。'
+      redirect_to score_quiz_set_path(@quiz_set) and return
+    end
+
     score_record = current_user.scores.find(session[:score_id])
     score_record.correct_answer += 1 if correct
     score_record.save!
+
+    session[:answered_quiz_ids] ||= []
+    session[:answered_quiz_ids] << @quiz.id
 
     redirect_to explanation_quiz_set_quiz_path(@quiz_set, @quiz)
   end
 
   def explanation
-    @next_quiz = @quiz_set.quizzes.where('id > ?', @quiz.id).first
+    current_quiz_id = params[:id].to_i
+    session[:quiz_ids].delete(current_quiz_id)
+
+    @next_quiz_id = session[:quiz_ids].first
+    @next_quiz = Quiz.find_by(id: @next_quiz_id)
+    @current_quiz_number = session[:original_quiz_ids].index(current_quiz_id) + 1
+    @total_quizzes = session[:original_quiz_ids].length
+
+    if @next_quiz.nil?
+      session.delete(:quiz_ids)
+    end
   end
 
   def index
@@ -31,7 +56,6 @@ class QuizzesController < ApplicationController
     @quizzes = Quiz.ransack(question_cont: search_query).result.limit(10)
     render json: @quizzes.map(&:question)
   end
-
 
   def search
     query = params[:query]
@@ -55,14 +79,19 @@ class QuizzesController < ApplicationController
     render json: results
   end
 
-
   private
 
   def set_quiz_set
-    @quiz_set = QuizSet.find(params[:quiz_set_id])
+    @quiz_set = QuizSet.find_by(id: params[:quiz_set_id])
+    unless @quiz_set
+      redirect_to(score_quiz_set_path(@quiz_set), alert: '指定されたクイズセットが見つかりません。') and return
+    end
   end
 
   def set_quiz
-    @quiz = @quiz_set.quizzes.find(params[:id])
+    @quiz = @quiz_set.quizzes.find_by(id: params[:id])
+    unless @quiz
+      redirect_to(score_quiz_set_path(@quiz_set), alert: '指定されたクイズが見つかりません。') and return
+    end
   end
 end
