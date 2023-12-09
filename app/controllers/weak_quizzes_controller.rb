@@ -13,7 +13,8 @@ class WeakQuizzesController < ApplicationController
     weak_quiz_ids = UserQuizPerformanceSummary.where(user: current_user)
                                               .select(&:weak_subject?)
                                               .pluck(:quiz_id)
-                                              .take(10)
+
+    weak_quiz_ids = weak_quiz_ids.sample(10)
 
     if weak_quiz_ids.size < 10
         extra_quiz_ids = Quiz.where.not(id: weak_quiz_ids).pluck(:id)
