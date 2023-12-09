@@ -22,12 +22,8 @@ class QuizSetsController < ApplicationController
     @score = current_user.scores.create(quiz_set: @quiz_set, correct_answer: 0)
     session[:score_id] = @score.id
 
-    if session[:quiz_ids].present?
-      next_quiz_id = session[:quiz_ids].shift
-      redirect_to quiz_set_quiz_path(@quiz_set, next_quiz_id)
-    else
-      redirect_to quiz_sets_path, alert: 'クイズが見つかりません。'
-    end
+    next_quiz_id = session[:quiz_ids].first
+    redirect_to quiz_set_quiz_path(@quiz_set, next_quiz_id)
   end
 
   def score

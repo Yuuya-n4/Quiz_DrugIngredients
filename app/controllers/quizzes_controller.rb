@@ -30,6 +30,15 @@ class QuizzesController < ApplicationController
     session[:answered_quiz_ids] ||= []
     session[:answered_quiz_ids] << @quiz.id
 
+    performance_summary = UserQuizPerformanceSummary.find_or_create_by(user: current_user, quiz: @quiz)
+    performance_summary.increment!(:attempts)
+    if correct
+      performance_summary.increment!(:correct_answers)
+      performance_summary.increment!(:consecutive_correct_answers)
+    else
+      performance_summary.update(consecutive_correct_answers: 0)
+    end
+
     redirect_to explanation_quiz_set_quiz_path(@quiz_set, @quiz)
   end
 

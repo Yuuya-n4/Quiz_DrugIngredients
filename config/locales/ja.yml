@@ -8,6 +8,7 @@ ja:
       choice: 選択肢
       score: スコア
       avatar: アバター
+      user_quiz_performance_summary: ユーザークイズパフォーマンス
     attributes:
       admin_users:
         email: ID
@@ -31,6 +32,10 @@ ja:
       avatar:
         avatar_name: アバター名
         experience_point: 経験値
+      user_quiz_performance_summary:
+        attempts: 試行回数
+        correct_answers: 正解数
+        consecutive_correct_answers: 連続正解数
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -45,6 +50,7 @@ ja:
     correct_answer: 正解数
     avatar: アバター
     avatar_image_url: アバターイメージURL
+    user_quiz_performance_summary: ユーザークイズパフォーマンス
   enumerize:
     quiz:
       drug_type:

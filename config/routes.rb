@@ -20,6 +20,20 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :weak_quizzes, only: [:show] do
+    collection do
+      get 'start'
+      post 'start_quiz'
+      get 'score'
+    end
+    member do
+      post 'answer'
+      get 'explanation'
+    end
+  end
+
+
   resources :quizzes, only: [:index] do
     get 'search', on: :collection
   end

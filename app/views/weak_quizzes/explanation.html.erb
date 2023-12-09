@@ -1,0 +1,12 @@
+<h2>解説</h2>
+
+<p>問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
+
+<p>問題：<%= @quiz.question %></p>
+<p>正解：<%= @quiz.correct_choice.text %></p>
+<p><%= @quiz.explanation %></p>
+<% if @next_quiz %>
+  <%= link_to '次のクイズへ', weak_quiz_path(@next_quiz) %>
+<% else %>
+  <%= link_to 'スコアを見る', score_weak_quizzes_path %>
+<% end %>

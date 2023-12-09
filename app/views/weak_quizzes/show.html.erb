@@ -1,0 +1,10 @@
+<!-- クイズページ -->
+
+<p>問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
+
+<p><%= @quiz.question %></p>
+<%= form_with url: answer_weak_quiz_path(@quiz), local: true, data: { turbo: false } do |form| %>
+  <% @choices.each do |choice| %>
+    <%= button_tag choice.text, type: 'submit', name: 'choice_id', value: choice.id %>
+  <% end %>
+<% end %>
