@@ -1,6 +1,6 @@
 require Rails.root.join('lib', 'quiz_diagram')
 RailsAdmin.config do |config|
-  config.asset_source = :rails_admin_custom
+  # config.asset_source = :rails_admin_custom
 
   ### Popular gems integration
 
