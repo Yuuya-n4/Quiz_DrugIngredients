@@ -1,6 +1,5 @@
 require Rails.root.join('lib', 'quiz_diagram')
 RailsAdmin.config do |config|
-  config.asset_source = :importmap
 
   ### Popular gems integration
 
