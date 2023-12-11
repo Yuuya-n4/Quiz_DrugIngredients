@@ -7,11 +7,25 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #f9fafb;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+    </style>
   </head>
 
   <body>
     <%= render 'layouts/weak_quizzes_header' %>
-    <%= yield %>
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+    <%= yield :footer %>
   </body>
 </html>

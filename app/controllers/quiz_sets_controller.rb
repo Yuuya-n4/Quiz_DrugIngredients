@@ -1,6 +1,7 @@
 class QuizSetsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_quiz_set, only: [:show, :score]
+  layout 'quiz', only: [:score]
 
   def index
     @quiz_sets = QuizSet.all

@@ -1,6 +1,7 @@
 class WeakQuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :answer, :explanation]
+  layout 'weak_quizzes'
 
   def start
     @non_weak_quizzes_count = current_user.non_weak_quizzes_count

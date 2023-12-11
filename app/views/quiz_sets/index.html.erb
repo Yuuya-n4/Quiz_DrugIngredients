@@ -1,26 +1,50 @@
-<h1>クイズセット一覧</h1>
+<h1 class="text-3xl font-bold text-gray-800 mt-6 mb-4">「クイズ！市販薬の成分」 とは</h1>
 
-<h1 class="text-3xl font-bold underline text-blue-500">
-  Hello world!
-</h1>
-
-<% flash.each do |type, message| %>
-  <div class="flash <%= type %>"><%= message %></div>
-<% end %>
-
-<div>
-  <p>ここにサービスの説明文を追加。</p>
+<div class="service-background rounded-lg shadow-md relative">
+  <div class="bg-white bg-opacity-75 p-6 rounded-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">手軽に薬の知識に触れられるサービスです。</h2>
+    <p class="text-lg text-gray-700">
+      薬について知らなくても、ちょっと気になるかも？という成分を集めてクイズを作りました。
+    </p>
+    <p class="text-lg text-gray-700">
+      薬って難しそう。知らない単語がたくさんありそう。などの不安があっても、きっと楽しいと思います。
+    </p>
+    <p class="text-lg text-gray-700">
+      今度薬を買う時、もちろん店員に相談するのが良いですが、その前に自分でも自分の症状に合っているか成分を見て考えてみるのもいいと思います。
+    </p>
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">サービスについて</h2>
+    <p class="text-lg text-gray-700">
+      ここにサービスの説明文を追加。説明文や画像が入ります。
+    </p>
+    <!-- ここに画像や追加のテキストを挿入 -->
+  </div>
 </div>
 
-<% @quiz_sets.each do |quiz_set| %>
-  <div>
-    <h2><%= link_to quiz_set.title, quiz_set %></h2>
-    <p><%= quiz_set.description %></p>
+<!-- フラッシュメッセージ -->
+<% flash.each do |type, message| %>
+  <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+    <%= message %>
   </div>
 <% end %>
 
-<h2><%= link_to '苦手克服チャレンジ', start_weak_quizzes_path %></h2>
+<h1 class="text-3xl font-bold text-gray-800 mt-6 mb-4">クイズセット一覧</h1>
 
-<%= link_to 'クイズ一覧', quizzes_path %>
+<!-- クイズセットのリスト -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @quiz_sets.each do |quiz_set| %>
+    <div class="bg-white rounded-lg shadow-xl p-6">
+      <h2 class="text-xl text-blue-600 mb-2"><%= link_to quiz_set.title, quiz_set %></h2>
+      <p class="text-gray-600 text-sm"><%= quiz_set.description %></p>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'マイページ', scores_mypages_path %>
+<div class="bg-green-100 p-6 rounded-lg shadow-md mt-6">
+  <h2 class="text-2xl font-bold text-gray-800 mb-2"><%= link_to '苦手克服チャレンジ', start_weak_quizzes_path, class: "text-blue-600" %></h2>
+  <p class="text-lg text-gray-700">苦手克服チャレンジの説明</p>
+</div>
+
+<div class="bg-blue-100 p-6 rounded-lg shadow-md mt-6">
+  <h2 class="text-2xl font-bold text-gray-800 mb-2"><%= link_to 'クイズ一覧', quizzes_path, class: "text-blue-600" %></h2>
+  <p class="text-lg text-gray-700">クイズ一覧の説明</p>
+</div>
