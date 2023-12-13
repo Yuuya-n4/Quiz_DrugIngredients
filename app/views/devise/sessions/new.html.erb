@@ -1,30 +1,38 @@
-<h2><%= t('.sign_in') %></h2>
+<div class="container mx-auto px-4 py-8">
+<div class="sm:w-1/2 md:w-1/3 mx-auto">
+  <h2 class="text-2xl font-bold text-gray-800 mb-6"><%= t('.sign_in') %></h2>
 
-<% flash.each do |type, message| %>
-  <div class="flash <%= type %>"><%= message %></div>
-<% end %>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <% flash.each do |type, message| %>
+    <div class="flash <%= type %> p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+      <%= message %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit t('.sign_in') %>
-  </div>
-<% end %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "bg-white p-4 rounded-lg shadow-md max-w-xs mx-auto") do |f| %>
+    <div class="field mb-4">
+      <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="field mb-4">
+      <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field mb-4">
+        <%= f.check_box :remember_me, class: "mr-2" %>
+        <%= f.label :remember_me, class: "text-gray-700 text-sm font-bold" %>
+      </div>
+    <% end %>
+
+    <div class="actions mt-6">
+      <%= f.submit t('.sign_in'), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
+    </div>
+  <% end %>
+
+  <div class="text-center mt-4">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+</div>

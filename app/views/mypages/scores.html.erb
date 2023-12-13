@@ -1,24 +1,32 @@
-<h1>スコア確認</h1>
+<div class="container mx-auto px-4 py-8">
+<div class="md:w-1/2 mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">スコア確認</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>クイズセット</th>
-      <th>正解数 / 問題数</th>
-      <th>挑戦した日時</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @scores.each do |score| %>
-      <tr>
-        <td><%= score.quiz_set.title %></td>
-        <td><%= "#{score.correct_answer} / #{[score.quiz_set.quizzes.count, 10].min}" %></td>
-        <td><%= score.created_at.strftime("%-m月%-d日%H:%M") %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="overflow-x-auto mb-6">
+    <table class="min-w-full text-center border-collapse border border-gray-300">
+      <thead class="bg-sky-200">
+        <tr>
+          <th class="px-4 py-2 border border-gray-300">クイズセット</th>
+          <th class="px-4 py-2 border border-gray-300">正解数 / 問題数</th>
+          <th class="px-4 py-2 border border-gray-300">挑戦した日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @scores.each do |score| %>
+          <tr>
+            <td class="px-4 py-2 border border-gray-300"><%= score.quiz_set.title %></td>
+            <td class="px-4 py-2 border border-gray-300"><%= "#{score.correct_answer} / #{[score.quiz_set.quizzes.count, 10].min}" %></td>
+            <td class="px-4 py-2 border border-gray-300"><%= score.created_at.strftime("%-m月%-d日%H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<%= link_to 'ユーザー情報編集', profile_mypages_path %>
+  <%= paginate @scores, class: "pagination" %>
 
-<%= link_to 'トップへ戻る', root_path %>
+  <div class="flex justify-center space-x-4 mt-6">
+    <%= link_to 'トップへ戻る', root_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
+  </div>
+</div>
+</div>

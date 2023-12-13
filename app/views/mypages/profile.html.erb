@@ -1,50 +1,58 @@
-<h1>ユーザー情報編集</h1>
+<div class="container mx-auto px-4 py-8">
+<div class="sm:w-1/2 md:w-1/3 mx-auto">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">ユーザー情報編集</h1>
 
-<%= form_for(@user, url: update_profile_mypages_path, data: { turbo: false }) do |f| %>
+  <%= form_for(@user, url: update_profile_mypages_path, data: { turbo: false }, class: "bg-white p-4 rounded-lg shadow-md max-w-lg mx-auto") do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation" class="p-4 mb-4 bg-red-100 border border-red-400 text-red-700">
+        <h2><%= pluralize(@user.errors.count, "件のエラー") %>が発生しました:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "件のエラー") %>が発生しました:</h2>
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% flash.each do |type, message| %>
+      <div class="flash <%= type %> p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+        <%= message %>
+      </div>
+    <% end %>
+
+    <div class="field mb-4">
+      <%= f.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.email_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :password, "パスワード（6文字以上）", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.password_field :password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :password_confirmation, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.password_field :password_confirmation, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :current_password, "現在のパスワード（パスワード変更時のみ入力）", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.password_field :current_password, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+
+    <div class="actions mt-6">
+      <%= f.submit "更新する", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
     </div>
   <% end %>
 
-  <% flash.each do |type, message| %>
-    <div class="flash <%= type %>"><%= message %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="mt-6 text-center">
+    <%= link_to 'トップへ戻る', root_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %> <i>(変更する場合のみ入力)</i><br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %> <i>(変更する場合のみ入力)</i><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(パスワード変更の場合のみ必要)</i><br>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "更新する" %>
-  </div>
-<% end %>
-
-<%= link_to 'トップへ戻る', root_path %>
+</div>
+</div>
