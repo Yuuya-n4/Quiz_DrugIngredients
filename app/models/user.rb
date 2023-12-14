@@ -14,6 +14,8 @@ class User < ApplicationRecord
   end
 
   def mastery_level
+    return 0 if user_quiz_performance_summaries.empty?
+    
     weak_count = weak_quizzes_count
     mastered_count = mastered_quizzes_count
 

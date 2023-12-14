@@ -33,7 +33,7 @@ ja:
         avatar_name: アバター名
         experience_point: 経験値
       user_quiz_performance_summary:
-        attempts: 試行回数
+        attempts: 回答数
         correct_answers: 正解数
         consecutive_correct_answers: 連続正解数
   attributes:

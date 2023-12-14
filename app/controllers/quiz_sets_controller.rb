@@ -5,6 +5,7 @@ class QuizSetsController < ApplicationController
 
   def index
     @quiz_sets = QuizSet.all
+    @mastery_level = current_user.mastery_level if user_signed_in?
   end
 
   def show
