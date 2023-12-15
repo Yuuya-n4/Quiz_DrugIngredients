@@ -3,6 +3,7 @@ class Quiz < ApplicationRecord
 
   belongs_to :quiz_set
   has_many :choices, dependent: :destroy
+  has_many :user_quiz_performance_summaries, dependent: :destroy
   accepts_nested_attributes_for :choices, allow_destroy: true
 
   validates :drug_type, presence: true, numericality: { only_integer: true, greater_than: 0 }

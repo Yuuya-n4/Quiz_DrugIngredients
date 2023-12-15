@@ -44,6 +44,12 @@ class QuizzesController < ApplicationController
 
   def explanation
     current_quiz_id = params[:id].to_i
+    if session[:quiz_ids].nil?
+      flash[:alert] = '前のページに戻らないでください'
+      redirect_to score_quiz_set_path(@quiz_set)
+      return
+    end
+
     session[:quiz_ids].delete(current_quiz_id)
 
     @next_quiz_id = session[:quiz_ids].first

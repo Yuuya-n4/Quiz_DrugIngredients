@@ -1,10 +1,31 @@
-<h2>クイズ解説</h2>
+<div class="container mx-auto px-1 sm:px-6 mt-8">
+<h2 class="text-2xl font-bold text-gray-800 mb-4">クイズ解説</h2>
+<div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
+  <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto">
 
-<p>問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
-<p><%= @quiz.correct_choice.text %> が正解です。</p>
-<p><%= @quiz.explanation %></p>
-<% if @next_quiz %>
-  <%= link_to '次へ', quiz_set_quiz_path(@quiz_set, @next_quiz) %>
-<% else %>
-  <%= link_to 'スコアを見る', score_quiz_set_path(@quiz_set) %>
-<% end %>
+    <p class="text-xl font-bold text-gray-800 mb-2">問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
+
+    <div class="bg-blue-100 p-4 rounded-lg mb-4">
+      <p class="text-xl font-bold text-gray-700">問題:</p>
+      <p class="text-lg text-gray-700"><%= @quiz.question %></p>
+    </div>
+
+    <div class="bg-blue-100 p-4 rounded-lg mb-4">
+      <p class="text-xl font-bold text-gray-700">正解:</p>
+      <p class="text-lg text-gray-700"><%= @quiz.correct_choice.text %></p>
+    </div>
+
+    <div class="bg-blue-100 p-4 rounded-lg mb-4">
+      <p class="text-xl font-bold text-gray-700">解説:</p>
+      <p class="text-lg text-gray-700"><%= @quiz.explanation %></p>
+    </div>
+
+    <div class="mt-4">
+    <% if @next_quiz %>
+      <%= button_to '次へ', quiz_set_quiz_path(@quiz_set, @next_quiz), method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
+    <% else %>
+      <%= button_to 'スコアを見る', score_quiz_set_path(@quiz_set), method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
+    <% end %>
+  </div>
+</div>
+</div>

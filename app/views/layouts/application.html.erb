@@ -9,11 +9,25 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* ビューポートの高さに合わせる */
+        background-color: #f9fafb; /* 明るいグレーの背景色 */
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* モダンなフォント */
+      }
+    </style>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
     <%= render 'layouts/footer' %>
   </body>
 </html>

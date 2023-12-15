@@ -1,5 +1,9 @@
-<footer>
-  <p>&copy; 2023 クイズ！市販薬の成分</p>
-  <%= link_to '利用規約', terms_path %>
-  <%= link_to 'プライバシーポリシー', privacy_path %>
+<footer class="bg-gray-800 text-white py-6 px-8 mt-10">
+  <div class="container mx-auto text-center">
+    <p>&copy; 2023 クイズ！市販薬の成分</p>
+    <div class="mt-4">
+      <%= link_to '利用規約', terms_path, class: "ml-4" %>
+      <%= link_to 'プライバシーポリシー', privacy_path, class: "ml-4" %>
+    </div>
+  </div>
 </footer>

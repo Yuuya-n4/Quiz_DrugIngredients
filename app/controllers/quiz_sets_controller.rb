@@ -1,9 +1,11 @@
 class QuizSetsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_quiz_set, only: [:show, :score]
+  layout 'quiz', only: [:score]
 
   def index
     @quiz_sets = QuizSet.all
+    @mastery_level = current_user.mastery_level if user_signed_in?
   end
 
   def show

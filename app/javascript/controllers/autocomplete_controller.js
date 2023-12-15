@@ -30,11 +30,11 @@ export default class extends Controller {
   updateResults(data) {
     this.resultsTarget.innerHTML = `<ul class="autocomplete-results-list">${data.map(item => {
       return `
-        <li class="autocomplete-result-item">
-          <strong>質問:</strong> ${item.question}<br>
-          <strong>正解:</strong> ${item.correct_answer}<br>
-          <strong>説明:</strong> ${item.explanation}<br>
-          <strong>クイズセットタイトル:</strong> ${item.quiz_set_title}
+        <li class="autocomplete-result-item p-2 hover:bg-gray-100 border-b border-white">
+          <strong class="font-bold text-gray-800">質問:</strong> ${item.question}<br>
+          <strong class="font-bold text-gray-800">正解:</strong> ${item.correct_answer}<br>
+          <strong class="font-bold text-gray-800">説明:</strong> ${item.explanation}<br>
+          <strong class="font-bold text-gray-800">クイズセットタイトル:</strong> ${item.quiz_set_title}
         </li>
       `;
     }).join('')}</ul>`;

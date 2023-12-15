@@ -1,10 +1,15 @@
-<header>
-  <%= link_to 'クイズ！市販薬の成分', root_path %>
-  <% unless user_signed_in? %>
-    <%= link_to '会員登録', new_user_registration_path %>
-    <%= link_to 'ログイン', new_user_session_path %>
-  <% end %>
-  <% if user_signed_in? %>
-    <%= link_to 'ログアウト', destroy_user_session_path, method: :get %>
-  <% end %>
+<header class="bg-blue-600 text-white py-4 px-2 md:px-8">
+  <div class="container mx-auto flex justify-between items-center">
+    <%= link_to 'クイズ！市販薬の成分', root_path, class: "text-2xl font-bold" %>
+    <div class="flex items-center">
+      <% if user_signed_in? %>
+        <%= link_to 'スコアページ', scores_mypages_path, class: "ml-4 hover:text-blue-300" %>
+        <%= link_to 'ユーザー情報編集', profile_mypages_path, class: "ml-4 hover:text-blue-300" %>
+        <%= link_to 'ログアウト', destroy_user_session_path, method: :get, class: "ml-4 hover:text-blue-300" %>
+      <% else %>
+        <%= link_to '会員登録', new_user_registration_path, class: "ml-4 hover:text-blue-300" %>
+        <%= link_to 'ログイン', new_user_session_path, class: "ml-4 hover:text-blue-300" %>
+      <% end %>
+    </div>
+  </div>
 </header>

@@ -2,7 +2,7 @@ class MypagesController < ApplicationController
   before_action :authenticate_user!
 
   def scores
-    @scores = current_user.scores.includes(:quiz_set).order(created_at: :desc)
+    @scores = current_user.scores.includes(:quiz_set).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def profile
