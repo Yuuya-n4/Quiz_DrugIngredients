@@ -4,7 +4,13 @@
   background-position: center;
 }
 
+.note-background {
+  background-image: url('/assets/mainback2.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 .note {
-  background-image: linear-gradient(white, white 40px, #b0b0b0 4px);
+  background-image: linear-gradient(white, white 40px, #b0b0b0 2px);
   background-size: 100% 42px;
 }

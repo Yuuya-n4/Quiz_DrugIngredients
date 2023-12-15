@@ -1,64 +1,82 @@
-<div class="w-full px-1 sm:px-1 mt-8">
+<div class="w-full px-1 sm:px-1">
 
-  <!-- フラッシュメッセージ -->
-  <% flash.each do |type, message| %>
-    <div class="<%= type == 'alert' ? 'bg-red-100 border-red-400 text-red-700 max-w-4xl mx-auto' : 'bg-blue-100 border-blue-400 text-blue-700 max-w-4xl mx-auto' %> px-4 py-3 border rounded-lg mb-4">
-      <p><%= message %></p>
-    </div>
-  <% end %>
+  <div class="note-background rounded-lg shadow-md relative p-2 sm:p-5 mb-6">
 
-  <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-10 mb-4 text-center">「クイズ！市販薬の成分」とは</h1>
+    <!-- フラッシュメッセージ -->
+    <% flash.each do |type, message| %>
+      <div class="<%= type == 'alert' ? 'bg-red-100 border-red-400 text-red-700 max-w-4xl mx-auto' : 'bg-blue-100 border-blue-400 text-blue-700 max-w-4xl mx-auto' %> px-4 py-3 border rounded-lg mb-4">
+        <p><%= message %></p>
+      </div>
+    <% end %>
 
-  <div class="note bg-white py-4 sm:py-6 rounded-lg mx-auto shadow-lg border-2 border-gray-300 mb-6 max-w-4xl">
+    <div class="note bg-white py-4 sm:py-6 rounded-lg mx-auto shadow-lg border-2 border-gray-300 mb-6 max-w-4xl">
+
+    <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-10 mb-4 text-center">「クイズ！市販薬の成分」とは</h1>
 
     <div class="bg-white bg-opacity-75 p-4 sm:p-6 rounded-lg max-w-4xl mx-auto">
 
       <h2 class="text-2xl font-bold text-gray-800 mb-4">簡単なクイズで薬の成分を学べるサービスです。</h2>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         薬についてちょっと知りたいな、気になるな、という方におすすめです。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         薬について知らない人でも、ちょっと気になるかも？という成分を集めてクイズを作りました。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         薬って難しそう。知らない単語がたくさんありそう。などの不安があっても、きっと楽しいと思います。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         今度薬を買う時、もちろん店員に相談するのが良いですが、その前に自分でも自分の症状に合っているか成分を見て考えてみるのもいいかもしれません。
       </p>
 
+      <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-6">登録販売者資格を目指す方へ。</h2>
+      <p class="text-base md:text-lg text-gray-700 mb-2">
+        登録販売者資格の勉強を始めると、初めは知らない単語ばかりでなかなか手が進まないかもしれません。
+      </p>
+      <p class="text-base md:text-lg text-gray-700 mb-2">
+        このサービスでは、できるだけとっつきやすい成分をクイズ形式で出題します。
+      </p>
+      <p class="text-base md:text-lg text-gray-700 mb-2">
+        登録販売者資格の入門、第一歩としてもぜひご利用ください。
+      </p>
+      <p class="text-base md:text-lg text-gray-700 mb-2">
+        このサービスで苦手克服度100%を目指して、自信をつけましょう！
+      </p>
+
       <h2 class="text-2xl font-bold text-gray-800 mb-4 mt-6">サービスの内容</h2>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         大きく分けて２つのサービスがあります。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         現在、会員登録しないと利用できません。よろしくお願いいたします。
       </p>
       <h3 class="text-xl font-bold text-gray-800 mb-4 mt-6">● クイズ</h3>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         薬の種類ごとに、クイズセットを作りました。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         気になるクイズセットに挑戦してみてください。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         たくさん何度も挑戦してみてください。過去のスコアは右上の「スコアページ」から確認できます。
       </p>
       <h3 class="text-xl font-bold text-gray-800 mb-4 mt-6">● 苦手克服チャレンジ</h3>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         各クイズにたくさん挑戦した後にチャレンジしてみてください。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         苦手を克服することに特化したサービスです。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         あなたの苦手なクイズを判定し、そこからクイズを出題します。
       </p>
-      <p class="text-lg text-gray-700 mb-2">
+      <p class="text-base md:text-lg text-gray-700 mb-2">
         苦手克服度100%を目指してみてください。
       </p>
     </div>
+    </div>
   </div>
+
 
 
   <div class="service-background rounded-lg shadow-md relative p-2 sm:p-5">
@@ -95,10 +113,10 @@
   </div>
 
     <%= link_to start_weak_quizzes_path, class: "block" do %>
-      <div class="bg-green-300 p-6 rounded-lg shadow-md mt-6 max-w-4xl mx-auto hover:bg-green-400">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">苦手克服チャレンジ</h2>
+      <div class="bg-green-400 p-6 rounded-lg shadow-md mt-6 max-w-4xl mx-auto hover:bg-green-500">
+        <h2 class="text-4xl font-bold text-gray-800 mb-2 text-center">苦手克服チャレンジ</h2>
         <p class="text-lg text-gray-700 text-center">苦手なクイズの克服にチャレンジできます。</p>
-        <p class="text-lg text-gray-700 text-center">苦手克服チャレンジの説明</p>
+        <p class="text-lg text-gray-700 text-center">各クイズにたくさん挑戦した後にチャレンジしてください。</p>
         <% if user_signed_in? %>
           <div class="p-2 border border-sky-300 rounded-md bg-green-100 mt-2 max-w-xs mx-auto">
             <p class="text-base font-bold sm:text-xl lg:text-2xl text-center">苦手克服度:</p>
