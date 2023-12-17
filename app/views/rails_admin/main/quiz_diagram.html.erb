@@ -75,6 +75,11 @@
   .choice-item {
     background-color: #e2e6ea;
   }
+  .quiz-id {
+    font-size: 12px;
+    color: #6c757d;
+    margin-left: 10px;
+  }
 </style>
 
 <h3>クイズセット</h3>
@@ -92,7 +97,7 @@
       <h5>クイズ</h5>
       <% quiz_set.quizzes.each do |quiz| %>
         <div class="quiz-item">
-          <div class="quiz-title"><strong><%= t('quiz_diagram.question') %>:</strong> <%= quiz.question %></div>
+          <div class="quiz-title"><strong><%= t('quiz_diagram.question') %>:</strong> <%= quiz.question %><span class="quiz-id">ID: <%= quiz.id %></div>
           <div class="quiz-explanation"><strong><%= t('quiz_diagram.explanation') %>:</strong> <%= quiz.explanation %></div>
           <div class="quiz-type"><strong><%= t('quiz_diagram.drug_type') %>:</strong> <%= quiz.drug_type.text %></div>
           <ul class="choice-list">
