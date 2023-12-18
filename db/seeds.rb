@@ -406,7 +406,7 @@ Choice.create!([
   {quiz_id: quiz63.id, text: "ミコナゾール", correct: 0},
   {quiz_id: quiz63.id, text: "クロトリマゾール", correct: 0}
 ])
-quiz64 = Quiz.create!(quiz_set_id: quiz_set3.id, question: 'この成分は、強い殺菌作用を持ち、皮膚の細菌感染症に用いられます。どれがこの成分ですか？', 'explanation: クロルヘキシジングルコン酸塩は、広範囲の細菌に対して強い殺菌作用を持ち、皮膚の細菌感染症に効果的です。イソプロピルメチルフェノールとフラジオマイシン硫酸塩も抗菌作用がありますが、クロルヘキシジンは特に強い殺菌力が特徴です。', drug_type: 1)
+quiz64 = Quiz.create!(quiz_set_id: quiz_set3.id, question: 'この成分は、強い殺菌作用を持ち、皮膚の細菌感染症に用いられます。どれがこの成分ですか？', explanation: 'クロルヘキシジングルコン酸塩は、広範囲の細菌に対して強い殺菌作用を持ち、皮膚の細菌感染症に効果的です。イソプロピルメチルフェノールとフラジオマイシン硫酸塩も抗菌作用がありますが、クロルヘキシジンは特に強い殺菌力が特徴です。', drug_type: 1)
 Choice.create!([
   {quiz_id: quiz64.id, text: "クロルヘキシジングルコン酸塩", correct: 1},
   {quiz_id: quiz64.id, text: "イソプロピルメチルフェノール", correct: 0},
