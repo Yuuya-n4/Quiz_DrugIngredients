@@ -1,4 +1,4 @@
-# 市販薬の成分クイズ
+# クイズ！市販薬の成分
 
 ## サービス概要
 市販の薬の成分について簡単にクイズ形式で学ぶことができるサービスです。
@@ -73,6 +73,10 @@
 　　データベースサーバ: PostgreSQL
 
 
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/e1eff826abf4677dfc5aba81a055a850.png)](https://gyazo.com/e1eff826abf4677dfc5aba81a055a850)
 
+## 画面推移図
+https://www.figma.com/file/T0MUmrxdxTFSt8GbwjJeKh/Untitled?type=design&node-id=0%3A1&mode=design&t=ZGE1ErUgt9xfZdxP-1
 
 
