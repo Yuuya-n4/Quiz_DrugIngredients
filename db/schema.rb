@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_08_132135) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_18_095608) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,16 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_132135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
-  end
-
-  create_table "avatars", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "avatar_name", null: false
-    t.integer "experience_point", null: false
-    t.string "avatar_image_url", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_avatars_on_user_id"
   end
 
   create_table "choices", force: :cascade do |t|
@@ -92,7 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_08_132135) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "avatars", "users"
   add_foreign_key "choices", "quizzes"
   add_foreign_key "quizzes", "quiz_sets"
   add_foreign_key "scores", "quiz_sets"
