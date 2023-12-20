@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :admin_users, skip: [:registrations, :passwords, :confirmations, :unlocks, :omniauth_callbacks, :mailers, :rememberable], controllers: {
+  devise_for :admin_users, skip: [:omniauth_callbacks, :confirmations, :unlocks], controllers: {
     sessions: 'admin_users/sessions'
   }
 
