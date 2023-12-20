@@ -1,16 +1,16 @@
 .service-background {
-    background-image: url('/assets/mainback1-5615113b4c182865fc9bfd5fcb8bc277eac8e0d84d8fdbcba66d98d1a6f5328c.jpg'); 
-    background-size: cover;
-    background-position: center;
-  }
-    
-  .note-background {
-    background-image: url('/assets/mainback2-f36e6e597210966dd79513f518ab356024d68308b96383bf710aa83a7e531fa8.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .note {
-    background-image: linear-gradient(white, white 40px, #b0b0b0 2px);
-    background-size: 100% 42px;
-  }
+  background-image: var(--mainback1-path);
+  background-size: cover;
+  background-position: center;
+}
+
+.note-background {
+  background-image: var(--mainback2-path);
+  background-size: cover;
+  background-position: center;
+}
+
+.note {
+  background-image: linear-gradient(white, white 40px, #b0b0b0 2px);
+  background-size: 100% 42px;
+}
