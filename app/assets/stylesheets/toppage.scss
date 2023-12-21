@@ -1,11 +1,11 @@
 .service-background {
-  background-image: url('/assets/mainback1.jpg');
+  background-image: var(--mainback1-path);
   background-size: cover;
   background-position: center;
 }
 
 .note-background {
-  background-image: url('/assets/mainback2.jpg');
+  background-image: var(--mainback2-path);
   background-size: cover;
   background-position: center;
 }

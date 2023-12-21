@@ -17,13 +17,13 @@
 
       <h2 class="text-2xl font-bold text-gray-800 mb-4">簡単なクイズで薬の成分を学べるサービスです。</h2>
       <p class="text-base md:text-lg text-gray-700 mb-2">
-        薬についてちょっと知りたいな、気になるな、という方におすすめです。
+        薬について知りたいな、気になるな、という方におすすめです。
       </p>
       <p class="text-base md:text-lg text-gray-700 mb-2">
-        薬について知らない人でも、ちょっと気になるかも？という成分を集めてクイズを作りました。
+        薬について知らない人でも、クイズの中にきっと気になる成分があると思います。
       </p>
       <p class="text-base md:text-lg text-gray-700 mb-2">
-        薬って難しそう。知らない単語がたくさんありそう。などの不安があっても、きっと楽しいと思います。
+        薬って難しそう。知らない単語がたくさんありそう。などの不安があっても、きっと楽しいです。
       </p>
       <p class="text-base md:text-lg text-gray-700 mb-2">
         今度薬を買う時、もちろん店員に相談するのが良いですが、その前に自分でも自分の症状に合っているか成分を見て考えてみるのもいいかもしれません。
@@ -49,6 +49,9 @@
       </p>
       <p class="text-base md:text-lg text-gray-700 mb-2">
         現在、会員登録しないと利用できません。よろしくお願いいたします。
+      </p>
+      <p class="text-base md:text-lg text-gray-700 mb-2">
+        連絡なくクイズの変更、削除、追加の可能性があります。また、クイズの内容には不足などもあるかもしれません。ご了承ください。
       </p>
       <h3 class="text-xl font-bold text-gray-800 mb-4 mt-6">● クイズ</h3>
       <p class="text-base md:text-lg text-gray-700 mb-2">
@@ -91,7 +94,7 @@
         <%= link_to quiz_set, class: "block no-underline" do %>
           <div class="bg-sky-100 rounded-lg shadow-2xl sm:mx-8 md:mx-12 lg:mx-16 mb-6 flex flex-col justify-center items-center aspect-square hover:bg-sky-200 transition duration-300 ease-in-out">
             <div class="p-4">
-              <h2 class="text-2xl sm:text-xl lg:text-3xl text-blue-600 mb-2 text-center"><%= quiz_set.title %></h2>
+              <h2 class="text-2xl sm:text-xl lg:text-3xl text-blue-600 mb-2 text-center md:mb-6"><%= quiz_set.title %></h2>
               <p class="text-sm sm:text-base lg:text-xl text-gray-600 text-center mb-2 md:mb-6"><%= quiz_set.description %></p>
               <% if user_signed_in? %>
                 <div class="p-2 border border-sky-300 rounded-md bg-sky-50 mt-2 max-w-xs mx-auto">

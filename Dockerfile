@@ -12,6 +12,8 @@ COPY Gemfile.lock /quiz_drug_ingredients/Gemfile.lock
 RUN bundle install
 COPY . /quiz_drug_ingredients
 RUN npm install
+ENV PATH /quiz_drug_ingredients/node_modules/.bin:$PATH
+RUN npm run build:css
 RUN npm run build:tailwind
 RUN bin/rails assets:precompile
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]

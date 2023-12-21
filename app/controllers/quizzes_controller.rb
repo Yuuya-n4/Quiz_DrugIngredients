@@ -3,8 +3,10 @@ class QuizzesController < ApplicationController
   before_action :set_quiz_set, only: [:show, :answer, :explanation]
   before_action :set_quiz, only: [:show, :answer, :explanation]
   layout 'quiz', only: [:show, :explanation]
+  before_action :set_default_meta_tags, only: [:show, :explanation, :index]
 
   def show
+    set_meta_tags title: 'クイズ'
     @choices = @quiz.choices
 
     if session[:original_quiz_ids].present?
@@ -43,6 +45,7 @@ class QuizzesController < ApplicationController
   end
 
   def explanation
+    set_meta_tags title: 'クイズ解説'
     current_quiz_id = params[:id].to_i
     if session[:quiz_ids].nil?
       flash[:alert] = '前のページに戻らないでください'
@@ -63,8 +66,9 @@ class QuizzesController < ApplicationController
   end
 
   def index
+    set_meta_tags title: 'クイズ一覧'
     @q = Quiz.ransack(params[:q])
-    @quizzes = @q.result(distinct: true).order(:created_at).page(params[:page]).per(5)
+    @quizzes = @q.result(distinct: true).order(:created_at).page(params[:page]).per(10)
   end
 
   def autocomplete

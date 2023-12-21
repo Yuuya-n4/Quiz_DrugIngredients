@@ -2,13 +2,16 @@ class QuizSetsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_quiz_set, only: [:show, :score]
   layout 'quiz', only: [:score]
+  before_action :set_default_meta_tags, only: [:index, :show, :score]
 
   def index
+    set_meta_tags title: 'トップページ'
     @quiz_sets = QuizSet.all
     @mastery_level = current_user.mastery_level if user_signed_in?
   end
 
   def show
+    set_meta_tags title: 'クイズ開始'
     @total_questions = [@quiz_set.quizzes.count, 10].min
   end
 
@@ -29,6 +32,7 @@ class QuizSetsController < ApplicationController
   end
 
   def score
+    set_meta_tags title: 'スコア'
     @score = current_user.scores.find_by(id: session[:score_id])
     @total_quizzes = session[:original_quiz_ids].length
   end

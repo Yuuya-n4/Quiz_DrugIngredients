@@ -2,8 +2,10 @@ class WeakQuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :answer, :explanation]
   layout 'weak_quizzes'
+  before_action :set_default_meta_tags, only: [:start, :show, :explanation, :score]
 
   def start
+    set_meta_tags title: '苦手克服チャレンジ'
     @non_weak_quizzes_count = current_user.non_weak_quizzes_count
     @weak_quizzes_count = current_user.weak_quizzes_count
     @mastered_quizzes_count = current_user.mastered_quizzes_count
@@ -33,6 +35,7 @@ class WeakQuizzesController < ApplicationController
   end
 
   def show
+    set_meta_tags title: '苦手克服クイズ'
     @quiz = Quiz.find(params[:id])
     @choices = @quiz.choices
 
@@ -71,6 +74,7 @@ class WeakQuizzesController < ApplicationController
   end
 
   def explanation
+    set_meta_tags title: '苦手克服クイズ解説'
     current_quiz_id = params[:id].to_i
 
     current_quiz_index = session[:original_weak_quiz_ids].index(current_quiz_id)
@@ -84,6 +88,7 @@ class WeakQuizzesController < ApplicationController
   end
 
   def score
+    set_meta_tags title: 'スコア'
     @score = session[:weak_quiz_score]
     @total_quizzes = session[:answered_quiz_ids].length
   end

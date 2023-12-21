@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for quiz-drug-ingredients on 2023-12-06T14:51:13+09:00
+# fly.toml app configuration file generated for quiz-drug-ingredients on 2023-12-18T16:00:53+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,9 +8,6 @@ primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
 [build]
-
-[deploy]
-  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
