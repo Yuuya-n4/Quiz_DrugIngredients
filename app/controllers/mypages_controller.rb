@@ -1,11 +1,14 @@
 class MypagesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_default_meta_tags, only: [:scores, :profile]
 
   def scores
+    set_meta_tags title: 'スコア確認'
     @scores = current_user.scores.includes(:quiz_set).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def profile
+    set_meta_tags title: 'プロフィール'
     @user = current_user
   end
 

@@ -106,10 +106,6 @@ GEM
     diff-lcs (1.5.0)
     dockerfile-rails (1.5.12)
       rails (>= 3.0.0)
-    dotenv (2.8.1)
-    dotenv-rails (2.8.1)
-      dotenv (= 2.8.1)
-      railties (>= 3.2)
     enumerize (2.7.0)
       activesupport (>= 3.2)
     erubi (1.12.0)
@@ -162,6 +158,8 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
+    meta-tags (2.19.0)
+      actionpack (>= 3.2.0, < 7.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
@@ -328,7 +326,6 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views
   dockerfile-rails (>= 1.5)
-  dotenv-rails
   enumerize
   factory_bot_rails (~> 6.4)
   faker
@@ -337,6 +334,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  meta-tags
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
