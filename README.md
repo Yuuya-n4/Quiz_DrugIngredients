@@ -41,23 +41,26 @@ https://www.quiz-drugingredients.com/
 - **クイズの過去スコア表示**
 - **クイズ一覧**
     - クイズ検索（ransack）
-    - オートコンプリート(stimulus-autocomplete　文字入力するごとに、候補のクイズを下に小さく表示）
-- **管理者機能（rails-admin　クイズ追加などに使用）**
+    - オートコンプリート(stimulus-autocomplete　1文字入力するごとに候補のクイズを下に小さく表示　質問、正解、解説、クイズセット名で検索可能）
+- **管理者機能（rails-admin　クイズ追加に使用）**
 - **rails-adminカスタムアクション**
     - クイズは、クイズセット、クイズ、選択肢の３つのモデルで成り立つため、rails-adminそのままでは見ずらいので、１画面で見やすくまとめて見れるカスタムアクションを作成
 - **デザイン**
     - メインサービスはTailwind CSS
     - rails-adminはBootstrap
+- **メタタグ**
+    - サイト名やキーワードやファビコンなど設定
+    - 各ページごとにタイトルを設定してタブバーに表示
 - **テスト（Rspec）**
 
 ### その後の機能
-- mataタグ
+- コードの整形
 - クイズ機能のコントローラーやモデルの再確認
 - クイズの質問や解説の改善
 - デザイン改善
 - テスト追加（Rspec）
-- LINE通知機能（新クイズセット追加通知、クイズ追加通知、勉強促し通知）
-- 勉強記録カレンダー（検討中。一週間か１ヶ月のクイズの挑戦をカレンダーで見やすく表示）
+- Twitter投稿機能
+
 
 
 ## 技術選定
@@ -77,7 +80,7 @@ https://www.quiz-drugingredients.com/
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/99cfcdfa8acd9f356a2ec61dc09f252c.png)](https://gyazo.com/99cfcdfa8acd9f356a2ec61dc09f252c)
 
-## 画面推移図
+## 画面推移図(初期設定)
 https://www.figma.com/file/T0MUmrxdxTFSt8GbwjJeKh/Untitled?type=design&node-id=0%3A1&mode=design&t=ZGE1ErUgt9xfZdxP-1
 
 
