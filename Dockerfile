@@ -31,6 +31,4 @@ RUN npm run build:tailwind
 
 # アセットプリコンパイルを本番環境で実行
 RUN bin/rails assets:precompile
-
-# デフォルトコマンドを設定
 CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
