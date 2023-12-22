@@ -90,3 +90,5 @@ gem "sentry-ruby", "~> 5.15"
 gem "sentry-rails", "~> 5.15"
 
 gem 'meta-tags'
+
+gem 'jsbundling-rails'

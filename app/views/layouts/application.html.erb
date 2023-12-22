@@ -7,9 +7,9 @@
     <%= favicon_link_tag 'drugicon.ico' %>
     <%= display_meta_tags %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag 'application.tailwind', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: 'all' %>
+    <%= stylesheet_link_tag 'application.tailwind', "data-turbo-track": "reload", media: 'all' %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
     <style>
       body {

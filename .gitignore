@@ -45,3 +45,4 @@ config/initializers/sentry.rb
 public/styles.css
 package-lock.json
 config/credentials.yml.enc
+yarn-error.log
