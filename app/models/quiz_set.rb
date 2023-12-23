@@ -1,6 +1,7 @@
 class QuizSet < ApplicationRecord
   has_many :scores, dependent: :destroy
   has_many :quizzes, dependent: :destroy
+  has_many :feedbacks
   accepts_nested_attributes_for :quizzes, allow_destroy: true
 
   def completed_by?(user)

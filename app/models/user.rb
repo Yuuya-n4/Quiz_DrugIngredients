@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one :avatar, dependent: :destroy
   has_many :user_quiz_performance_summaries, dependent: :destroy
   has_many :ratings
+  has_many :feedbacks
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

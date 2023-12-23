@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_22_073832) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_23_160257) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_22_073832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_choices_on_quiz_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.bigint "quiz_set_id", null: false
+    t.bigint "user_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_set_id"], name: "index_feedbacks_on_quiz_set_id"
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
   create_table "quiz_sets", force: :cascade do |t|
@@ -94,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_22_073832) do
   end
 
   add_foreign_key "choices", "quizzes"
+  add_foreign_key "feedbacks", "quiz_sets"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "quizzes", "quiz_sets"
   add_foreign_key "ratings", "quizzes"
   add_foreign_key "ratings", "users"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'feedbacks/create'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :admin_users, skip: [:registrations, :passwords, :confirmations, :unlocks, :omniauth_callbacks, :mailers, :rememberable], controllers: {
     sessions: 'admin_users/sessions',
@@ -53,4 +54,6 @@ Rails.application.routes.draw do
     resources :ratings, only: [:create]
     get 'ratings', to: 'ratings#show'
   end
+
+  resources :feedbacks, only: [:create]
 end
