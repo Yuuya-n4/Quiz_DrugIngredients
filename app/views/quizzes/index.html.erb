@@ -1,14 +1,14 @@
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">クイズ一覧</h1>
 
-  <div data-controller="autocomplete" class="max-w-lg mx-auto mb-6 relative">
+  <script src="/assets/quizlist_page.js"></script>
+  <div id="autocomplete-root" class="max-w-lg mx-auto mb-6 relative">
     <%= search_form_for @q do |f| %>
       <div class="flex items-center">
         <%= f.search_field :combined_search, id: "combined_search", class: "form-input w-full h-10 border-2 border-blue-300 shadow-lg rounded-md", data: { action: "input->autocomplete#performSearch", autocomplete_target: "input" } %>
         <%= f.submit "検索", class: "ml-2 btn btn-primary h-10" %>
       </div>
     <% end %>
-    <ul data-autocomplete-target="results" class="absolute z-10 bg-sky-200 w-full rounded-md shadow-lg mt-1 max-h-60 overflow-auto"></ul>
   </div>
 
   <% @quizzes.each do |quiz| %>
