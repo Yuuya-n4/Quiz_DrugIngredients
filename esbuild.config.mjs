@@ -1,17 +1,16 @@
 import esbuild from 'esbuild';
-import babelPlugin from 'esbuild-plugin-babel';
 
 esbuild.build({
-  entryPoints: ['app/javascript/application.js'],
+  entryPoints: [
+    'app/javascript/application.js',
+    'app/javascript/top_page.js',
+    'app/javascript/quiz_page.js',
+  ],
   bundle: true,
   sourcemap: true,
-  outdir: 'app/assets/builds',
-  publicPath: '/assets',
-  plugins: [
-    babelPlugin({
-      config: {
-        presets: ['@babel/preset-react']
-      }
-    })
-  ]
+  outdir: 'public/assets',
+  loader: {
+    '.js': 'jsx',
+  },
+  publicPath: '/assets/builds',
 }).catch(() => process.exit(1));
