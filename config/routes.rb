@@ -48,4 +48,9 @@ Rails.application.routes.draw do
 
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
+
+  namespace :api do
+    resources :ratings, only: [:create]
+    get 'ratings', to: 'ratings#show'
+  end
 end
