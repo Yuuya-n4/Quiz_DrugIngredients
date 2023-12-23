@@ -28,4 +28,17 @@
     <% end %>
   </div>
 </div>
+
+  <div id="star-rating-container" class="mx-auto max-w-xl mt-12">
+    <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 text-center">
+      <script src="/assets/quiz_page.js"></script>
+      <div id="star-rating-root"
+          data-user-id="<%= current_user.id %>"
+          data-quiz-id="<%= @quiz.id %>"
+          class="inline-block">
+      </div>
+      <p class="mt-2">このクイズに対する評価、ご気軽にどうぞ。</p>
+      <p>サービス向上にご協力いただければ幸いです。</p>
+    </div>
+  </div>
 </div>

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :scores, dependent: :destroy
   has_one :avatar, dependent: :destroy
   has_many :user_quiz_performance_summaries, dependent: :destroy
+  has_many :ratings
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -15,7 +16,7 @@ class User < ApplicationRecord
 
   def mastery_level
     return 0 if user_quiz_performance_summaries.empty?
-    
+
     weak_count = weak_quizzes_count
     mastered_count = mastered_quizzes_count
 

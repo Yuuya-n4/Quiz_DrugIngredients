@@ -25,6 +25,21 @@
     <% else %>
       <%= button_to 'スコアを見る', score_weak_quizzes_path, method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
     <% end %>
+
+  </div>
+
+  <!-- 星評価機能のコンテナ -->
+  <div id="star-rating-container" class="mx-auto max-w-xl mt-12">
+    <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 text-center">
+      <script src="/assets/quiz_page.js"></script>
+      <div id="star-rating-root"
+          data-user-id="<%= current_user.id %>"
+          data-quiz-id="<%= @quiz.id %>"
+          class="inline-block">
+      </div>
+      <p class="mt-2">このクイズに対する評価、ご気軽にどうぞ。</p>
+      <p>サービス向上にご協力いただければ幸いです。</p>
+    </div>
   </div>
 </div>
 </div>
