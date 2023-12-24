@@ -41,7 +41,12 @@ https://www.quiz-drugingredients.com/
 - **クイズの過去スコア表示**
 - **クイズ一覧**
     - クイズ検索（ransack）
-    - オートコンプリート(stimulus-autocomplete　1文字入力するごとに候補のクイズを下に小さく表示　質問、正解、解説、クイズセット名で検索可能）
+    - オートコンプリート(React　1文字入力するごとに候補のクイズを下に小さく表示　質問、正解、解説、クイズセット名で検索可能）
+- **星評価**
+    - ５段階の星評価（React　react-stars）
+    - 各クイズの後の解説画面で、そのクイズに対する評価を星５段階でユーザーから任意で評価をもらう
+- **フィードバック**
+    - クイズの最後のスコア画面で、ユーザーから任意で意見や感想をもらう
 - **管理者機能（rails-admin　クイズ追加に使用）**
 - **rails-adminカスタムアクション**
     - クイズは、クイズセット、クイズ、選択肢の３つのモデルで成り立つため、rails-adminそのままでは見ずらいので、１画面で見やすくまとめて見れるカスタムアクションを作成
@@ -54,7 +59,7 @@ https://www.quiz-drugingredients.com/
 - **テスト（Rspec）**
 
 ### その後の機能
-- コードの整形
+- コードの整形や整理
 - クイズ機能のコントローラーやモデルの再確認
 - クイズの質問や解説の改善
 - デザイン改善
@@ -69,6 +74,8 @@ https://www.quiz-drugingredients.com/
 ■ サーバサイド:  
 　　Ruby 3.1.4  
 　　Rails 7.0.8  
+■ JSライブラリ:  
+　　React 18.2.0  
 ■ CSSフレームワーク:  
 　　Tailwind CSS（メインサービス）  
 　　Bootstrap（rails-admin）  
@@ -78,7 +85,7 @@ https://www.quiz-drugingredients.com/
 
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/99cfcdfa8acd9f356a2ec61dc09f252c.png)](https://gyazo.com/99cfcdfa8acd9f356a2ec61dc09f252c)
+[![Image from Gyazo](https://i.gyazo.com/8ad099775a7d41fa484b644cff5bffb7.png)](https://gyazo.com/8ad099775a7d41fa484b644cff5bffb7)
 
 ## 画面推移図(初期設定)
 https://www.figma.com/file/T0MUmrxdxTFSt8GbwjJeKh/Untitled?type=design&node-id=0%3A1&mode=design&t=ZGE1ErUgt9xfZdxP-1
