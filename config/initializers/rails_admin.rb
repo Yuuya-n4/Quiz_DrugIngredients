@@ -65,8 +65,11 @@ RailsAdmin.config do |config|
   config.model 'UserQuizPerformanceSummary' do
     weight 7
   end
-  config.model 'Avatar' do
+  config.model 'Rating' do
     weight 8
+  end
+  config.model 'Feedback' do
+    weight 9
   end
 
   config.model 'Quiz' do

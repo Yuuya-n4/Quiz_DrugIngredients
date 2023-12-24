@@ -7,14 +7,17 @@ ja:
       quiz: クイズ
       choice: 選択肢
       score: スコア
-      avatar: アバター
       user_quiz_performance_summary: ユーザークイズパフォーマンス
+      rating: 評価
+      feedback: フィードバック
     attributes:
       admin_users:
         email: ID
         password: パスワード
       user:
         name: 名前
+        gender: 性別
+        age: 年齢
         email: メールアドレス
         password: パスワード
       quiz_set:
@@ -29,13 +32,14 @@ ja:
         correct: 正解
       score:
         correct_answer: 正解数
-      avatar:
-        avatar_name: アバター名
-        experience_point: 経験値
       user_quiz_performance_summary:
         attempts: 回答数
         correct_answers: 正解数
         consecutive_correct_answers: 連続正解数
+      ratings:
+        score: 評価
+      feedbacks: 
+        content: フィードバック
   attributes:
     created_at: 作成日
     updated_at: 更新日
@@ -51,12 +55,30 @@ ja:
     avatar: アバター
     avatar_image_url: アバターイメージURL
     user_quiz_performance_summary: ユーザークイズパフォーマンス
+    rating: 評価
+    feedback: フィードバック
+    score: 評価
+    content: フィードバック
   enumerize:
     quiz:
       drug_type:
         medicine: 医薬品
         quasi_drug: 医薬部外品
         cosmetics: 化粧品
+    user:
+      gender:
+        male: "男性"
+        female: "女性"
+        undisclosed: "未指定"
+      age:
+        under_teen: "10代以下"
+        twenties: "20代"
+        thirties: "30代"
+        forties: "40代"
+        fifties: "50代"
+        sixties: "60代"
+        seventies_and_over: "70代以上"
+        undisclosed: "未指定"
   quiz_diagram:
     title: "クイズセット"
     description: "説明"
