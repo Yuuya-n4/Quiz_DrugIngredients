@@ -67,8 +67,11 @@ class QuizzesController < ApplicationController
 
   def index
     set_meta_tags title: 'クイズ一覧'
-    @q = Quiz.ransack(params[:q])
-    @quizzes = @q.result(distinct: true).order(:created_at).page(params[:page]).per(10)
+    if params[:query].present?
+      @quizzes = Quiz.search_multiple_fields(params[:query]).distinct.order(id: :asc).page(params[:page])
+    else
+      @quizzes = Quiz.all.order(id: :asc).page(params[:page])
+    end
   end
 
   def autocomplete
