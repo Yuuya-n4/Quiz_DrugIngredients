@@ -167,7 +167,7 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     nested_form (0.3.2)
-    net-imap (0.4.8)
+    net-imap (0.4.9)
       date
       net-protocol
     net-pop (0.1.2)
@@ -232,10 +232,6 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.1.0)
-    ransack (4.1.1)
-      activerecord (>= 6.1.5)
-      activesupport (>= 6.1.5)
-      i18n
     rdoc (6.6.2)
       psych (>= 4.0.0)
     regexp_parser (2.8.3)
@@ -343,7 +339,6 @@ DEPENDENCIES
   rails (~> 7.0.8)
   rails-i18n
   rails_admin
-  ransack
   rspec-rails (~> 6.1)
   sassc-rails
   selenium-webdriver
