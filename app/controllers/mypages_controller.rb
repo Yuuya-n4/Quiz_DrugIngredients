@@ -32,10 +32,11 @@ class MypagesController < ApplicationController
   private
 
   def user_params
+    permitted_params = [:name, :email, :gender, :age]
     if params[:user][:password].blank?
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(*permitted_params)
     else
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password)
+      params.require(:user).permit(*permitted_params, :password, :password_confirmation, :current_password)
     end
   end
 end

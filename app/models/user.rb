@@ -1,14 +1,20 @@
 class User < ApplicationRecord
+  extend Enumerize
   has_many :scores, dependent: :destroy
-  has_one :avatar, dependent: :destroy
   has_many :user_quiz_performance_summaries, dependent: :destroy
   has_many :ratings
+  has_many :feedbacks
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true
   validates :email, presence: true
+  validates :gender, presence: true
+  validates :age, presence: true
+
+  enumerize :gender, in: { male: 0, female: 1, undisclosed: 2 }, scope: true, predicates: true
+  enumerize :age, in: { under_teen: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, sixties: 5, seventies_and_over: 6, undisclosed: 7 }, scope: true, predicates: true
 
   def total_score_for_quiz_set(quiz_set)
     scores.where(quiz_set: quiz_set).sum(:correct_answer)

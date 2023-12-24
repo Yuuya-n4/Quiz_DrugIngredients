@@ -11,6 +11,16 @@
     </div>
 
     <div class="field mb-4">
+      <%= f.label :gender, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.select :gender, User.gender.options, { prompt: '選択してください' }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="field mb-4">
+      <%= f.label :age, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= f.select :age, User.age.options, { prompt: '選択してください' }, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="field mb-4">
       <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "name", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
