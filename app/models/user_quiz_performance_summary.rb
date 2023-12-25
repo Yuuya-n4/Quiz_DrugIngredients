@@ -13,4 +13,8 @@ class UserQuizPerformanceSummary < ApplicationRecord
   def recently_improved?
     consecutive_correct_answers >= 2
   end
+
+  def answered_twice_or_more?
+    attempts >= 2
+  end
 end

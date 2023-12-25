@@ -4,15 +4,16 @@
   <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-2xl mx-auto">
     
     <p class="text-lg font-bold text-gray-700 mb-2">苦手克服チャレンジ とは</p>
-    <p class="text-lg text-gray-700 mb-2 underline">苦手な問題の克服に特化しています。各クイズセットにたくさん挑戦した後に取り組んでください。</p>
-    <p class="text-lg text-gray-700 mb-2">少なくとも、気になったクイズセットをコンプリートした後に取り組むことをおすすめします。</p>
+    <p class="text-lg text-gray-700 mb-2">苦手なクイズの克服にチャレンジできます！</p>
+    <p class="text-lg text-gray-700 mb-2">各クイズセットにたくさん挑戦した後に取り組みましょう。</p>
+    <p class="text-lg text-gray-700 mb-2  underline">2回以上回答した問題のみが、苦手、克服、定着の判定に入ります。1回以下の回答のクイズは反映されません。</p>
     <p class="text-lg text-gray-700 mb-2">苦手なクイズが10問以下の場合でもランダムでクイズが追加され必ず10問出題されますので、純粋に復習としてもお使いください。</p>
     <p class="text-lg text-gray-700 mb-2">苦手克服度100%を目指しましょう！</p>
 
     <div class="border-b border-gray-200 mb-4">
       <div class="flex items-center mb-2">
-        <h3 class="text-4xl font-bold text-gray-800 mr-2">苦手克服度:</h3>
-        <p class="text-5xl font-bold text-blue-600"><%= @mastery_level %>%</p>
+        <h3 class="text-2xl sm:text-4xl font-bold text-gray-800 mr-2">苦手克服度:</h3>
+        <p class="text-2xl sm:text-5xl font-bold text-blue-600"><%= @mastery_level %>%</p>
       </div>
       <p class="text-lg text-gray-700">苦手克服度は、あなたが克服した苦手なクイズの割合を基に計算されます。</p>
     </div>
@@ -22,7 +23,7 @@
         <h3 class="text-xl font-bold text-gray-800 mr-2">苦手と判定されたクイズの数:</h3>
         <p class="text-2xl font-bold text-blue-600"><%= @weak_quizzes_count %>問</p>
       </div>
-      <p class="text-lg text-gray-700">苦手と判定されたクイズとは、正答率が80%以下のクイズです。</p>
+      <p class="text-lg text-gray-700">苦手と判定されたクイズとは、2回以上回答していて正答率が80%以下のクイズです。</p>
     </div>
 
     <div class="border-b border-gray-200 mb-4">
@@ -30,7 +31,7 @@
         <h3 class="text-xl font-bold text-gray-800 mr-2">苦手を克服したクイズの数:</h3>
         <p class="text-2xl font-bold text-blue-600"><%= @mastered_quizzes_count %>問</p>
       </div>
-      <p class="text-lg text-gray-700">苦手を克服したクイズとは、正答率は80%以下ですが直近で2回以上連続で正解したクイズです。</p>
+      <p class="text-lg text-gray-700">苦手を克服したクイズとは、2回以上回答していて正答率は80%以下ですが直近で2回以上連続で正解したクイズです。</p>
     </div>
 
     <div class="border-b border-gray-200 mb-4">
@@ -38,7 +39,7 @@
         <h3 class="text-xl font-bold text-gray-800 mr-2">定着したクイズの数:</h3>
         <p class="text-2xl font-bold text-blue-600"><%= @non_weak_quizzes_count %>問</p>
       </div>
-      <p class="text-lg text-gray-700">定着しているクイズ（正答率が80%より上）の数は苦手克服度の計算に含まれません。</p>
+      <p class="text-lg text-gray-700">定着しているクイズ（2回以上回答していて正答率が80%より上）の数は苦手克服度の計算に含まれません。</p>
     </div>
 
     <p>出題数: 10問</p>
@@ -50,6 +51,43 @@
     </div>
   </div>
 </div>
+
+<h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">各クイズセットの回答状況</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% @quiz_sets_stats.each do |quiz_set, stats| %>
+    <div class="bg-white shadow rounded-lg mb-6 overflow-hidden">
+      <div class="bg-blue-100 px-5 py-4">
+        <h3 class="text-xl font-semibold text-center text-gray-800"><%= quiz_set.title %></h3>
+      </div>
+      <div class="border-t border-gray-200">
+        <dl>
+          <div class="px-5 py-4 flex flex-col items-center">
+            <dt class="text-sm font-medium text-gray-500">総問題数</dt>
+            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:total_quizzes] %></dd>
+          </div>
+          <div class="bg-gray-50 px-5 py-4 flex flex-col items-center">
+            <dt class="text-sm font-medium text-gray-500">2回以上答えた問題数</dt>
+            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:answered_twice_or_more_count] %></dd>
+          </div>
+          <div class="px-5 py-4 flex flex-col items-center">
+            <dt class="text-sm font-medium text-gray-500">苦手な問題数</dt>
+            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:weak_quizzes_count] %></dd>
+          </div>
+          <div class="bg-gray-50 px-5 py-4 flex flex-col items-center">
+            <dt class="text-sm font-medium text-gray-500">克服した問題数</dt>
+            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:mastered_quizzes_count] %></dd>
+          </div>
+          <div class="px-5 py-4 flex flex-col items-center">
+            <dt class="text-sm font-medium text-gray-500">定着した問題数</dt>
+            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:non_weak_quizzes_count] %></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 </div>
 
 <% content_for :footer do %>

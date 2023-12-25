@@ -10,27 +10,30 @@ class WeakQuizzesController < ApplicationController
     @weak_quizzes_count = current_user.weak_quizzes_count
     @mastered_quizzes_count = current_user.mastered_quizzes_count
     @mastery_level = current_user.mastery_level
+
+    @quiz_sets_stats = QuizSet.all.map do |quiz_set|
+      [quiz_set, current_user.quiz_set_stats(quiz_set)]
+    end.to_h
   end
 
   def start_quiz
     weak_quiz_ids = UserQuizPerformanceSummary.where(user: current_user)
-                                              .select(&:weak_subject?)
+                                              .select { |summary| summary.weak_subject? && summary.answered_twice_or_more? }
                                               .pluck(:quiz_id)
-
     weak_quiz_ids = weak_quiz_ids.sample(10)
 
     if weak_quiz_ids.size < 10
-        extra_quiz_ids = Quiz.where.not(id: weak_quiz_ids).pluck(:id)
-                            .sample(10 - weak_quiz_ids.size)
-        weak_quiz_ids += extra_quiz_ids
+      extra_quiz_ids = Quiz.where.not(id: weak_quiz_ids).pluck(:id)
+                           .sample(10 - weak_quiz_ids.size)
+      weak_quiz_ids += extra_quiz_ids
     end
-
+  
     shuffled_quiz_ids = weak_quiz_ids.shuffle
     session[:weak_quiz_ids] = shuffled_quiz_ids
     session[:original_weak_quiz_ids] = shuffled_quiz_ids.dup
     session[:weak_quiz_score] = 0
     session[:answered_quiz_ids] = []
-
+  
     redirect_to action: :show, id: session[:weak_quiz_ids].first
   end
 
