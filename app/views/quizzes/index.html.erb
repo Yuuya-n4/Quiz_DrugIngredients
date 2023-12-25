@@ -1,14 +1,7 @@
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-3xl font-bold text-gray-800 mb-6">クイズ一覧</h1>
 
-  <script src="/assets/quizlist_page.js"></script>
-  <div id="autocomplete-root" class="max-w-lg mx-auto mb-6 relative">
-    <%= search_form_for @q do |f| %>
-      <div class="flex items-center">
-        <%= f.search_field :combined_search, id: "combined_search", class: "form-input w-full h-10 border-2 border-blue-300 shadow-lg rounded-md", data: { action: "input->autocomplete#performSearch", autocomplete_target: "input" } %>
-        <%= f.submit "検索", class: "ml-2 btn btn-primary h-10" %>
-      </div>
-    <% end %>
+  <div id="autocomplete-root" class="ax-w-2xl mx-auto mb-6 relative">
   </div>
 
   <% @quizzes.each do |quiz| %>
@@ -26,3 +19,5 @@
     <%= link_to 'トップへ戻る', root_path, class: "block text-center text-blue-600 hover:underline" %>
   </div>
 </div>
+
+<script src="/assets/quizlist_page.js"></script>

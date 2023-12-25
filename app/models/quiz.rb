@@ -21,27 +21,10 @@ class Quiz < ApplicationRecord
     choices.find_by(correct: true)
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    %w[question explanation]
-  end
+  scope :search_multiple_fields, ->(query) {
+    return if query.blank?
 
-  def self.ransackable_associations(auth_object = nil)
-    %w[quiz_set choices]
-  end
-
-  def self.ransackable_scopes(auth_object = nil)
-    %i[combined_search]
-  end
-
-  def self.combined_search(query)
-    return all if query.blank?
-
-    joins(:quiz_set, :choices)
-      .where('quizzes.question LIKE ?
-              OR quizzes.explanation LIKE ?
-              OR quiz_sets.title LIKE ?
-              OR (choices.text LIKE ? AND choices.correct = ?)',
-             "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%", true)
-      .distinct
-  end
+    joins(:choices, :quiz_set)
+      .where('quizzes.question ILIKE :query OR quizzes.explanation ILIKE :query OR quiz_sets.title ILIKE :query OR choices.text ILIKE :query AND choices.correct = true', query: "%#{query}%")
+  }
 end

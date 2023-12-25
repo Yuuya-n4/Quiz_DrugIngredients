@@ -79,7 +79,7 @@ gem "devise"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
-gem 'ransack'
+# gem 'ransack'
 gem 'kaminari'
 gem 'rails_admin'
 gem 'cssbundling-rails'
