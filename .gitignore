@@ -48,4 +48,4 @@ package-lock.json
 config/credentials.yml.enc
 yarn-error.log
 tracking.env
-Procfile.development
+Procfile.dev
