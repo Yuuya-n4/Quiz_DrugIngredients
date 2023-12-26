@@ -54,39 +54,34 @@
 
 <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">各クイズセットの回答状況</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  <% @quiz_sets_stats.each do |quiz_set, stats| %>
-    <div class="bg-white shadow rounded-lg mb-6 overflow-hidden">
-      <div class="bg-blue-100 px-5 py-4">
-        <h3 class="text-xl font-semibold text-center text-gray-800"><%= quiz_set.title %></h3>
-      </div>
-      <div class="border-t border-gray-200">
-        <dl>
-          <div class="px-5 py-4 flex flex-col items-center">
-            <dt class="text-sm font-medium text-gray-500">総問題数</dt>
-            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:total_quizzes] %></dd>
-          </div>
-          <div class="bg-gray-50 px-5 py-4 flex flex-col items-center">
-            <dt class="text-sm font-medium text-gray-500">2回以上答えた問題数</dt>
-            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:answered_twice_or_more_count] %></dd>
-          </div>
-          <div class="px-5 py-4 flex flex-col items-center">
-            <dt class="text-sm font-medium text-gray-500">苦手な問題数</dt>
-            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:weak_quizzes_count] %></dd>
-          </div>
-          <div class="bg-gray-50 px-5 py-4 flex flex-col items-center">
-            <dt class="text-sm font-medium text-gray-500">克服した問題数</dt>
-            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:mastered_quizzes_count] %></dd>
-          </div>
-          <div class="px-5 py-4 flex flex-col items-center">
-            <dt class="text-sm font-medium text-gray-500">定着した問題数</dt>
-            <dd class="text-2xl text-gray-900 font-semibold"><%= stats[:non_weak_quizzes_count] %></dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  <% end %>
-</div>
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3 px-6 text-center">クイズセット</th>
+          <th scope="col" class="py-3 px-6 text-center">総問題数</th>
+          <th scope="col" class="py-3 px-6 text-center">2回以上答えた問題数</th>
+          <th scope="col" class="py-3 px-6 text-center">苦手な問題数</th>
+          <th scope="col" class="py-3 px-6 text-center">克服した問題数</th>
+          <th scope="col" class="py-3 px-6 text-center">定着した問題数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quiz_sets_stats.each do |quiz_set, stats| %>
+          <tr class="bg-white border-b">
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  text-center">
+              <%= quiz_set.title %>
+            </th>
+            <td class="py-4 px-6 text-center"><%= stats[:total_quizzes] %></td>
+            <td class="py-4 px-6 text-center"><%= stats[:answered_twice_or_more_count] %></td>
+            <td class="py-4 px-6 text-center"><%= stats[:weak_quizzes_count] %></td>
+            <td class="py-4 px-6 text-center"><%= stats[:mastered_quizzes_count] %></td>
+            <td class="py-4 px-6 text-center"><%= stats[:non_weak_quizzes_count] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
