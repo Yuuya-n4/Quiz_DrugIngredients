@@ -21,10 +21,11 @@ class User < ApplicationRecord
   end
 
   def mastery_level
-    return 0 if user_quiz_performance_summaries.empty?
+    summaries = user_quiz_performance_summaries.select(&:answered_twice_or_more?)
+    return 0 if summaries.empty?
 
-    weak_count = weak_quizzes_count
-    mastered_count = mastered_quizzes_count
+    weak_count = summaries.select(&:weak_subject?).reject(&:recently_improved?).count
+    mastered_count = summaries.select(&:weak_subject?).select(&:recently_improved?).count
 
     total_weak_and_mastered = weak_count + mastered_count
 
