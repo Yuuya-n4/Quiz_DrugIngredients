@@ -17,8 +17,11 @@ class QuizzesController < ApplicationController
   end
 
   def answer
+    session.delete(:user_choice)
     choice = Choice.find(params[:choice_id])
     correct = @quiz.correct_choice?(choice)
+
+    session[:user_choice] = { choice_id: choice.id, correct: correct }
 
     if session[:answered_quiz_ids]&.include?(@quiz.id)
       flash[:alert] = 'クイズにはそれぞれ1回のみ回答してください。'
@@ -52,6 +55,9 @@ class QuizzesController < ApplicationController
       redirect_to score_quiz_set_path(@quiz_set)
       return
     end
+
+    @user_choice = session[:user_choice]
+    @chosen_choice = Choice.find_by(id: @user_choice['choice_id'])
 
     session[:quiz_ids].delete(current_quiz_id)
 

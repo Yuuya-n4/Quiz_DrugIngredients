@@ -52,8 +52,11 @@ class WeakQuizzesController < ApplicationController
 
 
   def answer
+    session.delete(:user_choice)
     choice = Choice.find(params[:choice_id])
     correct = @quiz.correct_choice?(choice)
+
+    session[:user_choice] = { choice_id: choice.id, correct: correct }
 
     if session[:answered_quiz_ids]&.include?(@quiz.id)
       flash[:alert] = 'クイズにはそれぞれ1回のみ回答してください。'
@@ -81,6 +84,9 @@ class WeakQuizzesController < ApplicationController
   def explanation
     set_meta_tags title: '苦手克服クイズ解説'
     current_quiz_id = params[:id].to_i
+
+    @user_choice = session[:user_choice]
+    @chosen_choice = Choice.find_by(id: @user_choice['choice_id'])
 
     current_quiz_index = session[:original_weak_quiz_ids].index(current_quiz_id)
     @current_quiz_number = current_quiz_index + 1 if current_quiz_index
