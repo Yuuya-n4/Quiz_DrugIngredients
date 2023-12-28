@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :ratings, only: [:create]
     get 'ratings', to: 'ratings#show'
+    resources :quiz_sets, only: [:index]
   end
 
   resources :feedbacks, only: [:create]

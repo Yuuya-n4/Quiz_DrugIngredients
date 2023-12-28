@@ -1,7 +1,7 @@
 class WeakQuizzesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :answer, :explanation]
-  layout 'weak_quizzes'
+  layout :choose_layout
   before_action :set_default_meta_tags, only: [:start, :show, :explanation, :score]
 
   def start
@@ -14,6 +14,8 @@ class WeakQuizzesController < ApplicationController
     @quiz_sets_stats = QuizSet.all.map do |quiz_set|
       [quiz_set, current_user.quiz_set_stats(quiz_set)]
     end.to_h
+
+    @header_class = 'bg-green-500'
   end
 
   def start_quiz
@@ -101,5 +103,9 @@ class WeakQuizzesController < ApplicationController
   def set_quiz
     @quiz = Quiz.find_by(id: params[:id])
     redirect_to(root_path, alert: '指定されたクイズが見つかりません。') unless @quiz
+  end
+
+  def choose_layout
+    action_name == 'start' ? 'application' : 'weak_quizzes'
   end
 end

@@ -9,4 +9,10 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  purge: {
+    // 明示的に保持するクラスを追加
+    safelist: [
+      'bg-green-500',
+    ],
+  },
 }
