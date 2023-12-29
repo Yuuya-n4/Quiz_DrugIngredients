@@ -77,12 +77,21 @@ class QuizzesController < ApplicationController
 
   def search
     query = params[:query]
-    query = params[:query]
     @quizzes = Quiz.joins(:quiz_set, :choices)
                    .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
                    .distinct
                    .includes(:choices, :quiz_set)
-    render json: @quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } })
+  
+    total_quizzes = @quizzes.count # 検索結果の総数を計算
+    total_pages = (total_quizzes / 20.0).ceil # 1ページあたり20件でページ数を計算（例）
+  
+    render json: {
+      quizzes: @quizzes.limit(20).as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
+      pagination: {
+        total_pages: total_pages,
+        current_page: 1 # 最初のページを表示
+      }
+    }
   end
 
   def api_index

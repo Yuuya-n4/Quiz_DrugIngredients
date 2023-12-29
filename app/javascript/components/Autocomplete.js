@@ -21,20 +21,18 @@ const Autocomplete = () => {
     }
 
     const data = await response.json();
-    setResults(data);
+    setResults(data.quizzes);
+    setTotalPages(data.pagination.total_pages);
   };
 
   useEffect(() => {
-    console.log(`Current Page: ${currentPage}`);
     if (query.length === 0) {
       // フォームが空の時に全クイズを取得
       fetch(`/api/quizzes?page=${currentPage}`)
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           setResults(data.quizzes);
           setTotalPages(data.pagination.total_pages);
-          console.log(results, totalPages);
         })
         .catch(error => console.error("エラー:", error));
     } else {
