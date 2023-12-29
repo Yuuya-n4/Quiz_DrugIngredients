@@ -73,38 +73,27 @@ class QuizzesController < ApplicationController
 
   def index
     set_meta_tags title: 'クイズ一覧'
-    if params[:query].present?
-      @quizzes = Quiz.search_multiple_fields(params[:query]).distinct.order(id: :asc).page(params[:page])
-    else
-      @quizzes = Quiz.all.order(id: :asc).page(params[:page])
-    end
-  end
-
-  def autocomplete
-    @quizzes = Quiz.ransack(question_cont: search_query).result.limit(10)
-    render json: @quizzes.map(&:question)
   end
 
   def search
     query = params[:query]
+    query = params[:query]
+    @quizzes = Quiz.joins(:quiz_set, :choices)
+                   .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
+                   .distinct
+                   .includes(:choices, :quiz_set)
+    render json: @quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } })
+  end
 
-    quizzes_scope = Quiz.eager_load(:quiz_set, :choices)
-                        .where('quizzes.question LIKE :query OR choices.text LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query', query: "%#{query}%")
-                        .references(:quiz_set, :choices)
-  
-    quizzes = quizzes_scope.select('quizzes.id, quizzes.question, quizzes.explanation, quiz_sets.title, quiz_sets.id AS quiz_set_id, choices.text, choices.correct').distinct
-
-    results = quizzes.map do |quiz|
-      correct_choice = quiz.choices.detect(&:correct)
-      {
-        question: quiz.question,
-        correct_answer: correct_choice&.text,
-        explanation: quiz.explanation,
-        quiz_set_title: quiz.quiz_set&.title
+  def api_index
+    quizzes = Quiz.all.order(id: :asc).page(params[:page]).per(20)
+    render json: {
+      quizzes: quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
+      pagination: {
+        total_pages: quizzes.total_pages,
+        current_page: quizzes.current_page
       }
-    end
-  
-    render json: results
+    }
   end
 
   private
