@@ -1,19 +1,8 @@
-<div class="container mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">クイズ一覧</h1>
+<div class="container mx-auto px-4 py-12">
+  <h1 class="text-4xl font-bold text-gray-800 mb-10 text-center">クイズ一覧</h1>
 
-  <div id="autocomplete-root" class="ax-w-2xl mx-auto mb-6 relative">
+  <div id="autocomplete-root" class="mx-auto mb-6 relative">
   </div>
-
-  <% @quizzes.each do |quiz| %>
-    <div class="bg-white p-4 rounded-lg shadow mb-4 border border-gray-300">
-      <p class="text-lg font-semibold text-gray-800"><strong>質問：</strong><%= quiz.question %></p>
-      <p class="text-lg text-gray-700"><strong>正解：</strong><%= quiz.choices.find(&:correct).text %></p>
-      <p class="text-lg text-gray-700"><strong>解説：</strong><%= quiz.explanation %></p>
-      <p class="text-lg text-gray-700"><strong>クイズセット：</strong><%= quiz.quiz_set.title %></p>
-    </div>
-  <% end %>
-
-  <%= paginate @quizzes, class: "pagination" %>
 
   <div class="mt-4">
     <%= link_to 'トップへ戻る', root_path, class: "block text-center text-blue-600 hover:underline" %>

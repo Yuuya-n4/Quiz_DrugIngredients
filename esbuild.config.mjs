@@ -6,6 +6,7 @@ esbuild.build({
     'app/javascript/top_page.js',
     'app/javascript/quiz_page.js',
     'app/javascript/quizlist_page.js',
+    'app/javascript/header.js',
   ],
   bundle: true,
   sourcemap: true,

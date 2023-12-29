@@ -35,9 +35,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :quizzes, only: [:index] do
-    get 'search', on: :collection
-  end
+  resources :quizzes, only: [:index]
+
+  get '/quizzes/search', to: 'quizzes#search'
+
+  get '/api/quizzes', to: 'quizzes#api_index'
 
   resource :mypages, only: [] do
     collection do
@@ -53,6 +55,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :ratings, only: [:create]
     get 'ratings', to: 'ratings#show'
+    resources :quiz_sets, only: [:index]
   end
 
   resources :feedbacks, only: [:create]

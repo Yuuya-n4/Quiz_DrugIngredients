@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 const Autocomplete = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   // オートコンプリート機能
   const performSearch = async () => {
@@ -19,49 +21,63 @@ const Autocomplete = () => {
     }
 
     const data = await response.json();
-    setResults(data);
+    setResults(data.quizzes);
+    setTotalPages(data.pagination.total_pages);
   };
 
   useEffect(() => {
-    performSearch();
-  }, [query]);
+    if (query.length === 0) {
+      // フォームが空の時に全クイズを取得
+      fetch(`/api/quizzes?page=${currentPage}`)
+        .then(response => response.json())
+        .then(data => {
+          setResults(data.quizzes);
+          setTotalPages(data.pagination.total_pages);
+        })
+        .catch(error => console.error("エラー:", error));
+    } else {
+      performSearch();
+    }
+  }, [currentPage,query]);
 
-  // 検索を実行する関数
-  const handleSearch = () => {
-    window.location.href = `/quizzes?query=${encodeURIComponent(query)}`;
-  };
+  const Pagination = ({ totalPages, setCurrentPage }) => (
+    <div className="flex justify-center my-6">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+        <button
+          key={page}
+          onClick={() => setCurrentPage(page)}
+          className="text-lg px-4 py-2 mx-2 bg-white border border-gray-300 rounded shadow hover:bg-gray-100"
+        >
+          {page}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
-    <div>
-      <div className="flex justify-center my-4">
-        <div className="relative w-2/5 lg:w-2/5">
-          <div className="flex">
-            <input 
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="form-input flex-grow h-10 border-2 border-blue-300 shadow-lg rounded-l-md"
-            />
-            <button 
-              onClick={handleSearch}
-              className="flex items-center justify-center bg-blue-100 text-blue-800 px-4 h-10 rounded-r-md"
-            >
-              検索
-            </button>
-          </div>
-          <ul className="autocomplete-results-list absolute z-20 bg-sky-200 w-full rounded-md shadow-lg mt-1 max-h-60 overflow-auto">
-            {results.map((item, index) => (
-            <li key={item.id || index} className="autocomplete-result-item p-2 border-b border-white bg-light-blue-100">
-              <strong className="font-bold text-gray-800">質問:</strong> {item.question}<br />
-              <strong className="font-bold text-gray-800">正解:</strong> {item.correct_answer}<br />
-              <strong className="font-bold text-gray-800">説明:</strong> {item.explanation}<br />
-              <strong className="font-bold text-gray-800">クイズセットタイトル:</strong> {item.quiz_set_title}
-            </li>
-            ))}
-          </ul>
-        </div>
+    <><div>
+      <div className="text-center mt-2 mb-4">
+        <p className="text-base md:text-lg text-gray-700">質問、正解、解説、クイズセット名で検索できます。</p>
       </div>
-    </div>
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="form-input pl-4 pr-10 py-2 border-2 border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300 ease-in-out w-full max-w-md" />
+      </div>
+      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      {results.map(quiz => (
+        <div key={quiz.id} className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md mb-6 border border-gray-200 hover:shadow-lg transition duration-300 ease-in-out">
+          <p className="text-lg font-semibold text-gray-800 mb-2"><strong>質問：</strong>{quiz.question}</p>
+          <p className="text-lg font-semibold text-gray-800 mb-2"><strong>正解：</strong>{quiz.choices.find(choice => choice.correct).text}</p>
+          <p className="text-lg font-semibold text-gray-800 mb-2"><strong>説明：</strong>{quiz.explanation}</p>
+          <p className="text-lg font-semibold text-gray-800"><strong>クイズセット名：</strong>{quiz.quiz_set.title}</p>
+        </div>
+      ))}
+      </div>
+      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+    </>
   );
 };
 

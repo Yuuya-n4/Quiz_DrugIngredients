@@ -17,8 +17,11 @@ class QuizzesController < ApplicationController
   end
 
   def answer
+    session.delete(:user_choice)
     choice = Choice.find(params[:choice_id])
     correct = @quiz.correct_choice?(choice)
+
+    session[:user_choice] = { choice_id: choice.id, correct: correct }
 
     if session[:answered_quiz_ids]&.include?(@quiz.id)
       flash[:alert] = 'クイズにはそれぞれ1回のみ回答してください。'
@@ -53,6 +56,9 @@ class QuizzesController < ApplicationController
       return
     end
 
+    @user_choice = session[:user_choice]
+    @chosen_choice = Choice.find_by(id: @user_choice['choice_id'])
+
     session[:quiz_ids].delete(current_quiz_id)
 
     @next_quiz_id = session[:quiz_ids].first
@@ -67,38 +73,36 @@ class QuizzesController < ApplicationController
 
   def index
     set_meta_tags title: 'クイズ一覧'
-    if params[:query].present?
-      @quizzes = Quiz.search_multiple_fields(params[:query]).distinct.order(id: :asc).page(params[:page])
-    else
-      @quizzes = Quiz.all.order(id: :asc).page(params[:page])
-    end
-  end
-
-  def autocomplete
-    @quizzes = Quiz.ransack(question_cont: search_query).result.limit(10)
-    render json: @quizzes.map(&:question)
   end
 
   def search
     query = params[:query]
-
-    quizzes_scope = Quiz.eager_load(:quiz_set, :choices)
-                        .where('quizzes.question LIKE :query OR choices.text LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query', query: "%#{query}%")
-                        .references(:quiz_set, :choices)
+    @quizzes = Quiz.joins(:quiz_set, :choices)
+                   .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
+                   .distinct
+                   .includes(:choices, :quiz_set)
   
-    quizzes = quizzes_scope.select('quizzes.id, quizzes.question, quizzes.explanation, quiz_sets.title, quiz_sets.id AS quiz_set_id, choices.text, choices.correct').distinct
-
-    results = quizzes.map do |quiz|
-      correct_choice = quiz.choices.detect(&:correct)
-      {
-        question: quiz.question,
-        correct_answer: correct_choice&.text,
-        explanation: quiz.explanation,
-        quiz_set_title: quiz.quiz_set&.title
+    total_quizzes = @quizzes.count # 検索結果の総数を計算
+    total_pages = (total_quizzes / 20.0).ceil # 1ページあたり20件でページ数を計算（例）
+  
+    render json: {
+      quizzes: @quizzes.limit(20).as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
+      pagination: {
+        total_pages: total_pages,
+        current_page: 1 # 最初のページを表示
       }
-    end
-  
-    render json: results
+    }
+  end
+
+  def api_index
+    quizzes = Quiz.all.order(id: :asc).page(params[:page]).per(20)
+    render json: {
+      quizzes: quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
+      pagination: {
+        total_pages: quizzes.total_pages,
+        current_page: quizzes.current_page
+      }
+    }
   end
 
   private

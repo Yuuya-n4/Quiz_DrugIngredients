@@ -27,4 +27,8 @@ class Quiz < ApplicationRecord
     joins(:choices, :quiz_set)
       .where('quizzes.question ILIKE :query OR quizzes.explanation ILIKE :query OR quiz_sets.title ILIKE :query OR choices.text ILIKE :query AND choices.correct = true', query: "%#{query}%")
   }
+
+  def self.search_by_query(query)
+    where("question LIKE ?", "%#{query}%")
+  end
 end

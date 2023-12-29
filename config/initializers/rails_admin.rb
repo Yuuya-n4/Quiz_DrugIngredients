@@ -78,7 +78,9 @@ RailsAdmin.config do |config|
       field :explanation
       field :drug_type
       field :quiz_set
-      field :choices
+      field :choices do
+        nested_form false
+      end
     end
   end
 

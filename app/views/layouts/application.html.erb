@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/header', header_class: @header_class %>
 
     <main class="flex-grow">
       <%= yield %>
