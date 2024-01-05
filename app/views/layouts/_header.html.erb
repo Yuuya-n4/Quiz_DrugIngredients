@@ -1,6 +1,15 @@
 <header class="<%= header_class.present? ? header_class : 'bg-blue-600' %> relative text-white py-4 md:px-8">
-  <div class="container mx-auto flex justify-between items-center relative px-0">
-    <%= link_to 'クイズ！市販薬の成分', root_path, class: "text-xl sm:text-2xl font-bold" %>
+  <div class="container mx-auto flex justify-between sm:justify-center items-center relative px-0">
+
+  	
+  <%#= #ダミー要素（スマホ画面でのみ表示） %>
+  <div class="md:hidden text-white p-2">
+    <svg class="h-6 w-6 opacity-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+    </svg>
+  </div>
+
+    <%= link_to 'クイズ！市販薬の成分', root_path, class: "text-xl sm:text-2xl font-bold text-center sm:text-left flex-grow" %>
 
     <button class="md:hidden text-white p-2" id="hamburger-button">
       <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
