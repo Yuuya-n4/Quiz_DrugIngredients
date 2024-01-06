@@ -17,15 +17,15 @@
 
   <div class="service-background rounded-lg shadow-md relative p-2 sm:p-5">
 
-    <h1 class="text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">ジャンル一覧</h1>
+    <h1 class="text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">ジャンル</h1>
 
     <!-- クイズセットのリスト -->
 
     <div class="grid grid-cols-2 gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3 sm:p-2">
 
       <% @quiz_sets.each do |quiz_set| %>
-        <div class="bg-sky-100 rounded-lg shadow-2xl sm:mx-8 md:mx-12 lg:mx-16 mb-6 flex flex-col justify-center items-center aspect-square hover:bg-sky-200 transition duration-300 ease-in-out">
-          <%= link_to quiz_set, class: "block no-underline" do %>
+        <%= link_to quiz_set, class: "block no-underline" do %>
+          <div class="bg-sky-100 rounded-lg shadow-2xl sm:mx-8 md:mx-12 lg:mx-16 mb-6 flex flex-col justify-center items-center aspect-square hover:bg-sky-200 transition duration-300 ease-in-out">
             <div class="p-4">
               <h2 class="text-2xl sm:text-xl lg:text-3xl text-blue-600 mb-2 text-center md:mb-6"><%= quiz_set.title %></h2>
               <p class="text-sm sm:text-base lg:text-xl text-gray-600 text-center mb-2 md:mb-6"><%= quiz_set.description %></p>
@@ -41,8 +41,8 @@
                 </div>
               <% end %>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
 
     </div>

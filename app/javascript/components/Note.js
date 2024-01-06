@@ -8,7 +8,7 @@ const Note = () => {
     <>
       <button 
         onClick={() => setIsOpen(!isOpen)} 
-        className="text-base sm:text-2xl px-6 py-4 my-4 sm:my-8 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300 mx-auto block"
+        className="text-base sm:text-xl px-4 sm:px-6 py-2 sm:py-4 my-4 sm:my-8 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300 mx-auto block font-semibold shadow-2xl"
       >
         {isOpen ? 'サービス説明を閉じる' : 'サービス説明を開く'}
       </button>
