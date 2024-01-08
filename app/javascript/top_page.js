@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Note from './components/Note';
 import QuizSetList from './components/QuizSetList';
+import TopMenu from './components/TopMenu';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Noteコンポーネント用のコンテナ
@@ -24,6 +25,25 @@ document.addEventListener('DOMContentLoaded', () => {
     root.render(
       <React.StrictMode>
         <QuizSetList quizSets={quizSets} userSignedIn={userSignedIn} />
+      </React.StrictMode>
+    );
+  }
+
+  const topMenuContainer = document.getElementById('top-menu-react-root');
+  if (topMenuContainer) {
+    const masteryLevel = JSON.parse(topMenuContainer.getAttribute('data-mastery-level'));
+    const userSignedIn = JSON.parse(topMenuContainer.getAttribute('data-user-signed-in'));
+    const root = createRoot(topMenuContainer);
+    root.render(
+      <React.StrictMode>
+        <TopMenu 
+          path="/start_weak_quizzes_path" 
+          title="苦手克服チャレンジ" 
+          description="苦手なクイズの克服にチャレンジできます。" 
+          masteryLevel={masteryLevel} 
+          userSignedIn={userSignedIn} 
+        />
+        {/* もう一つのリンクに対するTopMenuコンポーネントもここに追加 */}
       </React.StrictMode>
     );
   }

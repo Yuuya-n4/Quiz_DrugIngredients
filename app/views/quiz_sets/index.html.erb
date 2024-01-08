@@ -23,7 +23,6 @@
   </div>
 
 
-
   <div class="service-background rounded-lg shadow-md relative lg:px-20 md:pb-10 lg:pb-20 p-2 sm:p-5">
 
     <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mt-10 mb-10 md:mt-16 md:mb-16 text-center">ジャンル一覧</h1>
@@ -33,32 +32,8 @@
 
   </div>
 
-    <div class="bg-green-400 p-6 rounded-lg shadow-md mt-6 max-w-4xl mx-auto hover:bg-green-500">
-      <%= link_to start_weak_quizzes_path, class: "block" do %>
-        <h2 class="text-4xl font-bold text-gray-800 mb-2 text-center">苦手克服チャレンジ</h2>
-        <p class="text-lg text-gray-700 text-center">苦手なクイズの克服にチャレンジできます。</p>
-        <p class="text-lg text-gray-700 text-center">各クイズにたくさん挑戦した後にチャレンジしてください。</p>
-        <% if user_signed_in? %>
-          <div class="p-2 border border-sky-300 rounded-md bg-green-100 mt-2 max-w-xs mx-auto">
-            <p class="text-base font-bold sm:text-xl lg:text-2xl text-center">苦手克服度:</p>
-            <p class="text-xl font-bold sm:text-xl lg:text-3xl text-center"><%= @mastery_level %>%</p>
-          </div>
-        <% else %>
-          <div class="p-2 border border-sky-300 rounded-md bg-green-100 mt-2 max-w-xs mx-auto">
-            <p class="text-base font-bold sm:text-xl lg:text-2xl text-center">苦手克服度:</p>
-            <p class="text-xl sm:text-xl lg:text-2xl text-center">ログインで表示</p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    
-    <div class="bg-blue-100 p-6 rounded-lg shadow-md mt-6 max-w-4xl mx-auto hover:bg-blue-200">
-      <%= link_to quizzes_path, class: "block" do %>
-        <h2 class="text-2xl font-bold text-gray-800 mb-2 text-center">クイズ一覧</h2>
-        <p class="text-lg text-gray-700 text-center">全てのクイズを検索して見ることができます。</p>
-        <p class="text-lg text-gray-700 text-center">気になったクイズがあったら、検索してみてください。</p>
-      <% end %>
-    </div>
+  <div id="top-menu-react-root" data-mastery-level="<%= @mastery_level.to_json %>" data-user-signed-in="<%= user_signed_in?.to_json %>"></div>
+
 </div>
 
 <script src="/assets/top_page.js"></script>
