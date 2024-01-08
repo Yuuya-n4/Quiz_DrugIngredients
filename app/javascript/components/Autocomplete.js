@@ -7,13 +7,13 @@ const Autocomplete = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   // オートコンプリート機能
-  const performSearch = async () => {
+  const performSearch = async (page = currentPage) => {
     if (query.length < 1) {
       return;
     }
 
     const timestamp = new Date().getTime();
-    const response = await fetch(`/quizzes/search?query=${encodeURIComponent(query)}&timestamp=${timestamp}`);
+    const response = await fetch(`/quizzes/search?query=${encodeURIComponent(query)}&timestamp=${timestamp}&page=${page}`);
     
     if (!response.ok) {
       console.error("検索リクエストに失敗しました");
@@ -45,7 +45,10 @@ const Autocomplete = () => {
       {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
         <button
           key={page}
-          onClick={() => setCurrentPage(page)}
+          onClick={() => {
+            setCurrentPage(page);
+            performSearch(page);
+          }}
           className="text-lg px-4 py-2 mx-2 bg-white border border-gray-300 rounded shadow hover:bg-gray-100"
         >
           {page}

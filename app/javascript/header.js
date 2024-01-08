@@ -34,16 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleMegaMenu = () => {
     if (isHamburgerMenuOpen) {
       // ハンバーガーメニューが開いている場合、それを閉じる
-      menuContainer.classList.add('hidden');
-      isHamburgerMenuOpen = false;
+      toggleMenuContainer();
     }
     megaMenuContainer.classList.toggle('hidden');
     isMegaMenuOpen = !megaMenuContainer.classList.contains('hidden');
     if (!root && isMegaMenuOpen) {
-      root = createRoot(megaMenuContainer);
-      root.render(<MegaMenu />);
+      createMegaMenuRoot();
     }
-    createMegaMenuRoot();
   };
 
   const toggleMegaMenuPC = () => {
