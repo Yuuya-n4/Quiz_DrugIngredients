@@ -1,73 +1,76 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import MegaMenu from './components/MegaMenu';
+import { AnimatePresence } from 'framer-motion';
 
-let root = null;
+const Header = ({ userSignedIn }) => {
+  const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+
+  const toggleHamburgerMenu = () => {
+    setIsHamburgerMenuOpen(prevState => !prevState);
+  };
+
+  const toggleMegaMenu = (event) => {
+    event.preventDefault();
+    setIsMegaMenuOpen(prevState => !prevState);
+  };
+
+  useEffect(() => {
+    const megaMenuButtonPC = document.getElementById('mega-menu-button-pc');
+    const megaMenuButtonMobile = document.querySelector('.hamburger-menu .mega-menu-link');
+  
+    // pointerdown イベントのリスナーを追加
+    megaMenuButtonPC?.addEventListener('pointerdown', toggleMegaMenu);
+    megaMenuButtonMobile?.addEventListener('pointerdown', toggleMegaMenu);
+  
+    return () => {
+      // pointerdown イベントのリスナーを削除
+      megaMenuButtonPC?.removeEventListener('pointerdown', toggleMegaMenu);
+      megaMenuButtonMobile?.removeEventListener('pointerdown', toggleMegaMenu);
+    };
+  }, [isMegaMenuOpen]);
+
+  return (
+    <>
+      {isHamburgerMenuOpen && (
+        <div className="hamburger-menu">
+        <div className="flex flex-col items-center space-y-4">
+          {userSignedIn ? (
+            <>
+              <a href="#" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">ジャンル一覧</a>
+              <a href="/quizzes" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">クイズ検索</a>
+              <a href="/scores/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">スコアページ</a>
+              <a href="/profile/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">ユーザー情報編集</a>
+              <a href="/logout" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">ログアウト</a>
+            </>
+          ) : (
+            <>
+              <a href="/register" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">会員登録</a>
+              <a href="/login" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">ログイン</a>
+            </>
+          )}
+        </div>
+      </div>
+      )}
+      <AnimatePresence>
+        {isMegaMenuOpen && (
+          <MegaMenu key="mega-menu" onClose={() => setIsMegaMenuOpen(false)} />
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
 
 document.addEventListener('DOMContentLoaded', () => {
-  const hamburgerButton = document.getElementById('hamburger-button');
-  const menuContainer = document.getElementById('menu-container');
-  const megaMenuButton = document.getElementById('mega-menu-button');
-  const megaMenuButtonPC = document.getElementById('mega-menu-button-pc');
-  const megaMenuContainer = document.getElementById('header-menu-container');
-  let isMegaMenuOpen = false;
-  let isHamburgerMenuOpen = false;
-
-  const createMegaMenuRoot = () => {
-    if (!root) {
-      root = createRoot(megaMenuContainer);
-    }
-    root.render(<MegaMenu onClose={() => {
-      isMegaMenuOpen = false;
-    }} />);
-  };
-
-  const toggleMenuContainer = () => {
-    if (isMegaMenuOpen) {
-      // メガメニューが開いている場合、それを閉じる
-      toggleMegaMenu();
-    }
-    menuContainer.classList.toggle('hidden');
-    isHamburgerMenuOpen = !menuContainer.classList.contains('hidden');
-  };
-
-  const toggleMegaMenu = () => {
-    if (isHamburgerMenuOpen) {
-      // ハンバーガーメニューが開いている場合、それを閉じる
-      toggleMenuContainer();
-    }
-    megaMenuContainer.classList.toggle('hidden');
-    isMegaMenuOpen = !megaMenuContainer.classList.contains('hidden');
-    if (!root && isMegaMenuOpen) {
-      createMegaMenuRoot();
-    }
-  };
-
-  const toggleMegaMenuPC = () => {
-    megaMenuContainer.classList.toggle('hidden');
-    isMegaMenuOpen = !megaMenuContainer.classList.contains('hidden');
-    if (!root && !isMegaMenuOpen) {
-      root = createRoot(megaMenuContainer);
-      root.render(<MegaMenu />);
-    }
-    createMegaMenuRoot();
-  };
-
-  if (hamburgerButton && menuContainer) {
-    hamburgerButton.addEventListener('click', toggleMenuContainer);
-  }
-
-  if (megaMenuButton) {
-    megaMenuButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      toggleMegaMenu();
-    });
-  }
-  
-  if (megaMenuButtonPC) {
-    megaMenuButtonPC.addEventListener('click', (event) => {
-      event.preventDefault();
-      toggleMegaMenuPC();
-    });
+  const headerContainer = document.getElementById('header-container');
+  if (headerContainer) {
+    const userSignedIn = JSON.parse(headerContainer.getAttribute('data-user-signed-in'));
+    const root = createRoot(headerContainer);
+    root.render(
+      <React.StrictMode>
+        <Header userSignedIn={userSignedIn} />
+      </React.StrictMode>
+    );
   }
 });
