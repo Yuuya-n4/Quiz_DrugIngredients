@@ -9,43 +9,28 @@
       </div>
     <% end %>
 
-    <div id="hello-react-root"></div>
+    <div class="text-center md:mb-16 my-6 md:my-12 md:mb-16">
+      <div class="inline-block relative">
+        <div class="absolute inset-x-0 top-0 h-full bg-gradient-to-r from-pink-500 to-blue-500 blur-lg"></div>
+        <h1 class="relative z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wide mx-auto">
+          市販薬の成分を知ってみよう
+        </h1>
+      </div>
+    </div>
+
+    <div id="note-react-root"></div>
 
   </div>
 
 
 
-  <div class="service-background rounded-lg shadow-md relative p-2 sm:p-5">
+  <div class="service-background rounded-lg shadow-md relative lg:px-10 lg:pb-10 p-2 sm:p-5">
 
-    <h1 class="text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">ジャンル</h1>
+    <h1 class="text-4xl font-bold text-gray-800 mt-16 mb-10 text-center">ジャンル一覧</h1>
 
     <!-- クイズセットのリスト -->
+    <div id="quiz-set-list-react-root" data-quiz-sets="<%= @quiz_sets.to_json %>" data-user-signed-in="<%= user_signed_in?.to_json %>"></div>
 
-    <div class="grid grid-cols-2 gap-2 p-2 sm:grid-cols-2 lg:grid-cols-3 sm:p-2">
-
-      <% @quiz_sets.each do |quiz_set| %>
-        <%= link_to quiz_set, class: "block no-underline" do %>
-          <div class="bg-sky-100 rounded-lg shadow-2xl sm:mx-8 md:mx-12 lg:mx-16 mb-6 flex flex-col justify-center items-center aspect-square hover:bg-sky-200 transition duration-300 ease-in-out">
-            <div class="p-4">
-              <h2 class="text-2xl sm:text-xl lg:text-3xl text-blue-600 mb-2 text-center md:mb-6"><%= quiz_set.title %></h2>
-              <p class="text-sm sm:text-base lg:text-xl text-gray-600 text-center mb-2 md:mb-6"><%= quiz_set.description %></p>
-              <% if user_signed_in? %>
-                <div class="p-2 border border-sky-300 rounded-md bg-sky-50 mt-2 max-w-xs mx-auto">
-                  <p class="text-base sm:text-xl lg:text-2xl text-center">答えたクイズ数: </p>
-                  <p class="text-xl sm:text-xl lg:text-3xl text-center"><%= quiz_set.answered_quizzes_count(current_user) %> / <%= quiz_set.total_quizzes_count %></p>
-                </div>
-              <% else %>
-                <div class="p-2 border border-sky-300 rounded-md bg-sky-50 mt-2 max-w-xs mx-auto">
-                  <p class="text-base sm:text-xl lg:text-2xl text-center">答えたクイズ数: </p>
-                  <p class="text-md sm:text-sm lg:text-xl text-center">ログインで表示</p>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-
-    </div>
   </div>
 
     <div class="bg-green-400 p-6 rounded-lg shadow-md mt-6 max-w-4xl mx-auto hover:bg-green-500">

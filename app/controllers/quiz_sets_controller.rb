@@ -6,7 +6,18 @@ class QuizSetsController < ApplicationController
 
   def index
     set_meta_tags title: 'トップページ'
-    @quiz_sets = QuizSet.all
+
+    # Reactのアクション用に@quiz_setsを編集した
+    @quiz_sets = QuizSet.all.map do |quiz_set|
+      quiz_set_data = quiz_set.as_json
+      if user_signed_in?
+        quiz_set_data.merge!(
+          answered_quizzes_count: quiz_set.answered_quizzes_count(current_user),
+          total_quizzes_count: quiz_set.total_quizzes_count
+        )
+      end
+      quiz_set_data
+    end
     @mastery_level = current_user.mastery_level if user_signed_in?
   end
 
