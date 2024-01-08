@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 const QuizSetList = ({ quizSets, userSignedIn }) => {
   return (
     <div className="flex justify-center w-full">
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-12 md:gap-6 lg:gap-12 w-full max-w-8xl mx-auto">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 x12:grid-cols-4 gap-4 sm:gap-12 md:gap-6 x12:gap-12 w-full max-w-8xl mx-auto">
       {quizSets.map(quizSet => (
         <motion.div
           key={quizSet.id}
-          className="bg-sky-100 rounded-lg shadow-2xl font-semibold aspect-square"
+          className="bg-sky-100 rounded-lg shadow-2xl font-semibold aspect-square shadow-2xl hover:bg-sky-200"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}

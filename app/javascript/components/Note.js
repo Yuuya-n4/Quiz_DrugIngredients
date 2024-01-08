@@ -6,12 +6,15 @@ const Note = () => {
 
   return (
     <>
-      <button 
+      <motion.button 
         onClick={() => setIsOpen(!isOpen)} 
-        className="text-base sm:text-xl px-4 sm:px-6 py-2 sm:py-4 my-4 sm:my-8 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300 mx-auto block font-semibold shadow-2xl"
+        className="text-base sm:text-xl px-4 sm:px-6 py-2 sm:py-4 my-4 sm:my-8 bg-blue-600 text-white rounded hover:bg-blue-700 mx-auto block font-semibold shadow-2xl"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
       >
         {isOpen ? 'サービス説明を閉じる' : 'サービス説明を開く'}
-      </button>
+      </motion.button>
       
       <AnimatePresence>
       {isOpen && (

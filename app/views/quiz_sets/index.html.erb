@@ -11,7 +11,7 @@
 
     <div class="text-center md:mb-16 my-6 md:my-12 md:mb-16">
       <div class="inline-block relative">
-        <div class="absolute inset-x-0 top-0 h-full bg-gradient-to-r from-pink-500 to-blue-500 blur-lg"></div>
+        <div class="absolute inset-x-0 top-0 h-full bg-gradient-to-r from-green-500 to-blue-500 blur-lg"></div>
         <h1 class="relative z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wide mx-auto">
           市販薬の成分を知ってみよう
         </h1>
@@ -24,9 +24,9 @@
 
 
 
-  <div class="service-background rounded-lg shadow-md relative lg:px-10 lg:pb-10 p-2 sm:p-5">
+  <div class="service-background rounded-lg shadow-md relative lg:px-20 md:pb-10 lg:pb-20 p-2 sm:p-5">
 
-    <h1 class="text-4xl font-bold text-gray-800 mt-16 mb-10 text-center">ジャンル一覧</h1>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mt-10 mb-10 md:mt-16 md:mb-16 text-center">ジャンル一覧</h1>
 
     <!-- クイズセットのリスト -->
     <div id="quiz-set-list-react-root" data-quiz-sets="<%= @quiz_sets.to_json %>" data-user-signed-in="<%= user_signed_in?.to_json %>"></div>
