@@ -17,19 +17,31 @@ const Header = ({ userSignedIn }) => {
   };
 
   useEffect(() => {
-    const megaMenuButtonPC = document.getElementById('mega-menu-button-pc');
-    const megaMenuButtonMobile = document.querySelector('.hamburger-menu .mega-menu-link');
+    let megaMenuButton = isHamburgerMenuOpen
+      ? document.getElementById('mega-menu-button-mobile')
+      : document.getElementById('mega-menu-button-pc');
   
-    // pointerdown イベントのリスナーを追加
-    megaMenuButtonPC?.addEventListener('pointerdown', toggleMegaMenu);
-    megaMenuButtonMobile?.addEventListener('pointerdown', toggleMegaMenu);
+    // イベントリスナーを設定
+    if (megaMenuButton) {
+      megaMenuButton.addEventListener('pointerdown', toggleMegaMenu);
+    }
   
+    // クリーンアップ関数
     return () => {
-      // pointerdown イベントのリスナーを削除
-      megaMenuButtonPC?.removeEventListener('pointerdown', toggleMegaMenu);
-      megaMenuButtonMobile?.removeEventListener('pointerdown', toggleMegaMenu);
+      if (megaMenuButton) {
+        megaMenuButton.removeEventListener('pointerdown', toggleMegaMenu);
+      }
     };
-  }, [isMegaMenuOpen]);
+  }, [isHamburgerMenuOpen]);
+
+  useEffect(() => {
+    const hamburgerButton = document.getElementById('hamburger-button');
+    hamburgerButton?.addEventListener('click', toggleHamburgerMenu);
+
+    return () => {
+      hamburgerButton?.removeEventListener('click', toggleHamburgerMenu);
+    };
+  }, []);
 
   return (
     <>
@@ -38,7 +50,7 @@ const Header = ({ userSignedIn }) => {
         <div className="flex flex-col items-center space-y-4">
           {userSignedIn ? (
             <>
-              <a href="#" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">ジャンル一覧</a>
+              <a href="#" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300" id="mega-menu-button-mobile" >ジャンル一覧</a>
               <a href="/quizzes" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">クイズ検索</a>
               <a href="/scores/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">スコアページ</a>
               <a href="/profile/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300">ユーザー情報編集</a>
