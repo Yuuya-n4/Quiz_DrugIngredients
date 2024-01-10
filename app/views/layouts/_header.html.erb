@@ -1,5 +1,5 @@
-<header class="<%= header_class.present? ? header_class : 'bg-blue-600' %> relative text-white py-2 md:py-4 md:px-8">
-  <div class="container mx-auto flex justify-between sm:justify-center items-center relative px-0">
+<header class="<%= header_class.present? ? header_class : 'bg-blue-600' %> relative text-white px-2 lg:px-8 h-full">
+  <div class="flex flex-wrap mx-auto items-center items-stretch">
 
   	
   <%#= #ダミー要素（スマホ画面でのみ表示） %>
@@ -9,7 +9,7 @@
     </svg>
   </div>
 
-  <div class="text-xl sm:text-4xl font-bold text-center sm:text-left flex-grow">
+  <div class="flex-shrink-0 text-xl sm:text-2xl md:text-2xl lg:text-4xl font-bold text-center sm:text-left flex-grow py-2 md:py-4">
     <%= link_to 'クイズ！市販薬の成分', root_path, class: "clickable-text" %>
   </div>
 
@@ -19,16 +19,38 @@
       </svg>
     </button>
 
-    <div class="hidden md:flex items-center space-x-4">
+    <div class="flex-shrink-0 hidden md:flex items-center">
       <% if user_signed_in? %>
-        <%= link_to 'ジャンル一覧', '#', method: :get, class: "text-white text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300", id: "mega-menu-button-pc" %>
-        <%= link_to 'クイズ検索', quizzes_path, class: "text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300" %>
-        <%= link_to 'スコアページ', scores_mypages_path, class: "text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300" %>
-        <%= link_to 'ユーザー情報編集', profile_mypages_path, class: "text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300" %>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :get, class: "text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300" %>
+
+        <%= link_to '#', method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium", id: "mega-menu-button-pc" do %>
+          <i class="fa-solid fa-layer-group mr-1.5"></i>
+          ジャンル一覧
+        <% end %>
+        <%= link_to quizzes_path, method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium ml-3 lg:ml-4" do %>
+          <i class="fa-solid fa-magnifying-glass mr-1.5"></i>
+          クイズ検索
+        <% end %>
+        <%= link_to scores_mypages_path, method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium ml-3 lg:ml-4" do %>
+          <i class="fa-regular fa-rectangle-list mr-1.5"></i>
+          スコアページ
+        <% end %>
+        <%= link_to profile_mypages_path, method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium ml-3 lg:ml-4" do %>
+          <i class="fa-solid fa-user-pen mr-1.5"></i>
+          ユーザー情報編集
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium ml-3 lg:ml-4" do %>
+          <i class="fa-solid fa-right-from-bracket mr-1.5"></i>
+          ログアウト
+        <% end %>
       <% else %>
-        <%= link_to '会員登録', new_user_registration_path, class: "text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300" %>
-        <%= link_to 'ログイン', new_user_session_path, class: "text-sm md:text-base ml-4 md: ml-6 hover:text-blue-300" %>
+        <%= link_to new_user_registration_path, method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium ml-4" do %>
+          <i class="fa-regular fa-address-card mr-2"></i>
+          会員登録
+        <% end %>
+        <%= link_to new_user_session_path, method: :get, class: "transition duration-300 ease-in-out flex items-center h-full group border-b-8 border-transparent hover:border-current p-2 text-white text-xs md:text-sm lg:text-base font-medium ml-4 md:ml-6" do %>
+          <i class="fa-solid fa-right-to-bracket mr-2"></i>
+          ログイン
+        <% end %>
       <% end %>
     </div>
 

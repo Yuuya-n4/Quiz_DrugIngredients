@@ -71,13 +71,13 @@ const Note = () => {
             </p>
             <h3 className="text-xl font-bold text-gray-800 mb-4 mt-6">● クイズ</h3>
             <p className="text-base md:text-lg text-gray-700 mb-2">
-            薬の種類ごとに、クイズのセットを作りました。
+            クイズは薬のジャンルで分かれています。
             </p>
             <p className="text-base md:text-lg text-gray-700 mb-2">
-            気になるクイズセットに挑戦してみてください。
+            気になるジャンルに挑戦してみてください。
             </p>
             <p className="text-base md:text-lg text-gray-700 mb-2">
-            各クイズセットの中からランダムで10問出題されます。
+            各ジャンルでは、クイズがランダムに10問出題されます。
             </p>
             <p className="text-base md:text-lg text-gray-700 mb-2">
             たくさん何度も挑戦してみてください。過去のスコアは右上の「スコアページ」から確認できます。
