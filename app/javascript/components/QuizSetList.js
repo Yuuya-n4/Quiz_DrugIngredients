@@ -15,7 +15,7 @@ const QuizSetList = ({ quizSets, userSignedIn }) => {
         >
           <a href={`/quiz_sets/${quizSet.id}`} className="block no-underline w-full h-full">
             <div className="flex flex-col justify-center items-center h-full">
-              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl text-blue-600 text-center mb-2 ms:mb-6 md:mb-10">{quizSet.title}</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-600 text-center mb-2 ms:mb-6 md:mb-10 tracking-widest">{quizSet.title}</h2>
               {userSignedIn ? (
                 <div className="p-2 border border-sky-300 rounded-md bg-sky-50 mt-2 max-w-xs mx-auto">
                   <p className="text-base sm:text-xl md:text-xl lg:text-2xl text-center">答えたクイズ数: </p>

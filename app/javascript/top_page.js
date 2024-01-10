@@ -37,13 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     root.render(
       <React.StrictMode>
         <TopMenu 
-          path="/start_weak_quizzes_path" 
-          title="苦手克服チャレンジ" 
-          description="苦手なクイズの克服にチャレンジできます。" 
           masteryLevel={masteryLevel} 
           userSignedIn={userSignedIn} 
         />
-        {/* もう一つのリンクに対するTopMenuコンポーネントもここに追加 */}
       </React.StrictMode>
     );
   }
