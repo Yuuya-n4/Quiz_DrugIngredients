@@ -7,13 +7,13 @@ const Autocomplete = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   // オートコンプリート機能
-  const performSearch = async () => {
+  const performSearch = async (page = currentPage) => {
     if (query.length < 1) {
       return;
     }
 
     const timestamp = new Date().getTime();
-    const response = await fetch(`/quizzes/search?query=${encodeURIComponent(query)}&timestamp=${timestamp}`);
+    const response = await fetch(`/quizzes/search?query=${encodeURIComponent(query)}&timestamp=${timestamp}&page=${page}`);
     
     if (!response.ok) {
       console.error("検索リクエストに失敗しました");
@@ -40,13 +40,17 @@ const Autocomplete = () => {
     }
   }, [currentPage,query]);
 
-  const Pagination = ({ totalPages, setCurrentPage }) => (
+  const Pagination = ({ totalPages, setCurrentPage, currentPage  }) => (
     <div className="flex justify-center my-6">
       {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
         <button
           key={page}
-          onClick={() => setCurrentPage(page)}
-          className="text-lg px-4 py-2 mx-2 bg-white border border-gray-300 rounded shadow hover:bg-gray-100"
+          onClick={() => {
+            setCurrentPage(page);
+            performSearch(page);
+          }}
+          className={`text-lg px-4 py-2 mx-2 border border-gray-300 rounded shadow 
+                    ${page === currentPage ? 'bg-blue-500 text-white' : 'bg-white hover:bg-gray-200 '}`}
         >
           {page}
         </button>
@@ -66,7 +70,7 @@ const Autocomplete = () => {
           onChange={(e) => setQuery(e.target.value)}
           className="form-input pl-4 pr-10 py-2 border-2 border-gray-300 rounded-full shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-300 ease-in-out w-full max-w-md" />
       </div>
-      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
       {results.map(quiz => (
         <div key={quiz.id} className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md mb-6 border border-gray-200 hover:shadow-lg transition duration-300 ease-in-out">
           <p className="text-lg font-semibold text-gray-800 mb-2"><strong>質問：</strong>{quiz.question}</p>
@@ -76,7 +80,7 @@ const Autocomplete = () => {
         </div>
       ))}
       </div>
-      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} currentPage={currentPage} />
     </>
   );
 };

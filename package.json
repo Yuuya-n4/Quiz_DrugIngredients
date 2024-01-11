@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css ./app/assets/stylesheets/rails_admin.scss:./app/assets/builds/rails_admin.css ./app/assets/stylesheets/toppage.scss:./app/assets/builds/toppage.css --no-source-map --load-path=node_modules",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css ./app/assets/stylesheets/rails_admin.scss:./app/assets/builds/rails_admin.css ./app/assets/stylesheets/toppage.scss:./app/assets/builds/toppage.css --no-source-map --load-path=node_modules",
     "build:tailwind": "npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.tailwind.css --minify",
     "build": "node esbuild.config.mjs"
   },
@@ -9,6 +9,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "axios": "^1.6.2",
     "esbuild": "^0.19.10",
+    "framer-motion": "^10.17.9",
     "prop-types": "^15.8.1",
     "rails_admin": "3.1.2",
     "react": "^18.2.0",

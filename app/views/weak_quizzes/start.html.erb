@@ -44,19 +44,19 @@
 
     <p>出題数: 10問</p>
     <div class="mt-4">
-      <%= button_to 'クイズを始める', start_quiz_weak_quizzes_path, method: :post, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
+      <%= button_to 'クイズを始める', start_quiz_weak_quizzes_path, method: :post, class: "w-full bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
     </div>
     <div class="mt-4">
-      <%= link_to 'トップへ戻る', root_path, class: "block text-center text-blue-600 hover:underline" %>
+      <%= link_to 'トップへ戻る', root_path, class: "block text-center text-lg text-blue-600 hover:underline" %>
     </div>
   </div>
 </div>
 
 <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">各クイズセットの回答状況</h1>
 
-<div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+<div class="overflow-x-auto relative shadow-base sm:rounded-lg">
+    <table class="w-full text-left text-base md:text-lg ">
+      <thead class="text-gray-700 uppercase bg-gray-200">
         <tr>
           <th scope="col" class="py-3 px-6 text-center">クイズセット</th>
           <th scope="col" class="py-3 px-6 text-center">総問題数</th>
@@ -68,8 +68,8 @@
       </thead>
       <tbody>
         <% @quiz_sets_stats.each do |quiz_set, stats| %>
-          <tr class="bg-white border-b">
-            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap  text-center">
+          <tr class="bg-white border-b md:text-lg">
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap text-center">
               <%= quiz_set.title %>
             </th>
             <td class="py-4 px-6 text-center"><%= stats[:total_quizzes] %></td>

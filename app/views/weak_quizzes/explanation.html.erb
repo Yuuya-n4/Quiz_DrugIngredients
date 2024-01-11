@@ -3,7 +3,7 @@
 <div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
   <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto">
 
-    <p class="text-lg font-bold text-gray-700 mb-2">問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
+    <p class="text-xl font-bold text-gray-700 mb-2">問題 <%= @current_quiz_number %> / <%= @total_quizzes %></p>
 
     <div class="flex flex-col items-center justify-center mt-4 mb-4">
       <% if @user_choice['correct'] %>
@@ -21,24 +21,26 @@
 
     <div class="bg-blue-100 p-4 rounded-lg mb-4">
       <p class="text-xl font-bold text-gray-700">問題:</p>
-      <p class="text-lg text-gray-700"><%= @quiz.question %></p>
+      <p class="text-lg md:text-xl text-gray-700"><%= @quiz.question %></p>
     </div>
 
     <div class="bg-blue-100 p-4 rounded-lg mb-4">
       <p class="text-xl font-bold text-gray-700">正解:</p>
-      <p class="text-lg text-gray-700"><%= @quiz.correct_choice.text %></p>
+      <p class="text-lg md:text-xl text-gray-700"><%= @quiz.correct_choice.text %></p>
     </div>
 
     <div class="bg-blue-100 p-4 rounded-lg mb-4">
       <p class="text-xl font-bold text-gray-700">解説:</p>
-      <p class="text-lg text-gray-700"><%= @quiz.explanation %></p>
+      <p class="text-lg md:text-xl text-gray-700"><%= @quiz.explanation %></p>
     </div>
 
+    <div class="mt-4">
     <% if @next_quiz %>
-      <%= button_to '次のクイズへ', weak_quiz_path(@next_quiz), method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
+      <%= button_to '次のクイズへ', weak_quiz_path(@next_quiz), method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white md:text-xl font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
     <% else %>
-      <%= button_to 'スコアを見る', score_weak_quizzes_path, method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
+      <%= button_to 'スコアを見る', score_weak_quizzes_path, method: :get, class: "w-full bg-blue-500 hover:bg-blue-700 text-white md:text-xl font-bold py-2 px-4 rounded transition duration-300 ease-in-out block text-center" %>
     <% end %>
+    </div>
 
   </div>
 

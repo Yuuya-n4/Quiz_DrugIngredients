@@ -10,10 +10,10 @@
       </div>
     <% end %>
 
-    <div class="p-4 rounded-lg mb-4">
-      <p class="text-3xl font-bold text-gray-700 mb-4 text-center">あなたの正解数: <%= @score %> / <%= @total_quizzes %></p>
+    <div class="p-4 rounded-lg mb-6">
+      <p class="text-3xl md:text-3xl lg:text-4xl font-bold text-gray-700 mb-4 text-center">あなたの正解数: <%= @score %> / <%= @total_quizzes %></p>
     </div>
-    <%= link_to '苦手克服トップに戻る', start_weak_quizzes_path, class: "block text-center text-blue-600 hover:underline" %>
+    <%= link_to '苦手克服トップに戻る', start_weak_quizzes_path, class: "block text-lg text-center text-blue-600 hover:underline" %>
   </div>
 </div>
 </div>
