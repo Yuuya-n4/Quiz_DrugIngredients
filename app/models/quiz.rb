@@ -12,23 +12,13 @@ class Quiz < ApplicationRecord
 
   enumerize :drug_type, in: { medicine: 1, quasi_drug: 2, cosmetics: 3 }, scope: true
 
+  # 与えられたchoice（選択肢）が正しいかどうか
   def correct_choice?(choice)
-    correct_choice = choices.find_by(correct: true)
     correct_choice == choice
   end
 
+  # 正しい選択肢
   def correct_choice
     choices.find_by(correct: true)
-  end
-
-  scope :search_multiple_fields, ->(query) {
-    return if query.blank?
-
-    joins(:choices, :quiz_set)
-      .where('quizzes.question ILIKE :query OR quizzes.explanation ILIKE :query OR quiz_sets.title ILIKE :query OR choices.text ILIKE :query AND choices.correct = true', query: "%#{query}%")
-  }
-
-  def self.search_by_query(query)
-    where("question LIKE ?", "%#{query}%")
   end
 end

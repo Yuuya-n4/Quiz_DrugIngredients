@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   resources :weak_quizzes, only: [:show] do
     collection do
       get 'start'
@@ -33,7 +32,6 @@ Rails.application.routes.draw do
       get 'explanation'
     end
   end
-
 
   resources :quizzes, only: [:index]
 

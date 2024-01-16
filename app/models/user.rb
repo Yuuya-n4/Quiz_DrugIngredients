@@ -16,10 +16,7 @@ class User < ApplicationRecord
   enumerize :gender, in: { male: 0, female: 1, undisclosed: 2 }, scope: true, predicates: true
   enumerize :age, in: { under_teen: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, sixties: 5, seventies_and_over: 6, undisclosed: 7 }, scope: true, predicates: true
 
-  def total_score_for_quiz_set(quiz_set)
-    scores.where(quiz_set: quiz_set).sum(:correct_answer)
-  end
-
+  # ユーザーの習熟度
   def mastery_level
     summaries = user_quiz_performance_summaries.select(&:answered_twice_or_more?)
     return 0 if summaries.empty?
@@ -36,24 +33,28 @@ class User < ApplicationRecord
     end
   end
 
+  # ユーザーが苦手としているクイズの数
   def weak_quizzes_count
     user_quiz_performance_summaries.select do |summary|
       summary.weak_subject? && !summary.recently_improved? && summary.answered_twice_or_more?
     end.count
   end
 
+  # ユーザーが克服した（最近改善された）クイズの数
   def mastered_quizzes_count
     user_quiz_performance_summaries.select do |summary|
       summary.weak_subject? && summary.recently_improved? && summary.answered_twice_or_more?
     end.count
   end
 
+  # ユーザーが苦手でない（正確性が80％を超える）クイズの数
   def non_weak_quizzes_count
     user_quiz_performance_summaries.select do |summary|
       summary.answered_twice_or_more? && summary.accuracy > 80
     end.count
   end
 
+  # 特定のquiz_setに関するユーザーの統計情報を計算し、それをハッシュで返す
   def quiz_set_stats(quiz_set)
     total_quizzes = quiz_set.quizzes.count
     summaries = user_quiz_performance_summaries.joins(:quiz)

@@ -1,60 +1,60 @@
 <div class="container mx-auto px-1 sm:px-6 mt-8">
-<h2 class="text-2xl font-bold text-gray-800 mb-4">苦手克服チャレンジ</h2>
-<div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
-  <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-2xl mx-auto">
-    
-    <p class="text-lg font-bold text-gray-700 mb-2">苦手克服チャレンジ とは</p>
-    <p class="text-lg text-gray-700 mb-2">苦手なクイズの克服にチャレンジできます！</p>
-    <p class="text-lg text-gray-700 mb-2">各クイズセットにたくさん挑戦した後に取り組みましょう。</p>
-    <p class="text-lg text-gray-700 mb-2  underline">2回以上回答した問題のみが、苦手、克服、定着の判定に入ります。1回以下の回答のクイズは反映されません。</p>
-    <p class="text-lg text-gray-700 mb-2">苦手なクイズが10問以下の場合でもランダムでクイズが追加され必ず10問出題されますので、純粋に復習としてもお使いください。</p>
-    <p class="text-lg text-gray-700 mb-2">苦手克服度100%を目指しましょう！</p>
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">苦手克服チャレンジ</h2>
+  <div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
+    <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-2xl mx-auto">
+      
+      <p class="text-lg font-bold text-gray-700 mb-2">苦手克服チャレンジ とは</p>
+      <p class="text-lg text-gray-700 mb-2">苦手なクイズの克服にチャレンジできます！</p>
+      <p class="text-lg text-gray-700 mb-2">各クイズセットにたくさん挑戦した後に取り組みましょう。</p>
+      <p class="text-lg text-gray-700 mb-2  underline">2回以上回答した問題のみが、苦手、克服、定着の判定に入ります。1回以下の回答のクイズは反映されません。</p>
+      <p class="text-lg text-gray-700 mb-2">苦手なクイズが10問以下の場合でもランダムでクイズが追加され必ず10問出題されますので、純粋に復習としてもお使いください。</p>
+      <p class="text-lg text-gray-700 mb-2">苦手克服度100%を目指しましょう！</p>
 
-    <div class="border-b border-gray-200 mb-4">
-      <div class="flex items-center mb-2">
-        <h3 class="text-2xl sm:text-4xl font-bold text-gray-800 mr-2">苦手克服度:</h3>
-        <p class="text-2xl sm:text-5xl font-bold text-blue-600"><%= @mastery_level %>%</p>
+      <div class="border-b border-gray-200 mb-4">
+        <div class="flex items-center mb-2">
+          <h3 class="text-2xl sm:text-4xl font-bold text-gray-800 mr-2">苦手克服度:</h3>
+          <p class="text-2xl sm:text-5xl font-bold text-blue-600"><%= @mastery_level %>%</p>
+        </div>
+        <p class="text-lg text-gray-700">苦手克服度は、あなたが克服した苦手なクイズの割合を基に計算されます。</p>
       </div>
-      <p class="text-lg text-gray-700">苦手克服度は、あなたが克服した苦手なクイズの割合を基に計算されます。</p>
-    </div>
 
-    <div class="border-b border-gray-200 mb-4">
-      <div class="flex items-center mb-2">
-        <h3 class="text-xl font-bold text-gray-800 mr-2">苦手と判定されたクイズの数:</h3>
-        <p class="text-2xl font-bold text-blue-600"><%= @weak_quizzes_count %>問</p>
+      <div class="border-b border-gray-200 mb-4">
+        <div class="flex items-center mb-2">
+          <h3 class="text-xl font-bold text-gray-800 mr-2">苦手と判定されたクイズの数:</h3>
+          <p class="text-2xl font-bold text-blue-600"><%= @weak_quizzes_count %>問</p>
+        </div>
+        <p class="text-lg text-gray-700">苦手と判定されたクイズとは、2回以上回答していて正答率が80%以下のクイズです。</p>
       </div>
-      <p class="text-lg text-gray-700">苦手と判定されたクイズとは、2回以上回答していて正答率が80%以下のクイズです。</p>
-    </div>
 
-    <div class="border-b border-gray-200 mb-4">
-      <div class="flex items-center mb-4">
-        <h3 class="text-xl font-bold text-gray-800 mr-2">苦手を克服したクイズの数:</h3>
-        <p class="text-2xl font-bold text-blue-600"><%= @mastered_quizzes_count %>問</p>
+      <div class="border-b border-gray-200 mb-4">
+        <div class="flex items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-800 mr-2">苦手を克服したクイズの数:</h3>
+          <p class="text-2xl font-bold text-blue-600"><%= @mastered_quizzes_count %>問</p>
+        </div>
+        <p class="text-lg text-gray-700">苦手を克服したクイズとは、2回以上回答していて正答率は80%以下ですが直近で2回以上連続で正解したクイズです。</p>
       </div>
-      <p class="text-lg text-gray-700">苦手を克服したクイズとは、2回以上回答していて正答率は80%以下ですが直近で2回以上連続で正解したクイズです。</p>
-    </div>
 
-    <div class="border-b border-gray-200 mb-4">
-      <div class="flex items-center mb-4">
-        <h3 class="text-xl font-bold text-gray-800 mr-2">定着したクイズの数:</h3>
-        <p class="text-2xl font-bold text-blue-600"><%= @non_weak_quizzes_count %>問</p>
+      <div class="border-b border-gray-200 mb-4">
+        <div class="flex items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-800 mr-2">定着したクイズの数:</h3>
+          <p class="text-2xl font-bold text-blue-600"><%= @non_weak_quizzes_count %>問</p>
+        </div>
+        <p class="text-lg text-gray-700">定着しているクイズ（2回以上回答していて正答率が80%より上）の数は苦手克服度の計算に含まれません。</p>
       </div>
-      <p class="text-lg text-gray-700">定着しているクイズ（2回以上回答していて正答率が80%より上）の数は苦手克服度の計算に含まれません。</p>
-    </div>
 
-    <p>出題数: 10問</p>
-    <div class="mt-4">
-      <%= button_to 'クイズを始める', start_quiz_weak_quizzes_path, method: :post, class: "w-full bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
-    </div>
-    <div class="mt-4">
-      <%= link_to 'トップへ戻る', root_path, class: "block text-center text-lg text-blue-600 hover:underline" %>
+      <p>出題数: 10問</p>
+      <div class="mt-4">
+        <%= button_to 'クイズを始める', start_quiz_weak_quizzes_path, method: :post, class: "w-full bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
+      </div>
+      <div class="mt-4">
+        <%= link_to 'トップへ戻る', root_path, class: "block text-center text-lg text-blue-600 hover:underline" %>
+      </div>
     </div>
   </div>
-</div>
 
-<h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">各クイズセットの回答状況</h1>
+  <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mt-16 mb-6 text-center">各クイズセットの回答状況</h1>
 
-<div class="overflow-x-auto relative shadow-base sm:rounded-lg">
+  <div class="overflow-x-auto relative shadow-base sm:rounded-lg">
     <table class="w-full text-left text-base md:text-lg ">
       <thead class="text-gray-700 uppercase bg-gray-200">
         <tr>
@@ -82,7 +82,6 @@
       </tbody>
     </table>
   </div>
-
 </div>
 
 <% content_for :footer do %>
