@@ -5,6 +5,10 @@ class QuizzesController < ApplicationController
   layout 'quiz', only: [:show, :explanation]
   before_action :set_default_meta_tags, only: [:show, :explanation, :index]
 
+  def index
+    set_meta_tags title: 'クイズ一覧'
+  end
+
   def show
     set_meta_tags title: 'クイズ'
     @choices = @quiz.choices
@@ -16,6 +20,7 @@ class QuizzesController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def answer
     session.delete(:user_choice)
     choice = Choice.find(params[:choice_id])
@@ -36,16 +41,20 @@ class QuizzesController < ApplicationController
     session[:answered_quiz_ids] << @quiz.id
 
     performance_summary = UserQuizPerformanceSummary.find_or_create_by(user: current_user, quiz: @quiz)
-    performance_summary.increment!(:attempts)
+    performance_summary.increment(:attempts)
+    performance_summary.save
     if correct
-      performance_summary.increment!(:correct_answers)
-      performance_summary.increment!(:consecutive_correct_answers)
+      performance_summary.increment(:correct_answers)
+      performance_summary.save
+      performance_summary.increment(:consecutive_correct_answers)
+      performance_summary.save
     else
       performance_summary.update(consecutive_correct_answers: 0)
     end
 
     redirect_to explanation_quiz_set_quiz_path(@quiz_set, @quiz)
   end
+  # rubocop:enable Metrics/AbcSize
 
   def explanation
     set_meta_tags title: 'クイズ解説'
@@ -71,10 +80,6 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def index
-    set_meta_tags title: 'クイズ一覧'
-  end
-
   def search
     query = params[:query]
     page = params[:page]
@@ -96,7 +101,7 @@ class QuizzesController < ApplicationController
   end
 
   def api_index
-    quizzes = Quiz.all.order(id: :asc).page(params[:page]).per(20)
+    quizzes = Quiz.order(id: :asc).page(params[:page]).per(20)
     render json: {
       quizzes: quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
       pagination: {

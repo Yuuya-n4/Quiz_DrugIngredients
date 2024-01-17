@@ -4,7 +4,6 @@ module Api
 
     def index
       quiz_sets = QuizSet.all
-      puts "Sending Quiz Sets: #{quiz_sets.inspect}"
       render json: quiz_sets
     end
   end
