@@ -20,7 +20,7 @@ const MegaMenu = ({ onClose }) => {
       }
       onClose();
     };
-  
+
     // メニュー外のクリックを監視
     document.addEventListener('mousedown', handleOutsideClick);
   
@@ -29,7 +29,6 @@ const MegaMenu = ({ onClose }) => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [onClose]);
-
 
   const variants = {
     hidden: { opacity: 0, y: -100 },
