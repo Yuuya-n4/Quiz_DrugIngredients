@@ -41,7 +41,6 @@
 .yarn/
 .yarnrc
 vendor/bundle/
-config/initializers/sentry.rb
 public/styles.css
 package-lock.json
 

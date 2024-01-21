@@ -22,6 +22,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: 'all' %>
     <%= stylesheet_link_tag 'application.tailwind', "data-turbo-track": "reload", media: 'all' %>
 
+    <link rel="preload" href="<%= asset_path('mainback1.webp') %>" as="image">
+    <link rel="preload" href="<%= asset_path('mainback2.webp') %>" as="image">
+
     <style>
       body {
         display: flex;

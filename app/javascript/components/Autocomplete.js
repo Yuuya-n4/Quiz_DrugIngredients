@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Autocomplete = () => {
   const [query, setQuery] = useState('');
@@ -6,13 +6,12 @@ const Autocomplete = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
+  const lastQueryRef = useRef(); // 最後のクエリを追跡するためのref
+
   // オートコンプリート機能
   const performSearch = async (page = currentPage) => {
-    if (query.length < 1) {
-      return;
-    }
-
     const timestamp = new Date().getTime();
+    lastQueryRef.current = timestamp; // 現在のタイムスタンプを保存
     const response = await fetch(`/quizzes/search?query=${encodeURIComponent(query)}&timestamp=${timestamp}&page=${page}`);
     
     if (!response.ok) {
@@ -21,23 +20,20 @@ const Autocomplete = () => {
     }
 
     const data = await response.json();
-    setResults(data.quizzes);
-    setTotalPages(data.pagination.total_pages);
+
+    if (timestamp === lastQueryRef.current) { // 最後のリクエストがこのリクエストであるかを確認
+      setResults(data.quizzes);
+      setTotalPages(data.pagination.total_pages);
+    }
   };
 
   useEffect(() => {
-    if (query.length === 0) {
-      // フォームが空の時に全クイズを取得
-      fetch(`/api/quizzes?page=${currentPage}`)
-        .then(response => response.json())
-        .then(data => {
-          setResults(data.quizzes);
-          setTotalPages(data.pagination.total_pages);
-        })
-        .catch(error => console.error("エラー:", error));
-    } else {
-      performSearch();
-    }
+    setCurrentPage(1);
+    performSearch(1);
+  }, [query]);
+
+  useEffect(() => {
+    performSearch();
   }, [currentPage,query]);
 
   const Pagination = ({ totalPages, setCurrentPage, currentPage  }) => (

@@ -22,7 +22,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+# gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -67,6 +67,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
+  gem "dockerfile-rails", ">= 1.5"
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-performance', require: false
@@ -83,16 +84,9 @@ gem "devise"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
-# gem 'ransack'
 gem 'kaminari'
 gem 'rails_admin'
 gem 'cssbundling-rails'
 gem 'enumerize'
-
-gem "dockerfile-rails", ">= 1.5", :group => :development
-gem "sentry-ruby", "~> 5.15"
-gem "sentry-rails", "~> 5.15"
-
 gem 'meta-tags'
-
 gem 'jsbundling-rails'

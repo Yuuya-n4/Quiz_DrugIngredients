@@ -82,31 +82,25 @@ class QuizzesController < ApplicationController
 
   def search
     query = params[:query]
-    page = params[:page]
-    @quizzes = Quiz.joins(:quiz_set, :choices)
-                   .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
-                   .distinct
-                   .includes(:choices, :quiz_set)
+    page = params[:page] || 1 # デフォルトページ番号を設定
   
-    total_quizzes = @quizzes.count # 検索結果の総数を計算
-    total_pages = (total_quizzes / 20.0).ceil # 1ページあたり20件でページ数を計算（例）
+    if query.present?
+      @quizzes = Quiz.joins(:quiz_set, :choices)
+                     .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
+                     .distinct
+                     .includes(:choices, :quiz_set)
+    else
+      @quizzes = Quiz.all
+    end
   
+    total_quizzes = @quizzes.count
+    total_pages = (total_quizzes / 20.0).ceil # 1ページあたり20件
+    
     render json: {
       quizzes: @quizzes.limit(20).offset((page.to_i - 1) * 20).as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
       pagination: {
         total_pages: total_pages,
-        current_page: page.to_i # クライアントから送信されたページ番号を使う
-      }
-    }
-  end
-
-  def api_index
-    quizzes = Quiz.order(id: :asc).page(params[:page]).per(20)
-    render json: {
-      quizzes: quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
-      pagination: {
-        total_pages: quizzes.total_pages,
-        current_page: quizzes.current_page
+        current_page: page.to_i
       }
     }
   end
