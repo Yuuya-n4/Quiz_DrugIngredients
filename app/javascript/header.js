@@ -47,23 +47,23 @@ const Header = ({ userSignedIn }) => {
     <>
       {isHamburgerMenuOpen && (
         <div className="hamburger-menu">
-        <div className="flex flex-col items-center space-y-4 py-4">
-          {userSignedIn ? (
-            <>
-              <a href="#" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300" id="mega-menu-button-mobile" ><i className="fa-solid fa-layer-group mr-1.5"></i>ジャンル一覧</a>
-              <a href="/quizzes" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-magnifying-glass mr-1.5"></i>クイズ検索</a>
-              <a href="/scores/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-regular fa-rectangle-list mr-1.5"></i>スコアページ</a>
-              <a href="/profile/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-user-pen mr-1.5"></i>ユーザー情報編集</a>
-              <a href="/users/sign_out" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-right-from-bracket mr-1.5"></i>ログアウト</a>
-            </>
-          ) : (
-            <>
-              <a href="/users/sign_up" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-regular fa-address-card mr-2"></i>会員登録</a>
-              <a href="/users/sign_in" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-right-to-bracket mr-2"></i>ログイン</a>
-            </>
-          )}
+          <div className="flex flex-col items-center space-y-4 py-4">
+            {userSignedIn ? (
+              <>
+                <a href="#" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300" id="mega-menu-button-mobile" ><i className="fa-solid fa-layer-group mr-1.5"></i>ジャンル一覧</a>
+                <a href="/quizzes" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-magnifying-glass mr-1.5"></i>クイズ検索</a>
+                <a href="/scores/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-regular fa-rectangle-list mr-1.5"></i>スコアページ</a>
+                <a href="/profile/mypages" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-user-pen mr-1.5"></i>ユーザー情報編集</a>
+                <a href="/users/sign_out" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-right-from-bracket mr-1.5"></i>ログアウト</a>
+              </>
+            ) : (
+              <>
+                <a href="/users/sign_up" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-regular fa-address-card mr-2"></i>会員登録</a>
+                <a href="/users/sign_in" className="text-sm md:text-base ml-4 md:ml-6 hover:text-blue-300"><i className="fa-solid fa-right-to-bracket mr-2"></i>ログイン</a>
+              </>
+            )}
+          </div>
         </div>
-      </div>
       )}
       <AnimatePresence>
         {isMegaMenuOpen && (

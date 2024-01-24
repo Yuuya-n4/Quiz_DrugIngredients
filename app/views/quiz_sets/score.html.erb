@@ -1,56 +1,50 @@
 <div class="container mx-auto px-1 sm:px-6 mt-8">
-<h2 class="text-2xl font-bold text-gray-800 mb-4">スコア</h2>
-<div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
-  <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">スコア</h2>
+  <div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
+    <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto">
 
-  <% flash.each do |type, message| %>
-    <% unless type == 'feedback_notice' || type == 'feedback_alert' %>
-      <div class="<%= type == 'alert' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-blue-100 border-blue-400 text-blue-700' %> px-4 py-3 border rounded-lg mb-4">
-        <p class="font-bold">注意</p>
-        <p><%= message %></p>
+    <% flash.each do |type, message| %>
+      <% unless type == 'feedback_notice' || type == 'feedback_alert' %>
+        <div class="<%= type == 'alert' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-blue-100 border-blue-400 text-blue-700' %> px-4 py-3 border rounded-lg mb-4">
+          <p class="font-bold">注意</p>
+          <p><%= message %></p>
+        </div>
+      <% end %>
+    <% end %>
+
+      <div class="p-4 rounded-lg mb-6">
+        <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-700 mb-4 text-center">あなたのスコア: <%= @score.correct_answer %> / <%= @total_quizzes %> 問</p>
+      </div>
+
+      <%= link_to 'トップページへ戻る', quiz_sets_path, class: "block text-lg text-center mt-4 text-blue-600 hover:underline" %>
+    </div>
+  </div>
+
+  <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto mt-12">
+
+    <% if flash[:feedback_notice] %>
+      <div class="bg-blue-100 border-blue-400 text-blue-700 px-4 py-3 border rounded-lg mb-4 text-center">
+        <p><%= flash[:feedback_notice] %></p>
+      </div>
+    <% elsif flash[:feedback_alert] %>
+      <div class="bg-red-100 border-red-400 text-red-700 px-4 py-3 border rounded-lg mb-4 text-center">
+        <p><%= flash[:feedback_alert] %></p>
       </div>
     <% end %>
-  <% end %>
 
-
-    <div class="p-4 rounded-lg mb-6">
-      <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-700 mb-4 text-center">あなたのスコア: <%= @score.correct_answer %> / <%= @total_quizzes %> 問</p>
-    </div>
-
-    <%= link_to 'トップページへ戻る', quiz_sets_path, class: "block text-lg text-center mt-4 text-blue-600 hover:underline" %>
+    <%= form_with model: Feedback.new, url: feedbacks_path, local: true do |form| %>
+      <%= form.hidden_field :quiz_set_id, value: @quiz_set.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <div class="mb-4">
+        <%= form.text_area :content, rows: 4, placeholder: 'こちらにフィードバックを入力', class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+      <div class="text-center mb-4">
+        <p>ご利用いただきありがとうございます。</p>
+        <p>サービス向上のために、あなたの意見や感想を教えてください。</p>
+      </div>
+      <div class="text-center">
+        <%= form.submit '送信する', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+      </div>
+    <% end %>
   </div>
-
-
-</div>
-
-
-<div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto mt-12">
-
-<% if flash[:feedback_notice] %>
-  <div class="bg-blue-100 border-blue-400 text-blue-700 px-4 py-3 border rounded-lg mb-4 text-center">
-    <p><%= flash[:feedback_notice] %></p>
-  </div>
-<% elsif flash[:feedback_alert] %>
-  <div class="bg-red-100 border-red-400 text-red-700 px-4 py-3 border rounded-lg mb-4 text-center">
-    <p><%= flash[:feedback_alert] %></p>
-  </div>
-<% end %>
-
-<%= form_with model: Feedback.new, url: feedbacks_path, local: true do |form| %>
-  <%= form.hidden_field :quiz_set_id, value: @quiz_set.id %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <div class="mb-4">
-    <%= form.text_area :content, rows: 4, placeholder: 'こちらにフィードバックを入力', class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
-  </div>
-  <div class="text-center mb-4">
-    <p>ご利用いただきありがとうございます。</p>
-    <p>サービス向上のために、あなたの意見や感想を教えてください。</p>
-  </div>
-  <div class="text-center">
-    <%= form.submit '送信する', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
-  </div>
-<% end %>
-
-</div>
-
 </div>

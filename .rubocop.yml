@@ -1,0 +1,32 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+  DisplayCopNames: true
+  Exclude:
+    - "Gemfile"
+    - "bin/**/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "config/**/*"
+    - "node_modules/**/*"
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/user.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/quizzes_controller.rb'

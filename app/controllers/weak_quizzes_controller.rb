@@ -11,9 +11,7 @@ class WeakQuizzesController < ApplicationController
     @mastered_quizzes_count = current_user.mastered_quizzes_count
     @mastery_level = current_user.mastery_level
 
-    @quiz_sets_stats = QuizSet.all.map do |quiz_set|
-      [quiz_set, current_user.quiz_set_stats(quiz_set)]
-    end.to_h
+    @quiz_sets_stats = QuizSet.all.index_with { |quiz_set| current_user.quiz_set_stats(quiz_set) }
 
     @header_class = 'bg-green-500'
   end
@@ -68,10 +66,13 @@ class WeakQuizzesController < ApplicationController
     end
 
     performance_summary = UserQuizPerformanceSummary.find_or_create_by(user: current_user, quiz: @quiz)
-    performance_summary.increment!(:attempts)
+    performance_summary.increment(:attempts)
+    performance_summary.save
     if correct
-      performance_summary.increment!(:correct_answers)
-      performance_summary.increment!(:consecutive_correct_answers)
+      performance_summary.increment(:correct_answers)
+      performance_summary.save
+      performance_summary.increment(:consecutive_correct_answers)
+      performance_summary.save
     else
       performance_summary.update(consecutive_correct_answers: 0)
     end

@@ -11,10 +11,8 @@ class QuizSetsController < ApplicationController
     @quiz_sets = QuizSet.all.map do |quiz_set|
       quiz_set_data = quiz_set.as_json
       if user_signed_in?
-        quiz_set_data.merge!(
-          answered_quizzes_count: quiz_set.answered_quizzes_count(current_user),
-          total_quizzes_count: quiz_set.total_quizzes_count
-        )
+        quiz_set_data[:answered_quizzes_count] = quiz_set.answered_quizzes_count(current_user)
+        quiz_set_data[:total_quizzes_count] = quiz_set.total_quizzes_count
       end
       quiz_set_data
     end

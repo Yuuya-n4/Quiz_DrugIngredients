@@ -1,19 +1,19 @@
 <div class="container mx-auto px-1 sm:px-6 mt-8">
-<h2 class="text-2xl font-bold text-gray-800 mb-4">スコア</h2>
-<div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
-  <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto">
+  <h2 class="text-2xl font-bold text-gray-800 mb-4">スコア</h2>
+  <div class="service-background rounded-lg shadow-md relative p-2 sm:p-10">
+    <div class="bg-white bg-opacity-90 rounded-lg shadow-md p-4 sm:p-6 w-full sm:max-w-xl mx-auto">
 
-    <% flash.each do |type, message| %>
-      <div class="<%= type == 'alert' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-blue-100 border-blue-400 text-blue-700' %> px-4 py-3 border rounded-lg mb-4">
-        <p class="font-bold">注意</p>
-        <p><%= message %></p>
+      <% flash.each do |type, message| %>
+        <div class="<%= type == 'alert' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-blue-100 border-blue-400 text-blue-700' %> px-4 py-3 border rounded-lg mb-4">
+          <p class="font-bold">注意</p>
+          <p><%= message %></p>
+        </div>
+      <% end %>
+
+      <div class="p-4 rounded-lg mb-6">
+        <p class="text-3xl md:text-3xl lg:text-4xl font-bold text-gray-700 mb-4 text-center">あなたの正解数: <%= @score %> / <%= @total_quizzes %></p>
       </div>
-    <% end %>
-
-    <div class="p-4 rounded-lg mb-6">
-      <p class="text-3xl md:text-3xl lg:text-4xl font-bold text-gray-700 mb-4 text-center">あなたの正解数: <%= @score %> / <%= @total_quizzes %></p>
+      <%= link_to '苦手克服トップに戻る', start_weak_quizzes_path, class: "block text-lg text-center text-blue-600 hover:underline" %>
     </div>
-    <%= link_to '苦手克服トップに戻る', start_weak_quizzes_path, class: "block text-lg text-center text-blue-600 hover:underline" %>
   </div>
-</div>
 </div>

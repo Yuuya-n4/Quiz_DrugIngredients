@@ -34,7 +34,6 @@ const StarRating = ({ quizId }) => {
     .then(response => {
       // 現在の評価を更新
       setCurrentRating(newRating);
-      console.log('Rating submitted:', response);
     })
     .catch(error => {
       console.log('Error submitting rating:', error);

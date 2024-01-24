@@ -5,6 +5,10 @@ class QuizzesController < ApplicationController
   layout 'quiz', only: [:show, :explanation]
   before_action :set_default_meta_tags, only: [:show, :explanation, :index]
 
+  def index
+    set_meta_tags title: 'クイズ一覧'
+  end
+
   def show
     set_meta_tags title: 'クイズ'
     @choices = @quiz.choices
@@ -16,6 +20,7 @@ class QuizzesController < ApplicationController
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
   def answer
     session.delete(:user_choice)
     choice = Choice.find(params[:choice_id])
@@ -36,16 +41,20 @@ class QuizzesController < ApplicationController
     session[:answered_quiz_ids] << @quiz.id
 
     performance_summary = UserQuizPerformanceSummary.find_or_create_by(user: current_user, quiz: @quiz)
-    performance_summary.increment!(:attempts)
+    performance_summary.increment(:attempts)
+    performance_summary.save
     if correct
-      performance_summary.increment!(:correct_answers)
-      performance_summary.increment!(:consecutive_correct_answers)
+      performance_summary.increment(:correct_answers)
+      performance_summary.save
+      performance_summary.increment(:consecutive_correct_answers)
+      performance_summary.save
     else
       performance_summary.update(consecutive_correct_answers: 0)
     end
 
     redirect_to explanation_quiz_set_quiz_path(@quiz_set, @quiz)
   end
+  # rubocop:enable Metrics/AbcSize
 
   def explanation
     set_meta_tags title: 'クイズ解説'
@@ -71,37 +80,27 @@ class QuizzesController < ApplicationController
     end
   end
 
-  def index
-    set_meta_tags title: 'クイズ一覧'
-  end
-
   def search
     query = params[:query]
-    page = params[:page]
-    @quizzes = Quiz.joins(:quiz_set, :choices)
-                   .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
-                   .distinct
-                   .includes(:choices, :quiz_set)
+    page = params[:page] || 1 # デフォルトページ番号を設定
   
-    total_quizzes = @quizzes.count # 検索結果の総数を計算
-    total_pages = (total_quizzes / 20.0).ceil # 1ページあたり20件でページ数を計算（例）
+    if query.present?
+      @quizzes = Quiz.joins(:quiz_set, :choices)
+                     .where("quizzes.question LIKE :query OR quizzes.explanation LIKE :query OR quiz_sets.title LIKE :query OR (choices.text LIKE :query AND choices.correct = true)", query: "%#{query}%")
+                     .distinct
+                     .includes(:choices, :quiz_set)
+    else
+      @quizzes = Quiz.all
+    end
   
+    total_quizzes = @quizzes.count
+    total_pages = (total_quizzes / 20.0).ceil # 1ページあたり20件
+    
     render json: {
       quizzes: @quizzes.limit(20).offset((page.to_i - 1) * 20).as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
       pagination: {
         total_pages: total_pages,
-        current_page: page.to_i # クライアントから送信されたページ番号を使う
-      }
-    }
-  end
-
-  def api_index
-    quizzes = Quiz.all.order(id: :asc).page(params[:page]).per(20)
-    render json: {
-      quizzes: quizzes.as_json(include: { choices: { only: [:text, :correct] }, quiz_set: { only: :title } }),
-      pagination: {
-        total_pages: quizzes.total_pages,
-        current_page: quizzes.current_page
+        current_page: page.to_i
       }
     }
   end

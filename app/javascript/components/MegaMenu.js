@@ -15,13 +15,17 @@ const MegaMenu = ({ onClose }) => {
   
     // メニュー外のクリックを検知するハンドラ
     const handleOutsideClick = (event) => {
-      if (event.target.closest('.mega-menu')) {
+      // クイズセットがクリックされたかどうかをチェック
+      if (event.target.closest('.quiz-set')) {
         return;
       }
-      onClose();
+
+      if (!event.target.closest('.mega-menu')) {
+        onClose();
+      }
     };
-  
-    // メニュー外のクリックを監視
+
+    // ページ全体のクリックを監視
     document.addEventListener('mousedown', handleOutsideClick);
   
     // クリーンアップ関数
@@ -29,7 +33,6 @@ const MegaMenu = ({ onClose }) => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [onClose]);
-
 
   const variants = {
     hidden: { opacity: 0, y: -100 },
@@ -45,21 +48,21 @@ const MegaMenu = ({ onClose }) => {
       variants={variants}
     >
       <div className="absolute inset-x-0 top-full z-50 bg-white w-screen shadow-lg p-4">
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
-            {quizSets.map((quizSet) => (
-              <a key={quizSet.id} href={`/quiz_sets/${quizSet.id}`} className="block text-center">
-                <div className="bg-sky-100 hover:bg-sky-200 transition duration-300 ease-in-out rounded-lg p-4 flex justify-center items-center aspect-square">
-                  <div className="md:text-lg lg:text-xl font-bold text-blue-600 mb-2">{quizSet.title}</div>
-                </div>
-              </a>
-            ))}
-            <a href="/weak_quizzes/start" className="block text-center"> {}
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+          {quizSets.map((quizSet) => (
+            <a key={quizSet.id} href={`/quiz_sets/${quizSet.id}`} className="block text-center quiz-set">
+              <div className="bg-sky-100 hover:bg-sky-200 transition duration-300 ease-in-out rounded-lg p-4 flex justify-center items-center aspect-square">
+                <div className="md:text-lg lg:text-xl font-bold text-blue-600 mb-2">{quizSet.title}</div>
+              </div>
+            </a>
+          ))}
+          <a href="/weak_quizzes/start" className="block text-center quiz-set"> {}
             <div className="col-span-full bg-green-400 hover:bg-green-500 transition duration-300 ease-in-out rounded-lg p-4 flex justify-center items-center aspect-square">
                 <div className="md:text-lg lg:text-xl font-bold text-white mb-2">苦手克服チャレンジ</div>
             </div>
-            </a>
-          </div>
+          </a>
         </div>
+      </div>
     </motion.div>
   );
 };

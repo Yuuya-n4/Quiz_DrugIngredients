@@ -520,9 +520,9 @@ Choice.create!([
 ])
 quiz81 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '目のかゆみを抑える成分は？', explanation: 'ナファゾリンは、血管収縮作用により目のかゆみを抑える成分です。', drug_type: 1)
 Choice.create!([
-  {quiz_id: quiz70.id, text: "ナファゾリン", correct: 1},
-  {quiz_id: quiz70.id, text: "ビタミンB12", correct: 0},
-  {quiz_id: quiz70.id, text: "カフェイン", correct: 0}
+  {quiz_id: quiz81.id, text: "ナファゾリン", correct: 1},
+  {quiz_id: quiz81.id, text: "ビタミンB12", correct: 0},
+  {quiz_id: quiz81.id, text: "カフェイン", correct: 0}
 ])
 quiz82 = Quiz.create!(quiz_set_id: quiz_set4.id, question: '眼精疲労に効果的なビタミン成分は？', explanation: 'ビタミンEは、眼精疲労に効果があり、目の健康維持に寄与します。', drug_type: 1)
 Choice.create!([

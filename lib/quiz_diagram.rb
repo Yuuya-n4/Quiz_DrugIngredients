@@ -23,7 +23,6 @@ module RailsAdmin
           "fas fa-th-list"
         end
 
-
         register_instance_option :controller do
           Proc.new do
             @quiz_sets = QuizSet.includes(quizzes: :choices).all
