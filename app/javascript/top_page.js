@@ -8,10 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Noteコンポーネント用のコンテナ
   const noteContainer = document.getElementById('note-react-root');
   if (noteContainer) {
+    const userSignedIn = JSON.parse(noteContainer.getAttribute('data-user-signed-in'));
     const root = createRoot(noteContainer);
     root.render(
       <React.StrictMode>
-        <Note />
+        <Note userSignedIn={userSignedIn} />
       </React.StrictMode>
     );
   }

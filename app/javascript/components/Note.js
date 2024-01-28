@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Note = () => {
+const Note = ({ userSignedIn }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -18,6 +18,7 @@ const Note = () => {
 
       <AnimatePresence>
         {isOpen && (
+          <>
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -96,6 +97,22 @@ const Note = () => {
               </p>
             </div>
           </motion.div>
+
+          {!userSignedIn && (
+          <div className="text-center">
+            <motion.a 
+              href="/users/sign_up"
+              className="inline-block text-lg sm:text-xl md:text-2xl lg:text-3xl px-4 sm:px-6 py-2 sm:py-4 my-4 sm:my-8 bg-blue-600 text-white rounded hover:bg-blue-700 font-semibold shadow-2xl"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              会員登録する
+            </motion.a>
+          </div>
+          )}
+
+          </>
         )}
       </AnimatePresence>
     </>

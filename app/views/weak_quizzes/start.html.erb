@@ -46,6 +46,13 @@
       <div class="mt-4">
         <%= button_to 'クイズを始める', start_quiz_weak_quizzes_path, method: :post, class: "w-full bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded transition duration-300 ease-in-out" %>
       </div>
+
+      <div class="flex justify-center items-center my-6">
+        <p class="mr-4">苦手克服度をシェアしよう！</p>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="「クイズ！市販薬の成分」に挑戦！　苦手克服チャレンジの克服度は <%= @mastery_level %>%です！　苦手なクイズは<%= @weak_quizzes_count %>問、克服したクイズは<%= @mastered_quizzes_count %>問、定着したクイズは<%= @non_weak_quizzes_count %>問です！" data-url="https://www.quiz-drugingredients.com/　" data-hashtags="クイズ市販薬の成分" data-lang="ja" data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+
       <div class="mt-4">
         <%= link_to 'トップへ戻る', root_path, class: "block text-center text-lg text-blue-600 hover:underline" %>
       </div>
