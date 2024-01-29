@@ -30,7 +30,7 @@ https://www.quiz-drugingredients.com/
 - 管理者がサービス向上に繋げる　**「ユーザーからのクイズセットのフィードバック機能」**
 - 3つのモデルからなるクイズを１画面で見やすくまとめたページを追加した　**「RailsAdmin画面」**
 
-## 実装を予定している機能
+## 機能一覧
 ### MVP
 - **会員登録（devise）**
 - **ログイン、ログアウト**
@@ -89,8 +89,9 @@ https://www.quiz-drugingredients.com/
 　　React 18.2.0  
 ■ ビルドツール:  
 　　esbuild 0.19.10  
+　　sass  
 ■ CSSフレームワーク:  
-　　Tailwind CSS（メインサービス）  
+　　Tailwind CSS  
 　　Bootstrap（rails-admin）  
 ■ インフラ:  
 　　Webアプリケーションサーバ: Fly.io  
