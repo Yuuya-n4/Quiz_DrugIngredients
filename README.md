@@ -25,13 +25,26 @@ https://www.quiz-drugingredients.com/
 ## メインの機能
 - 市販薬の成分の問題を出題する　**「クイズ機能」**
 - 苦手を克服するやり込み要素の　**「苦手克服チャレンジ」**
-- 少しの情報から気になったクイズを検索しやすい　**「クイズ検索機能」**
+- 1文字入力するごとに自動で検索され表示される　**「クイズ検索機能」**
 - 管理者がサービス向上に繋げる　**「ユーザーからのクイズの５段階★星評価機能」**
 - 管理者がサービス向上に繋げる　**「ユーザーからのクイズセットのフィードバック機能」**
 - 3つのモデルからなるクイズを１画面で見やすくまとめたページを追加した　**「RailsAdmin画面」**
+- PC画面やスマホ画面など画面の大きさによってデザインの変化やヘッダー機能の変化　**「レスポンシブデザイン」**
+
+|クイズ機能|苦手克服チャレンジ|
+|:--:|:--:|
+|![eef5a98f0dde97953ea688e5d24d0f18](https://github.com/Yuuya-n4/Quiz_DrugIngredients/assets/127364780/484f696f-da85-40c1-a046-9247128be1c3)|![a4cf07eefc2127cd20cbc0f0b8f47923](https://github.com/Yuuya-n4/Quiz_DrugIngredients/assets/127364780/518cd0e7-ca65-49d2-8bbf-b8772133abe2)|
+
+|クイズ検索機能|RailsAdminカスタム画面|
+|:--:|:--:|
+|![16134bd353284b0f644c577d9c3125f4](https://github.com/Yuuya-n4/Quiz_DrugIngredients/assets/127364780/d6b8094d-cee2-4233-9cb3-d15613b3bf90)|![76c9b9bd55050d6c0153b1c120e170b1](https://github.com/Yuuya-n4/Quiz_DrugIngredients/assets/127364780/d4fa690d-66cf-41ff-ba8d-cf8d66436bd2)|
+
+|PC画面|スマホ画面|
+|:--:|:--:|
+|![be333d33ab4cc9552a381b01706c1c5c](https://github.com/Yuuya-n4/Quiz_DrugIngredients/assets/127364780/83aab7cf-fedb-4b8f-b832-777509a45e67)|![aa4d4202065fddf79ce4f6b190e61c5a](https://github.com/Yuuya-n4/Quiz_DrugIngredients/assets/127364780/5c552d51-5409-4fb8-9bdb-b68cff0ec57b)|
+
 
 ## 機能一覧
-### MVP
 - **会員登録（devise）**
 - **ログイン、ログアウト**
 - **ユーザー情報変更**
