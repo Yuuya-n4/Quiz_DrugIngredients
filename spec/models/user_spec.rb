@@ -42,4 +42,28 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors.full_messages).to include("パスワードは6文字以上で入力してください")
   end
+
+  it "性別がなければユーザーは無効" do
+    user = build(:user, gender: nil)
+    user.valid?
+    expect(user.errors.full_messages).to include("性別を入力してください")
+  end
+
+  it "不正な性別値は無効" do
+    user = build(:user, gender: 999)
+    user.valid?
+    expect(user.errors.full_messages).to include("性別は一覧にありません")
+  end
+
+  it "年齢がなければユーザーは無効" do
+    user = build(:user, age: nil)
+    user.valid?
+    expect(user.errors.full_messages).to include("年齢を入力してください")
+  end
+
+  it "不正な年齢値は無効" do
+    user = build(:user, age: 999)
+    user.valid?
+    expect(user.errors.full_messages).to include("年齢は一覧にありません")
+  end
 end

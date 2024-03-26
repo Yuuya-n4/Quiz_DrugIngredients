@@ -9,6 +9,8 @@ RSpec.describe 'User registration', type: :system do
     fill_in 'メールアドレス', with: 'test@example.com'
     fill_in 'パスワード', with: 'password'
     fill_in '確認用パスワード', with: 'password'
+    select '男性', from: '性別'
+    select '20', from: '年齢'
 
     click_button '登録'
 
@@ -24,6 +26,8 @@ RSpec.describe 'User registration', type: :system do
     fill_in 'メールアドレス', with: ''
     fill_in 'パスワード', with: 'abc'
     fill_in '確認用パスワード', with: 'def'
+    select '男性', from: '性別'
+    select '20', from: '年齢'
 
     click_button '登録'
 
@@ -41,6 +45,8 @@ RSpec.describe 'User registration', type: :system do
     fill_in 'メールアドレス', with: existing_user.email
     fill_in 'パスワード', with: 'password'
     fill_in '確認用パスワード', with: 'password'
+    select '男性', from: '性別'
+    select '20', from: '年齢'
 
     click_button '登録'
 
