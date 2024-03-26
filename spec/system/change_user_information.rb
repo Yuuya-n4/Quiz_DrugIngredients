@@ -25,7 +25,7 @@ RSpec.describe 'User profile editing', type: :system do
   end
 
   it 'ユーザーがパスワードを変更できる' do
-    fill_in 'パスワード', with: 'newpassword'
+    fill_in 'パスワード（6文字以上）', with: 'newpassword'
     fill_in '確認用パスワード', with: 'newpassword'
     fill_in '現在のパスワード', with: user.password
     click_button '更新する'
@@ -48,7 +48,7 @@ RSpec.describe 'User profile editing', type: :system do
   end
 
   it '確認用パスワードが空白だとエラーが表示される' do
-    fill_in 'パスワード', with: 'newpassword'
+    fill_in 'パスワード（6文字以上）', with: 'newpassword'
     fill_in '確認用パスワード', with: ''
     fill_in '現在のパスワード', with: user.password
     click_button '更新する'

@@ -4,5 +4,7 @@ FactoryBot.define do
     email { "test@example.com" }
     password { "password" }
     password_confirmation { "password" }
+    gender { :male }
+    age { :twenties }
   end
 end
