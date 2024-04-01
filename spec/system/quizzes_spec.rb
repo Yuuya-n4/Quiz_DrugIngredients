@@ -9,9 +9,7 @@ RSpec.describe 'Quizzes', type: :system do
   it 'ユーザーがクイズに10問正解し、10問正解のスコアが表示される' do
     login_as(@user, scope: :user)
 
-    visit root_path
-
-    click_link @quiz_set.title
+    visit quiz_set_path(@quiz_set)
 
     find_button('クイズを始める').click
 
@@ -21,15 +19,15 @@ RSpec.describe 'Quizzes', type: :system do
       find_button(correct_choice.text).click
 
       if quiz != @quiz_set.quizzes.last
-        click_link '次へ'
+        click_button '次へ'
       else
-        click_link 'スコアを見る'
+        click_button 'スコアを見る'
       end
     end
 
-    expect(page).to have_content('あなたのスコア:')
+    expect(page).to have_content('スコア:')
     expect(page).to have_content(@quiz_set.title)
-    expect(page).to have_content('正解数: 10 / 10 問')
+    expect(page).to have_content('あなたのスコア: 10 / 10 問')
 
     visit scores_mypages_path
     expect(page).to have_content(@quiz_set.title)
@@ -39,9 +37,7 @@ RSpec.describe 'Quizzes', type: :system do
   it 'ユーザーがクイズに０問正解し、０問正解のスコアが表示される' do
     login_as(@user, scope: :user)
 
-    visit root_path
-
-    click_link @quiz_set.title
+    visit quiz_set_path(@quiz_set)
 
     find_button('クイズを始める').click
 
@@ -51,15 +47,15 @@ RSpec.describe 'Quizzes', type: :system do
       find_button(incorrect_choices.first.text).click
 
       if quiz != @quiz_set.quizzes.last
-        click_link '次へ'
+        click_button '次へ'
       else
-        click_link 'スコアを見る'
+        click_button 'スコアを見る'
       end
     end
 
-    expect(page).to have_content('あなたのスコア:')
+    expect(page).to have_content('スコア:')
     expect(page).to have_content(@quiz_set.title)
-    expect(page).to have_content('正解数: 0 / 10 問')
+    expect(page).to have_content('あなたのスコア: 0 / 10 問')
 
     visit scores_mypages_path
     expect(page).to have_content(@quiz_set.title)
